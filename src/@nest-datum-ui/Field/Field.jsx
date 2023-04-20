@@ -5,7 +5,10 @@ import {
 	selectorMainExtract, 
 	actionApiFormMerge,
 } from '@nest-datum-ui/Store';
-import { obj as utilsCheckObj } from '@nest-datum-utils/check';
+import { 
+	obj as utilsCheckObj,
+	objFileList as utilsCheckObjFileList, 
+} from '@nest-datum-utils/check';
 import { 
 	ContextRoute,
 	ContextService,
@@ -77,11 +80,13 @@ let FieldMemo = ({
 			? (valueMemo
 				? new Date(valueMemo)
 				: new Date())
-			: ((type === 'object' || type === 'daterange')
-				? Object(valueMemo)
-				: ((type === 'checkbox')
-					? Boolean(valueMemo)
-					: String(valueMemo || '')))} 
+			: (utilsCheckObjFileList(valueMemo)
+				? valueMemo
+				: ((type === 'object' || type === 'daterange')
+					? Object(valueMemo)
+					: ((type === 'checkbox')
+						? Boolean(valueMemo)
+						: String(valueMemo || ''))))} 
 		onChange={onChangeWrapper} />;
 };
 

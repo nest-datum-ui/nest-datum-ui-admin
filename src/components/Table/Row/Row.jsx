@@ -78,9 +78,10 @@ let Row = ({
 		id,
 		onRestore,
 	]);
-	const onCheckWrapper = React.useCallback((e) => (utilsCheckFunc(onCheck))
-		? onCheck(e, { id, isNotDelete, isDeleted })
-		: actionApiListCheck(storeName, id, isNotDelete, isDeleted)(e), [
+	const onCheckWrapper = React.useCallback((e) => {
+		actionApiListCheck(storeName, id, isNotDelete, isDeleted)(e);
+		onCheck(e, { id, isNotDelete, isDeleted });
+	}, [
 		storeName,
 		id,
 		isNotDelete,

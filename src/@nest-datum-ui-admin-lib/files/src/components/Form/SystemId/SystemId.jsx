@@ -4,6 +4,7 @@ import { ContextProps } from '@nest-datum-ui/Context';
 import {
 	actionApiListProp,
 	actionUrlFilter,
+	actionUrlFilterClear,
 	hookUrlFilterItem,
 } from '@nest-datum-ui/Store';
 import Field from '@nest-datum-ui/Field';
@@ -28,6 +29,7 @@ let SystemId = () => {
 		: String(value);
 	const onChange = React.useCallback((e) => {
 		actionApiListProp(listStoreName, 'loader', true)(() => {
+			actionUrlFilterClear('parentId');
 			actionUrlFilter(storeName, 'systemId', e.target.value);
 		});
 	}, [

@@ -16,10 +16,10 @@ import {
 } from '@nest-datum-utils/check';
 import Grid from '@mui/material/Grid';
 import Button from '@nest-datum-ui/Button';
-import InputUpload from '@nest-datum-ui/Input/Upload';
+import InputUpload from '../../Input/Upload';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let Manage = ({ systemId, ...props }) => {
+let Manager = ({ systemId, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -86,6 +86,7 @@ let Manage = ({ systemId, ...props }) => {
 			item
 			xs={false}>
 			<InputUpload
+				disablePreview
 				variant="contained"
 				color="secondary"
 				form={storeName}
@@ -96,10 +97,10 @@ let Manage = ({ systemId, ...props }) => {
 	</StyledWrapper>;
 };
 
-Manage = React.memo(Manage);
-Manage.defaultProps = {
+Manager = React.memo(Manager);
+Manager.defaultProps = {
 };
-Manage.propTypes = {
+Manager.propTypes = {
 };
 
-export default Manage;
+export default Manager;

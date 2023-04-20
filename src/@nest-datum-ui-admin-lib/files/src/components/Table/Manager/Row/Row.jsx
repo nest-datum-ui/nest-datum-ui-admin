@@ -29,6 +29,7 @@ let Row = ({
 	createdAt,
 	updatedAt,
 	disableLink,
+	onCheck,
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
@@ -74,6 +75,11 @@ let Row = ({
 		name,
 		id,
 	]);
+	const onCheckWrapper = React.useCallback((e) => {
+		onCheck(e);
+	}, [
+		onCheck,
+	]);
 
 	return <StyledWrapper 
 		id={id} 
@@ -84,7 +90,8 @@ let Row = ({
 		onDrop={onDrop}
 		onDropForce={onDropForce}
 		onRestore={onRestore}
-		onEdit={onEdit}>
+		onEdit={onEdit}
+		onCheck={onCheckWrapper}>
 		{([{ 
 			children: <TypographyTable 
 				key={0} 
@@ -127,6 +134,7 @@ let Row = ({
 
 Row = React.memo(Row);
 Row.defaultProps = {
+	onCheck: (() => {}),
 };
 Row.propTypes = {
 };

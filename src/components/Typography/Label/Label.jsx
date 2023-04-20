@@ -1,23 +1,22 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 
-let Caption = ({
+let Label = ({
 	children,
 	...props
 }) => {
 	return <Typography
 		component="div"
-		variant="caption"
-		color="textSecondary"
+		variant="h6"
 		{ ...props }>
 		{children}
 	</Typography>;
 };
 
-Caption = React.memo(Caption);
-Caption.defaultProps = {
+Label = React.memo(Label);
+Label.defaultProps = {
 };
-Caption.propTypes = {
+Label.propTypes = {
 };
 
-export default Caption;
+export default Label;

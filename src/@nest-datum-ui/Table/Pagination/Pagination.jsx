@@ -29,7 +29,7 @@ let TablePagination = ({
 	children,
 	BottomComponent,
 }) => {
-	const loaderProcessed = (loader || !utilsCheckArr(children) || !(length >= 0));
+	const loaderProcessed = (loader || !utilsCheckArr(children) || !(length >= 0))
 
 	return <StyledWrapper>
 		<Progress visible={loaderProcessed} />

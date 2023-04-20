@@ -1,10 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { 
-	ContextProps,
-	ContextRoute, 
-	ContextService,
-} from '@nest-datum-ui/Context';
+import { ContextProps } from '@nest-datum-ui/Context';
 import { 
 	hookUrlNavigate,
 	selectorMainExtract, 
@@ -15,11 +11,9 @@ import Progress from '@nest-datum-ui/Progress';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Verify = (props) => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
 	const { 
-		[serviceName]: {
-			[routeName]: { 
+		sso: {
+			ssoVerify: { 
 				storeName, 
 				apiFullUrl,  
 			}, 
@@ -34,8 +28,8 @@ let Verify = (props) => {
 
 	React.useEffect(() => {
 		(async () => {
-			if (await actionSsoVerify(storeName, apiFullUrl)) {
-				setTimeout(() => hookUrlNavigate(`/${pageFullUrl}`), 2000);
+			if (await actionSsoVerify(storeName, apiFullUrl, process.env.ROUTE_SiGN_IN)) {
+				setTimeout(() => hookUrlNavigate(pageFullUrl), 2000);
 			}
 		})();
 	}, [

@@ -25,10 +25,13 @@ const submit = async (e, storeName, apiUrl, entityId) => {
 			check: [ utilsCheckStrId ],
 			isRequired: true,
 		},
+		parentId: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrId ],
+		},
 		path: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrPath ],
-			isRequired: true,
 		},
 		name: {
 			text: 'The value is in the wrong format.',

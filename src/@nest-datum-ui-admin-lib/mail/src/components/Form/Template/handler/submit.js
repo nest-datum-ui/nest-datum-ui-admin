@@ -10,6 +10,7 @@ import {
 	strName as utilsCheckStrName,
 	strDescription as utilsCheckStrDescription,
 	strEnvKey as utilsCheckStrEnvKey,
+	strEmail as utilsCheckStrEmail,
 	bool as utilsCheckBool,
 } from '@nest-datum-utils/check';
 
@@ -40,9 +41,19 @@ const submit = async (e, {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrDescription ]
 		},
-		systemStatusId: {
+		templateStatusId: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
+			isRequired: true,
+		},
+		fromEmail: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrEmail ],
+			isRequired: true,
+		},
+		fromName: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrName ],
 			isRequired: true,
 		},
 		isNotDelete: {

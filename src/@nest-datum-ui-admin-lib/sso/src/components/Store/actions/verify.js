@@ -3,11 +3,12 @@ import { strFilled as utilsCheckStrFilled } from '@nest-datum-utils/check';
 import { httpErrorMessage as utilsFormatHttpErrorMessage } from '@nest-datum-utils/format';
 import { 
 	hookUrlProperty,
+	hookUrlNavigate,
 	actionApiFormClear,
 	actionApiFormProp,
 } from '@nest-datum-ui/Store';
 
-export const fireVerify = async (storeName, apiUrl) => {
+export const fireVerify = async (storeName, apiUrl, pageFullUrl) => {
 	try {
 		actionApiFormProp(storeName, 'loader', true)();
 
@@ -19,7 +20,7 @@ export const fireVerify = async (storeName, apiUrl) => {
 		if (verifyKey) {
 			const request = await axios.post(apiUrl, { verifyKey });
 
-			if (!request.data.message) {
+			if (!request.data.message && request.data !== true) {
 				throw new Error(`An error has occurred. Received an empty response when trying to activate an account. The account may not be configured correctly.`);
 			}
 			actionApiFormClear(storeName, { resultMessage: request.data.message })();
@@ -32,6 +33,9 @@ export const fireVerify = async (storeName, apiUrl) => {
 
 		actionApiFormClear(storeName, { resultMessage: errMessage })();
 
+		if (pageFullUrl) {
+			setTimeout(() => hookUrlNavigate(pageFullUrl), 2000);
+		}
 		throw new Error(errMessage);
 	}
 	return false;

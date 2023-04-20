@@ -18,6 +18,7 @@ import PaperFilter from 'components/Paper/Filter';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let ListMemo = ({ 
+	withFilter: propWithFilter,
 	apiUrl: propsApiUrl,
 	page, 
 	limit, 
@@ -38,12 +39,13 @@ let ListMemo = ({
 			[routeName]: { 
 				storeName, 
 				apiFullUrl: contextApiUrl, 
-				withFilter, 
+				withFilter: contextWithFilter, 
 			}, 
 		}, 
 	} = React.useContext(ContextProps);
 	const apiUrl = propsApiUrl ?? contextApiUrl;
 	const updatedIndex = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'updatedIndex' ])) || 0;
+	const withFilter = propWithFilter ?? contextWithFilter;
 
 	React.useEffect(() => {
 		if (updatedIndex >= 0) {
@@ -142,12 +144,15 @@ let ListStoreQuerySource = (props) => {
 	const sort = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'sort' ])) ?? initialSort;
 	const page = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'page' ])) ?? initialPage;
 	const limit = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'limit' ])) ?? initialLimit;
+	const [ selectMemo ] = React.useState(() => select);
+	const [ filterMemo ] = React.useState(() => filter);
+	const [ sortMemo ] = React.useState(() => sort);
 
 	return <ListMemo
 		query={query}
-		select={select}
-		filter={filter}
-		sort={sort}
+		select={selectMemo}
+		filter={filterMemo}
+		sort={sortMemo}
 		page={page}
 		limit={limit}
 		{ ...props } />;
