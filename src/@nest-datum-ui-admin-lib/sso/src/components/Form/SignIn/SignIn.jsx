@@ -14,6 +14,10 @@ let SignIn = ({
 	onSubmit,
 	...props
 }) => {
+	const aaa = React.useContext(ContextProps);
+
+	console.log('aaa', aaa);
+
 	const { 
 		sso: { 
 			ssoSignIn: { 
