@@ -51,25 +51,29 @@ let Group = (props) => {
 									to: formsAccess.pageFullUrl,
 								}]
 								: []))),
-			}, {
-				text: 'Options',
-				check: isFormGroup
-					? [{
-						flag: !isFormGroupOptions,
-						to: `${formsForm.pageFullUrl}/options`,
-					}]
-					: (isFieldGroup
+			}, 
+			...isContentGroup
+				? []
+				: [{
+					text: 'Options',
+					check: isFormGroup
 						? [{
-							flag: !isFieldGroupOptions,
-							to: `${formsField.pageFullUrl}/options`,
+							flag: !isFormGroupOptions,
+							to: `${formsForm.pageFullUrl}/options`,
 						}]
-						: (isAccessesGroup
+						: (isFieldGroup
 							? [{
-								flag: !isAccessesGroupOptions,
-								to: `${formsAccess.pageFullUrl}/options`,
+								flag: !isFieldGroupOptions,
+								to: `${formsField.pageFullUrl}/options`,
 							}]
-							: [])),
-			}, {
+							: (isAccessesGroup
+								? [{
+									flag: !isAccessesGroupOptions,
+									to: `${formsAccess.pageFullUrl}/options`,
+								}]
+								: [])),
+				}], 
+			{
 				text: 'Statuses',
 				check: isFormGroup
 					? [{

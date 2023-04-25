@@ -25,7 +25,6 @@ import ButtonPrimary from '@nest-datum-ui/Button/Primary';
 import FormOptionValue from 'components/Form/Option/Value';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
-import InputEnvKey from 'components/Input/EnvKey';
 import InputName from 'components/Input/Name';
 import InputDescription from 'components/Input/Description';
 import InputIsNotDelete from 'components/Input/IsNotDelete';
@@ -126,19 +125,6 @@ let Country = () => {
 				Component={InputId}
 				form={id}
 				name="id" />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={InputEnvKey}
-				form={id}
-				name="envKey" />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={InputName}
-				form={id}
-				name="code"
-				required />
 		</Box>
 		<Box py={1}>
 			<Field

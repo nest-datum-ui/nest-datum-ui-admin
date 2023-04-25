@@ -4,12 +4,12 @@ import Select from 'components/Select';
 const jobFormRelationForm = {
 	id: 'jobs-job-option-relations-form',
 	storeName: 'jobs-job-option-relations-form',
-	apiUrl: 'job/:id/option',
+	apiUrl: 'post/:id/option',
 
 	title: 'Data type',
 
 	post: {
-		apiUrl: 'job/:id/options',
+		apiUrl: 'post/:id/options',
 	},
 
 	fields: [{

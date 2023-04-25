@@ -1,6 +1,6 @@
-import dictionarySetting from './setting.js';
-import dictionarySettingForm from './settingForm.js';
-import dictionarySettingList from './settingList.js';
+import dictionaryetting from './setting.js';
+import dictionaryettingForm from './settingForm.js';
+import dictionaryettingList from './settingList.js';
 import dictionaryAccess from './access.js';
 import dictionaryAccessForm from './accessForm.js';
 import dictionaryAccessFormRelationList from './accessFormRelationList.js';
@@ -14,19 +14,19 @@ import dictionaryAccessOptionList from './accessOptionList.js';
 import dictionaryAccessStatus from './accessStatus.js';
 import dictionaryAccessStatusForm from './accessStatusForm.js';
 import dictionaryAccessStatusList from './accessStatusList.js';
-import dictionaryTemplate from './template.js';
-import dictionaryTemplateForm from './templateForm.js';
-import dictionaryTemplateFormRelationList from './templateFormRelationList.js';
-import dictionaryTemplateFormRelationForm from './templateFormRelationForm.js';
-import dictionaryTemplateList from './templateList.js';
-import dictionaryTemplateOption from './templateOption.js';
-import dictionaryTemplateOptionRelationForm from './templateOptionRelationForm.js';
-import dictionaryTemplateOptionRelationList from './templateOptionRelationList.js';
-import dictionaryTemplateOptionForm from './templateOptionForm.js';
-import dictionaryTemplateOptionList from './templateOptionList.js';
-import dictionaryTemplateStatus from './templateStatus.js';
-import dictionaryTemplateStatusForm from './templateStatusForm.js';
-import dictionaryTemplateStatusList from './templateStatusList.js';
+import dictionaryForm from './form.js';
+import dictionaryFormForm from './formForm.js';
+import dictionaryFormFormRelationList from './formFormRelationList.js';
+import dictionaryFormFormRelationForm from './formFormRelationForm.js';
+import dictionaryFormList from './formList.js';
+import dictionaryFormOption from './formOption.js';
+import dictionaryFormOptionRelationForm from './formOptionRelationForm.js';
+import dictionaryFormOptionRelationList from './formOptionRelationList.js';
+import dictionaryFormOptionForm from './formOptionForm.js';
+import dictionaryFormOptionList from './formOptionList.js';
+import dictionaryFormStatus from './formStatus.js';
+import dictionaryFormStatusForm from './formStatusForm.js';
+import dictionaryFormStatusList from './formStatusList.js';
 import dictionaryField from './field.js';
 import dictionaryFieldForm from './fieldForm.js';
 import dictionaryFieldFormRelationList from './fieldFormRelationList.js';
@@ -52,13 +52,13 @@ const config = {
 	pagePrefixUrl: 'app',
 	pageSeparateBaseUrl: 'dictionary',
 	pageBaseUrl: 'dictionary',
-	pageInitialUrl: 'templates',
+	pageInitialUrl: 'dictionary',
 	apiBaseUrl: process.env.URL_API_DICTIONARY,
 	title: 'Dictionary',
 	
-	dictionarySetting,
-	dictionarySettingForm,
-	dictionarySettingList,
+	dictionaryetting,
+	dictionaryettingForm,
+	dictionaryettingList,
 	dictionaryAccess,
 	dictionaryAccessForm,
 	dictionaryAccessFormRelationList,
@@ -72,19 +72,19 @@ const config = {
 	dictionaryAccessStatus,
 	dictionaryAccessStatusForm,
 	dictionaryAccessStatusList,
-	dictionaryTemplate,
-	dictionaryTemplateForm,
-	dictionaryTemplateFormRelationList,
-	dictionaryTemplateFormRelationForm,
-	dictionaryTemplateList,
-	dictionaryTemplateOption,
-	dictionaryTemplateOptionRelationForm,
-	dictionaryTemplateOptionRelationList,
-	dictionaryTemplateOptionForm,
-	dictionaryTemplateOptionList,
-	dictionaryTemplateStatus,
-	dictionaryTemplateStatusForm,
-	dictionaryTemplateStatusList,
+	dictionaryForm,
+	dictionaryFormForm,
+	dictionaryFormFormRelationList,
+	dictionaryFormFormRelationForm,
+	dictionaryFormList,
+	dictionaryFormOption,
+	dictionaryFormOptionRelationForm,
+	dictionaryFormOptionRelationList,
+	dictionaryFormOptionForm,
+	dictionaryFormOptionList,
+	dictionaryFormStatus,
+	dictionaryFormStatusForm,
+	dictionaryFormStatusList,
 	dictionaryField,
 	dictionaryFieldForm,
 	dictionaryFieldFormRelationList,

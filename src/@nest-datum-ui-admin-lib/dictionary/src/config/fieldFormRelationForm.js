@@ -2,8 +2,8 @@ import { strId as utilsCheckStrId } from '@nest-datum-utils/check';
 import Select from 'components/Select';
 
 const fieldFormRelationForm = {
-	id: 'forms-field-option-relations-form',
-	storeName: 'forms-field-option-relations-form',
+	id: 'dictionary-field-option-relations-form',
+	storeName: 'dictionary-field-option-relations-form',
 	apiUrl: 'field/:id/option',
 
 	title: 'Data type',
@@ -14,7 +14,7 @@ const fieldFormRelationForm = {
 
 	fields: [{
 		Component: Select,
-		storeName: 'forms-field-option-relations-form',
+		storeName: 'dictionary-field-option-relations-form',
 		apiUrl: 'field',
 		name: 'fieldId',
 		itemKey: 'name',

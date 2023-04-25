@@ -37,9 +37,9 @@ let Content = () => {
 				storeName, 
 				apiFullUrl: apiUrl,  
 			},
-			dictionaryTemplateList: {
-				storeName: templateStoreName, 
-				apiFullUrl: templateApiUrl,
+			dictionaryFormList: {
+				storeName: formStoreName, 
+				apiFullUrl: formApiUrl,
 			},
 		},
 	} = React.useContext(ContextProps);
@@ -85,12 +85,12 @@ let Content = () => {
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={templateStoreName}
-					apiUrl={templateApiUrl} />)}
+					storeName={formStoreName}
+					apiUrl={formApiUrl} />)}
 				form={id}
 				itemKey="name"
-				name="formId"
-				label="Form"
+				name="dictionaryId"
+				label="dictionary"
 				required />
 		</Box>
 		<Box py={1}>

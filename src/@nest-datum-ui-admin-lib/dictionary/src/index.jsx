@@ -8,12 +8,12 @@ import {
 	ContextProps, 
 } from '@nest-datum-ui/Context';
 import Layout from './layouts';
-import RouteTemplateList from './routes/Template/List';
-import RouteTemplateForm from './routes/Template/Form';
-import RouteTemplateOptionList from './routes/Template/Option/List';
-import RouteTemplateOptionForm from './routes/Template/Option/Form';
-import RouteTemplateStatusList from './routes/Template/Status/List';
-import RouteTemplateStatusForm from './routes/Template/Status/Form';
+import RouteFormList from './routes/Form/List';
+import RouteFormForm from './routes/Form/Form';
+import RouteFormOptionList from './routes/Form/Option/List';
+import RouteFormOptionForm from './routes/Form/Option/Form';
+import RouteFormStatusList from './routes/Form/Status/List';
+import RouteFormStatusForm from './routes/Form/Status/Form';
 import RouteFieldList from './routes/Field/List';
 import RouteFieldForm from './routes/Field/Form';
 import RouteFieldOptionList from './routes/Field/Option/List';
@@ -40,10 +40,10 @@ let Dictionary = () => {
 			dictionaryAccess,
 			dictionaryAccessOption,
 			dictionaryAccessStatus,
-			dictionarySetting,
-			dictionaryTemplate,
-			dictionaryTemplateOption,
-			dictionaryTemplateStatus,
+			dictionaryetting,
+			dictionaryForm,
+			dictionaryFormOption,
+			dictionaryFormStatus,
 			dictionaryField,
 			dictionaryFieldOption,
 			dictionaryFieldStatus,
@@ -59,25 +59,25 @@ let Dictionary = () => {
 				element={<Layout />}>
 				<Route
 					index
-					element={<RouteTemplateList />} />
+					element={<RouteFormList />} />
 				<Route
-					path={dictionaryTemplate.pageUrl}
-					element={<RouteTemplateList />} />
+					path={dictionaryForm.pageUrl}
+					element={<RouteFormList />} />
 				<Route
-					path={`${dictionaryTemplate.pageUrl}/:entityId`}
-					element={<RouteTemplateForm />} />
+					path={`${dictionaryForm.pageUrl}/:entityId`}
+					element={<RouteFormForm />} />
 				<Route
-					path={dictionaryTemplateOption.pageUrl}
-					element={<RouteTemplateOptionList />} />
+					path={dictionaryFormOption.pageUrl}
+					element={<RouteFormOptionList />} />
 				<Route
-					path={`${dictionaryTemplateOption.pageUrl}/:entityId`}
-					element={<RouteTemplateOptionForm />} />
+					path={`${dictionaryFormOption.pageUrl}/:entityId`}
+					element={<RouteFormOptionForm />} />
 				<Route
-					path={dictionaryTemplateStatus.pageUrl}
-					element={<RouteTemplateStatusList />} />
+					path={dictionaryFormStatus.pageUrl}
+					element={<RouteFormStatusList />} />
 				<Route
-					path={`${dictionaryTemplateStatus.pageUrl}/:entityId`}
-					element={<RouteTemplateStatusForm />} />
+					path={`${dictionaryFormStatus.pageUrl}/:entityId`}
+					element={<RouteFormStatusForm />} />
 				<Route
 					path={dictionaryField.pageUrl}
 					element={<RouteFieldList />} />
@@ -127,10 +127,10 @@ let Dictionary = () => {
 					path={`${dictionaryAccessStatus.pageUrl}/:entityId`}
 					element={<RouteAccessStatusForm />} />
 				<Route
-					path={dictionarySetting.pageUrl}
+					path={dictionaryetting.pageUrl}
 					element={<RouteSettingList />} />
 				<Route
-					path={`${dictionarySetting.pageUrl}/:entityId`}
+					path={`${dictionaryetting.pageUrl}/:entityId`}
 					element={<RouteSettingForm />} />
 			</Route>
 		</Routes>

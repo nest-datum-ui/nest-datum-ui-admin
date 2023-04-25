@@ -8,7 +8,7 @@ const jobOptionList = {
 	
 	id: 'jobs-Job-options-list',
 	storeName: 'jobs-Job-options-list',
-	apiUrl: 'job-option',
+	apiUrl: 'post-option',
 	initialPage: 1,
 	initialLimit: 20,
 	search: true,

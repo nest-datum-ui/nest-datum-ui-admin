@@ -4,18 +4,18 @@ import Select from 'components/Select';
 const jobOptionRelationForm = {
 	id: 'jobs-job-option-relations-form',
 	storeName: 'jobs-job-option-relations-form',
-	apiUrl: 'job/:id/option',
+	apiUrl: 'post/:id/option',
 
 	title: 'Job',
 
 	post: {
-		apiUrl: 'job/:id/options',
+		apiUrl: 'post/:id/options',
 	},
 
 	fields: [{
 		Component: Select,
 		storeName: 'jobs-job-option-relations-form',
-		apiUrl: 'job',
+		apiUrl: 'post',
 		name: 'jobId',
 		itemKey: 'name',
 		label: 'Select',

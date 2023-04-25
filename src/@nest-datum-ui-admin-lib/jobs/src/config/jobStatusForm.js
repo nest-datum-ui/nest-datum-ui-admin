@@ -10,7 +10,7 @@ const jobStatusForm = {
 
 	id: 'jobs-job-statuses-form',
 	storeName: 'jobs-job-statuses-form',
-	apiUrl: 'job-status',
+	apiUrl: 'post-status',
 
 	manage: {
 		create: {

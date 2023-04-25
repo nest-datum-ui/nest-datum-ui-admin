@@ -7,7 +7,7 @@ const config = {
 	orderInHeaderTabMenu: 1,
 	headerTabMenuTitle: 'Contents',
 
-	pageUrl: 'Contents',
+	pageUrl: 'contents',
 	pageTitle: 'Contents',
 };
 

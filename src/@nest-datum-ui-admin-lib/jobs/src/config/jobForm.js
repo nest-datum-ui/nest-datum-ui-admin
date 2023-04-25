@@ -16,7 +16,7 @@ const jobForm = {
 
 	id: 'jobs-job-form',
 	storeName: 'jobs-job-form',
-	apiUrl: 'job',
+	apiUrl: 'post',
 
 	entity: 'jobId', 
 	entityRelation: 'jobOptionId',

@@ -8,7 +8,7 @@ const jobList = {
 	
 	id: 'jobs-job-list',
 	storeName: 'jobs-job-list',
-	apiUrl: 'job',
+	apiUrl: 'post',
 	initialPage: 1,
 	initialLimit: 20,
 	bulkDeletion: true,
