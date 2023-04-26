@@ -81,7 +81,6 @@ export const reducerFormCreate = (state, action) => {
 			...(action.payload['data'] || {}),
 		};
 	}
-	console.log('action.payload.callback', action.payload.callback);
 	if (utilsCheckFunc(action.payload.callback)) {
 		setTimeout(() => {
 			action.payload.callback(action.payload.storeName, state, action);

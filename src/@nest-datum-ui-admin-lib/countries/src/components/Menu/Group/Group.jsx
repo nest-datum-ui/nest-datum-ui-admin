@@ -8,13 +8,17 @@ let Group = (props) => {
 		countries: { 
 			countriesAccess,
 			countriesSetting,
-			countriesCountry,
+			countriesRegion,
+			countriesType,
 		}, 
 	} = React.useContext(ContextProps);
 	const { pathname } = useLocation();
-	const isCountryGroup = pathname.indexOf(countriesCountry.pageFullUrl) === 0;
-	const isCountryGroupOptions = pathname.indexOf(`${countriesCountry.pageFullUrl}/options`) === 0;
-	const isCountryGroupStatuses = pathname.indexOf(`${countriesCountry.pageFullUrl}/statuses`) === 0;
+	const isRegionGroup = pathname.indexOf(countriesRegion.pageFullUrl) === 0;
+	const isRegionGroupOptions = pathname.indexOf(`${countriesRegion.pageFullUrl}/options`) === 0;
+	const isRegionGroupStatuses = pathname.indexOf(`${countriesRegion.pageFullUrl}/statuses`) === 0;
+	const isTypeGroup = pathname.indexOf(countriesType.pageFullUrl) === 0;
+	const isTypeGroupOptions = pathname.indexOf(`${countriesType.pageFullUrl}/options`) === 0;
+	const isTypeGroupStatuses = pathname.indexOf(`${countriesType.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(countriesAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${countriesAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${countriesAccess.pageFullUrl}/statuses`) === 0;
@@ -23,43 +27,58 @@ let Group = (props) => {
 		&& <StyledWrapper { ...props }>
 			{([{
 				text: 'Data',
-				check: isCountryGroup
+				check: isRegionGroup
 					? [{
-						flag: (pathname.length > countriesCountry.pageFullUrl.length && (isCountryGroupOptions || isCountryGroupStatuses)),
-						to: countriesCountry.pageFullUrl,
+						flag: (pathname.length > countriesRegion.pageFullUrl.length && (isRegionGroupOptions || isRegionGroupStatuses)),
+						to: countriesRegion.pageFullUrl,
 					}]
-					: (isAccessesGroup
+					: (isTypeGroup
 						? [{
-							flag: (pathname.length > countriesAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-							to: countriesAccess.pageFullUrl,
+							flag: (pathname.length > countriesType.pageFullUrl.length && (isTypeGroupOptions || isTypeGroupStatuses)),
+							to: countriesType.pageFullUrl,
 						}]
-						: []),
+						: (isAccessesGroup
+							? [{
+								flag: (pathname.length > countriesAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
+								to: countriesAccess.pageFullUrl,
+							}]
+							: [])),
 			}, {
 				text: 'Options',
-				check: isCountryGroup
+				check: isRegionGroup
 					? [{
-						flag: !isCountryGroupOptions,
-						to: `${countriesCountry.pageFullUrl}/options`,
+						flag: !isRegionGroupOptions,
+						to: `${countriesRegion.pageFullUrl}/options`,
 					}]
-					: (isAccessesGroup
+					: (isTypeGroup
 						? [{
-							flag: !isAccessesGroupOptions,
-							to: `${countriesAccess.pageFullUrl}/options`,
+							flag: !isTypeGroupOptions,
+							to: `${countriesType.pageFullUrl}/options`,
 						}]
-						: []),
+						: (isAccessesGroup
+							? [{
+								flag: !isAccessesGroupOptions,
+								to: `${countriesAccess.pageFullUrl}/options`,
+							}]
+							: [])),
 			}, {
 				text: 'Statuses',
-				check: isCountryGroup
+				check: isRegionGroup
 					? [{
-						flag: !isCountryGroupStatuses,
-						to: `${countriesCountry.pageFullUrl}/statuses`,
+						flag: !isRegionGroupStatuses,
+						to: `${countriesRegion.pageFullUrl}/statuses`,
 					}]
-					: (isAccessesGroup
+					: (isTypeGroup
 						? [{
-							flag: !isAccessesGroupStatuses,
-							to: `${countriesAccess.pageFullUrl}/statuses`,
+							flag: !isTypeGroupStatuses,
+							to: `${countriesType.pageFullUrl}/statuses`,
 						}]
-						: []),
+						: (isAccessesGroup
+							? [{
+								flag: !isAccessesGroupStatuses,
+								to: `${countriesAccess.pageFullUrl}/statuses`,
+							}]
+							: [])),
 			}])}
 		</StyledWrapper>;
 };

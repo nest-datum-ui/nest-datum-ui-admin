@@ -14,10 +14,6 @@ let SignIn = ({
 	onSubmit,
 	...props
 }) => {
-	const aaa = React.useContext(ContextProps);
-
-	console.log('aaa', aaa);
-
 	const { 
 		sso: { 
 			ssoSignIn: { 
@@ -55,7 +51,6 @@ let SignIn = ({
 				name="password"
 				visibility />
 		</Box>
-		{console.log('id', id, storeName)}
 		<ButtonPrimary type="submit" form={id} startIcon={<LoginIcon />}>
 			<b>Login</b>
 		</ButtonPrimary>

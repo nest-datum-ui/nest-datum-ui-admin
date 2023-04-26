@@ -9,13 +9,17 @@ let Tabs = () => {
 		jobs: { 
 			jobsAccess,
 			jobsSetting,
-			jobsJob,
+			jobsPost,
+			jobsCategory,
+			jobsTag,
 		}, 
 	} = React.useContext(ContextProps);
 
 	return <MenuTabs>
 		{([
-			jobsJob,
+			jobsPost,
+			jobsCategory,
+			jobsTag,
 			jobsAccess,
 			jobsSetting,
 		]).map((item) => ({

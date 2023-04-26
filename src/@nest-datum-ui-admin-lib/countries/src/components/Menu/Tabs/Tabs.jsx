@@ -9,13 +9,15 @@ let Tabs = () => {
 		countries: { 
 			countriesAccess,
 			countriesSetting,
-			countriesCountry,
+			countriesRegion,
+			countriesType,
 		}, 
 	} = React.useContext(ContextProps);
 
 	return <MenuTabs>
 		{([
-			countriesCountry,
+			countriesRegion,
+			countriesType,
 			countriesAccess,
 			countriesSetting,
 		]).map((item) => ({
