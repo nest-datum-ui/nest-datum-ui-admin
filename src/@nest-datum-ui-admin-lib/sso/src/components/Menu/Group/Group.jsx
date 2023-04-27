@@ -12,7 +12,7 @@ let Group = (props) => {
 			ssoSetting,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isUsersGroup = pathname.indexOf(ssoUser.pageFullUrl) === 0;
 	const isUsersGroupOptions = pathname.indexOf(`${ssoUser.pageFullUrl}/options`) === 0;
 	const isUsersGroupStatuses = pathname.indexOf(`${ssoUser.pageFullUrl}/statuses`) === 0;
@@ -30,17 +30,17 @@ let Group = (props) => {
 				check: isUsersGroup
 					? [{
 						flag: (pathname.length > ssoUser.pageFullUrl.length && (isUsersGroupOptions || isUsersGroupStatuses)),
-						to: ssoUser.pageFullUrl,
+						to: ssoUser.pageFullUrl + search,
 					}]
 					: (isRolesGroup
 						? [{
 							flag: (pathname.length > ssoRole.pageFullUrl.length && (isRolesGroupOptions || isRolesGroupStatuses)),
-							to: ssoRole.pageFullUrl,
+							to: ssoRole.pageFullUrl + search,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: (pathname.length > ssoAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-								to: ssoAccess.pageFullUrl,
+								to: ssoAccess.pageFullUrl + search,
 							}]
 							: [])),
 			}, {
@@ -48,17 +48,17 @@ let Group = (props) => {
 				check: isUsersGroup
 					? [{
 						flag: !isUsersGroupOptions,
-						to: `${ssoUser.pageFullUrl}/options`,
+						to: `${ssoUser.pageFullUrl}/options${search}`,
 					}]
 					: (isRolesGroup
 						? [{
 							flag: !isRolesGroupOptions,
-							to: `${ssoRole.pageFullUrl}/options`,
+							to: `${ssoRole.pageFullUrl}/options${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupOptions,
-								to: `${ssoAccess.pageFullUrl}/options`,
+								to: `${ssoAccess.pageFullUrl}/options${search}`,
 							}]
 							: [])),
 			}, {
@@ -66,17 +66,17 @@ let Group = (props) => {
 				check: isUsersGroup
 					? [{
 						flag: !isUsersGroupStatuses,
-						to: `${ssoUser.pageFullUrl}/statuses`,
+						to: `${ssoUser.pageFullUrl}/statuses${search}`,
 					}]
 					: (isRolesGroup
 						? [{
 							flag: !isRolesGroupStatuses,
-							to: `${ssoRole.pageFullUrl}/statuses`,
+							to: `${ssoRole.pageFullUrl}/statuses${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupStatuses,
-								to: `${ssoAccess.pageFullUrl}/statuses`,
+								to: `${ssoAccess.pageFullUrl}/statuses${search}`,
 							}]
 							: [])),
 			}])}

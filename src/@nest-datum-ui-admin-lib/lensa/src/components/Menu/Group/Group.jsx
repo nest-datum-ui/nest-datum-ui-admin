@@ -11,7 +11,7 @@ let Group = (props) => {
 			lensaReport,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isReportGroup = pathname.indexOf(lensaReport.pageFullUrl) === 0;
 	const isReportGroupStatuses = pathname.indexOf(`${lensaReport.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(lensaAccess.pageFullUrl) === 0;
@@ -25,19 +25,19 @@ let Group = (props) => {
 					text: 'Data',
 					check: [{
 						flag: (pathname.length > lensaAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: lensaAccess.pageFullUrl,
+						to: lensaAccess.pageFullUrl + search,
 					}],
 				}, {
 					text: 'Options',
 					check: [{
 						flag: !isAccessesGroupOptions,
-						to: `${lensaAccess.pageFullUrl}/options`,
+						to: `${lensaAccess.pageFullUrl}/options${search}`,
 					}],
 				}, {
 					text: 'Statuses',
 					check: [{
 						flag: !isAccessesGroupStatuses,
-						to: `${lensaAccess.pageFullUrl}/statuses`,
+						to: `${lensaAccess.pageFullUrl}/statuses${search}`,
 					}],
 				}])
 				: ([{
@@ -45,7 +45,7 @@ let Group = (props) => {
 					check: isReportGroup
 						? [{
 							flag: (pathname.length > lensaReport.pageFullUrl.length),
-							to: lensaReport.pageFullUrl,
+							to: lensaReport.pageFullUrl + search,
 						}]
 						: [],
 				}, {
@@ -53,7 +53,7 @@ let Group = (props) => {
 					check: isReportGroup
 						? [{
 							flag: !isReportGroupStatuses,
-							to: `${lensaReport.pageFullUrl}/statuses`,
+							to: `${lensaReport.pageFullUrl}/statuses${search}`,
 						}]
 						: [],
 				}])}

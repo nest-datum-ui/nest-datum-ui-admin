@@ -13,7 +13,7 @@ let Group = (props) => {
 			filesSystem,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isProviderGroup = pathname.indexOf(filesProvider.pageFullUrl) === 0;
 	const isProviderGroupOptions = pathname.indexOf(`${filesProvider.pageFullUrl}/options`) === 0;
 	const isProviderGroupStatuses = pathname.indexOf(`${filesProvider.pageFullUrl}/statuses`) === 0;
@@ -32,17 +32,17 @@ let Group = (props) => {
 				check: isProviderGroup
 					? [{
 						flag: (pathname.length > filesProvider.pageFullUrl.length && (isProviderGroupOptions || isProviderGroupStatuses)),
-						to: filesProvider.pageFullUrl,
+						to: filesProvider.pageFullUrl + search,
 					}]
 					: (isSystemGroup
 						? [{
 							flag: (pathname.length > filesSystem.pageFullUrl.length && (isSystemGroupOptions || isSystemGroupStatuses)),
-							to: filesSystem.pageFullUrl,
+							to: filesSystem.pageFullUrl + search,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: (pathname.length > filesAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-								to: filesAccess.pageFullUrl,
+								to: filesAccess.pageFullUrl + search,
 							}]
 							: [])),
 			}, {
@@ -50,17 +50,17 @@ let Group = (props) => {
 				check: isProviderGroup
 					? [{
 						flag: !isProviderGroupOptions,
-						to: `${filesProvider.pageFullUrl}/options`,
+						to: `${filesProvider.pageFullUrl}/options${search}`,
 					}]
 					: (isSystemGroup
 						? [{
 							flag: !isSystemGroupOptions,
-							to: `${filesSystem.pageFullUrl}/options`,
+							to: `${filesSystem.pageFullUrl}/options${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupOptions,
-								to: `${filesAccess.pageFullUrl}/options`,
+								to: `${filesAccess.pageFullUrl}/options${search}`,
 							}]
 							: [])),
 			}, {
@@ -68,17 +68,17 @@ let Group = (props) => {
 				check: isProviderGroup
 					? [{
 						flag: !isProviderGroupStatuses,
-						to: `${filesProvider.pageFullUrl}/statuses`,
+						to: `${filesProvider.pageFullUrl}/statuses${search}`,
 					}]
 					: (isSystemGroup
 						? [{
 							flag: !isSystemGroupStatuses,
-							to: `${filesSystem.pageFullUrl}/statuses`,
+							to: `${filesSystem.pageFullUrl}/statuses${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupStatuses,
-								to: `${filesAccess.pageFullUrl}/statuses`,
+								to: `${filesAccess.pageFullUrl}/statuses${search}`,
 							}]
 							: [])),
 			}])}

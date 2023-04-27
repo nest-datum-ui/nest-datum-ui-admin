@@ -10,7 +10,7 @@ let Group = (props) => {
 			webSocketSetting,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isAccessesGroup = pathname.indexOf(webSocketAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${webSocketAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${webSocketAccess.pageFullUrl}/statuses`) === 0;
@@ -22,7 +22,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: (pathname.length > webSocketAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: webSocketAccess.pageFullUrl,
+						to: webSocketAccess.pageFullUrl + search,
 					}]
 					: []),
 			}, {
@@ -30,7 +30,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: !isAccessesGroupOptions,
-						to: `${webSocketAccess.pageFullUrl}/options`,
+						to: `${webSocketAccess.pageFullUrl}/options${search}`,
 					}]
 					: []),
 			}, {
@@ -38,7 +38,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: !isAccessesGroupStatuses,
-						to: `${webSocketAccess.pageFullUrl}/statuses`,
+						to: `${webSocketAccess.pageFullUrl}/statuses${search}`,
 					}]
 					: []),
 			}])}

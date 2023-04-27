@@ -4,7 +4,7 @@ const config = {
 	breadcrumbsMenuTitle: 'Manager',
 
 	displayInHeaderTabMenu: true,
-	orderInHeaderTabMenu: 0,
+	orderInHeaderTabMenu: 1,
 	headerTabMenuTitle: 'Manager',
 
 	pageUrl: 'manager',

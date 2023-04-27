@@ -11,7 +11,7 @@ let Group = (props) => {
 			countriesCountry,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isCountryGroup = pathname.indexOf(countriesCountry.pageFullUrl) === 0;
 	const isCountryGroupOptions = pathname.indexOf(`${countriesCountry.pageFullUrl}/options`) === 0;
 	const isCountryGroupStatuses = pathname.indexOf(`${countriesCountry.pageFullUrl}/statuses`) === 0;
@@ -26,12 +26,12 @@ let Group = (props) => {
 				check: isCountryGroup
 					? [{
 						flag: (pathname.length > countriesCountry.pageFullUrl.length && (isCountryGroupOptions || isCountryGroupStatuses)),
-						to: countriesCountry.pageFullUrl,
+						to: countriesCountry.pageFullUrl + search,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: (pathname.length > countriesAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-							to: countriesAccess.pageFullUrl,
+							to: countriesAccess.pageFullUrl + search,
 						}]
 						: []),
 			}, {
@@ -39,12 +39,12 @@ let Group = (props) => {
 				check: isCountryGroup
 					? [{
 						flag: !isCountryGroupOptions,
-						to: `${countriesCountry.pageFullUrl}/options`,
+						to: `${countriesCountry.pageFullUrl}/options${search}`,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: !isAccessesGroupOptions,
-							to: `${countriesAccess.pageFullUrl}/options`,
+							to: `${countriesAccess.pageFullUrl}/options${search}`,
 						}]
 						: []),
 			}, {
@@ -52,12 +52,12 @@ let Group = (props) => {
 				check: isCountryGroup
 					? [{
 						flag: !isCountryGroupStatuses,
-						to: `${countriesCountry.pageFullUrl}/statuses`,
+						to: `${countriesCountry.pageFullUrl}/statuses${search}`,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: !isAccessesGroupStatuses,
-							to: `${countriesAccess.pageFullUrl}/statuses`,
+							to: `${countriesAccess.pageFullUrl}/statuses${search}`,
 						}]
 						: []),
 			}])}

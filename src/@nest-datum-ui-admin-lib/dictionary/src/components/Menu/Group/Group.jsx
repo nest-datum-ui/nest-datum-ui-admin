@@ -13,7 +13,7 @@ let Group = (props) => {
 			dictionaryContent,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isTemplateGroup = pathname.indexOf(dictionaryTemplate.pageFullUrl) === 0;
 	const isTemplateGroupOptions = pathname.indexOf(`${dictionaryTemplate.pageFullUrl}/options`) === 0;
 	const isTemplateGroupStatuses = pathname.indexOf(`${dictionaryTemplate.pageFullUrl}/statuses`) === 0;
@@ -33,22 +33,22 @@ let Group = (props) => {
 				check: isTemplateGroup
 					? [{
 						flag: (pathname.length > dictionaryTemplate.pageFullUrl.length && (isTemplateGroupOptions || isTemplateGroupStatuses)),
-						to: dictionaryTemplate.pageFullUrl,
+						to: dictionaryTemplate.pageFullUrl + search,
 					}]
 					: (isFieldGroup
 						? [{
 							flag: (pathname.length > dictionaryField.pageFullUrl.length && (isFieldGroupOptions || isFieldGroupStatuses)),
-							to: dictionaryField.pageFullUrl,
+							to: dictionaryField.pageFullUrl + search,
 						}]
 						: (isContentGroup
 							? [{
 								flag: (pathname.length > dictionaryContent.pageFullUrl.length && isContentGroupStatuses),
-								to: dictionaryContent.pageFullUrl,
+								to: dictionaryContent.pageFullUrl + search,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: (pathname.length > dictionaryAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-									to: dictionaryAccess.pageFullUrl,
+									to: dictionaryAccess.pageFullUrl + search,
 								}]
 								: []))),
 			}, {
@@ -56,17 +56,17 @@ let Group = (props) => {
 				check: isTemplateGroup
 					? [{
 						flag: !isTemplateGroupOptions,
-						to: `${dictionaryTemplate.pageFullUrl}/options`,
+						to: `${dictionaryTemplate.pageFullUrl}/options${search}`,
 					}]
 					: (isFieldGroup
 						? [{
 							flag: !isFieldGroupOptions,
-							to: `${dictionaryField.pageFullUrl}/options`,
+							to: `${dictionaryField.pageFullUrl}/options${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupOptions,
-								to: `${dictionaryAccess.pageFullUrl}/options`,
+								to: `${dictionaryAccess.pageFullUrl}/options${search}`,
 							}]
 							: [])),
 			}, {
@@ -74,22 +74,22 @@ let Group = (props) => {
 				check: isTemplateGroup
 					? [{
 						flag: !isTemplateGroupStatuses,
-						to: `${dictionaryTemplate.pageFullUrl}/statuses`,
+						to: `${dictionaryTemplate.pageFullUrl}/statuses${search}`,
 					}]
 					: (isFieldGroup
 						? [{
 							flag: !isFieldGroupStatuses,
-							to: `${dictionaryField.pageFullUrl}/statuses`,
+							to: `${dictionaryField.pageFullUrl}/statuses${search}`,
 						}]
 						: (isContentGroup
 							? [{
 								flag: !isContentGroupStatuses,
-								to: `${dictionaryContent.pageFullUrl}/statuses`,
+								to: `${dictionaryContent.pageFullUrl}/statuses${search}`,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: !isAccessesGroupStatuses,
-									to: `${dictionaryAccess.pageFullUrl}/statuses`,
+									to: `${dictionaryAccess.pageFullUrl}/statuses${search}`,
 								}]
 								: []))),
 			}])}

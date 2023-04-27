@@ -74,7 +74,7 @@ const config = {
 		breadcrumbsMenuTitle: 'Data types',
 
 		displayInHeaderTabMenu: true,
-		orderInHeaderTabMenu: 0,
+		orderInHeaderTabMenu: 1,
 		headerTabMenuTitle: 'Data types',
 
 		pageUrl: 'types',

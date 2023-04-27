@@ -11,7 +11,7 @@ let Group = (props) => {
 			cvReport,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isReportGroup = pathname.indexOf(cvReport.pageFullUrl) === 0;
 	const isReportGroupStatuses = pathname.indexOf(`${cvReport.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(cvAccess.pageFullUrl) === 0;
@@ -25,19 +25,19 @@ let Group = (props) => {
 					text: 'Data',
 					check: [{
 						flag: (pathname.length > cvAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: cvAccess.pageFullUrl,
+						to: cvAccess.pageFullUrl + search,
 					}],
 				}, {
 					text: 'Options',
 					check: [{
 						flag: !isAccessesGroupOptions,
-						to: `${cvAccess.pageFullUrl}/options`,
+						to: `${cvAccess.pageFullUrl}/options${search}`,
 					}],
 				}, {
 					text: 'Statuses',
 					check: [{
 						flag: !isAccessesGroupStatuses,
-						to: `${cvAccess.pageFullUrl}/statuses`,
+						to: `${cvAccess.pageFullUrl}/statuses${search}`,
 					}],
 				}])
 				: ([{
@@ -45,7 +45,7 @@ let Group = (props) => {
 					check: isReportGroup
 						? [{
 							flag: (pathname.length > cvReport.pageFullUrl.length),
-							to: cvReport.pageFullUrl,
+							to: cvReport.pageFullUrl + search,
 						}]
 						: [],
 				}, {
@@ -53,7 +53,7 @@ let Group = (props) => {
 					check: isReportGroup
 						? [{
 							flag: !isReportGroupStatuses,
-							to: `${cvReport.pageFullUrl}/statuses`,
+							to: `${cvReport.pageFullUrl}/statuses${search}`,
 						}]
 						: [],
 				}])}
