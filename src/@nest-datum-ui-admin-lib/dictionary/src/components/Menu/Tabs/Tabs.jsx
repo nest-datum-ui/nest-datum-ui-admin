@@ -8,8 +8,8 @@ let Tabs = () => {
 	const { 
 		dictionary: { 
 			dictionaryAccess,
-			dictionarySetting,
-			dictionaryTemplate,
+			dictionaryetting,
+			dictionaryForm,
 			dictionaryField,
 			dictionaryContent,
 		}, 
@@ -17,11 +17,11 @@ let Tabs = () => {
 
 	return <MenuTabs>
 		{([
-			dictionaryTemplate,
+			dictionaryForm,
 			dictionaryField,
 			dictionaryContent,
 			dictionaryAccess,
-			dictionarySetting,
+			dictionaryetting,
 		]).map((item) => ({
 			label: item.headerTabMenuTitle,
 			to: item.pageFullUrl,

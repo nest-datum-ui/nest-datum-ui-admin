@@ -14,26 +14,39 @@ import countriesAccessOptionList from './accessOptionList.js';
 import countriesAccessStatus from './accessStatus.js';
 import countriesAccessStatusForm from './accessStatusForm.js';
 import countriesAccessStatusList from './accessStatusList.js';
-import countriesCountry from './country.js';
-import countriesCountryForm from './countryForm.js';
-import countriesCountryFormRelationList from './countryFormRelationList.js';
-import countriesCountryFormRelationForm from './countryFormRelationForm.js';
-import countriesCountryList from './countryList.js';
-import countriesCountryOption from './countryOption.js';
-import countriesCountryOptionRelationForm from './countryOptionRelationForm.js';
-import countriesCountryOptionRelationList from './countryOptionRelationList.js';
-import countriesCountryOptionForm from './countryOptionForm.js';
-import countriesCountryOptionList from './countryOptionList.js';
-import countriesCountryStatus from './countryStatus.js';
-import countriesCountryStatusForm from './countryStatusForm.js';
-import countriesCountryStatusList from './countryStatusList.js';
+import countriesRegion from './region.js';
+import countriesRegionForm from './regionForm.js';
+import countriesRegionFormRelationList from './regionFormRelationList.js';
+import countriesRegionFormRelationForm from './regionFormRelationForm.js';
+import countriesRegionList from './regionList.js';
+import countriesRegionOption from './regionOption.js';
+import countriesRegionOptionRelationForm from './regionOptionRelationForm.js';
+import countriesRegionOptionRelationList from './regionOptionRelationList.js';
+import countriesRegionOptionForm from './regionOptionForm.js';
+import countriesRegionOptionList from './regionOptionList.js';
+import countriesRegionStatus from './regionStatus.js';
+import countriesRegionStatusForm from './regionStatusForm.js';
+import countriesRegionStatusList from './regionStatusList.js';
+import countriesType from './type.js';
+import countriesTypeForm from './typeForm.js';
+import countriesTypeFormRelationList from './typeFormRelationList.js';
+import countriesTypeFormRelationForm from './typeFormRelationForm.js';
+import countriesTypeList from './typeList.js';
+import countriesTypeOption from './typeOption.js';
+import countriesTypeOptionRelationForm from './typeOptionRelationForm.js';
+import countriesTypeOptionRelationList from './typeOptionRelationList.js';
+import countriesTypeOptionForm from './typeOptionForm.js';
+import countriesTypeOptionList from './typeOptionList.js';
+import countriesTypeStatus from './typeStatus.js';
+import countriesTypeStatusForm from './typeStatusForm.js';
+import countriesTypeStatusList from './typeStatusList.js';
 
 const config = {
 	name: 'countries',
 	pagePrefixUrl: 'app',
 	pageSeparateBaseUrl: 'countries',
 	pageBaseUrl: 'countries',
-	pageInitialUrl: 'countries',
+	pageInitialUrl: 'regions',
 	apiBaseUrl: process.env.URL_API_COUNTRIES,
 	title: 'Countries',
 	
@@ -53,19 +66,32 @@ const config = {
 	countriesAccessStatus,
 	countriesAccessStatusForm,
 	countriesAccessStatusList,
-	countriesCountry,
-	countriesCountryForm,
-	countriesCountryFormRelationList,
-	countriesCountryFormRelationForm,
-	countriesCountryList,
-	countriesCountryOption,
-	countriesCountryOptionRelationForm,
-	countriesCountryOptionRelationList,
-	countriesCountryOptionForm,
-	countriesCountryOptionList,
-	countriesCountryStatus,
-	countriesCountryStatusForm,
-	countriesCountryStatusList,
+	countriesRegion,
+	countriesRegionForm,
+	countriesRegionFormRelationList,
+	countriesRegionFormRelationForm,
+	countriesRegionList,
+	countriesRegionOption,
+	countriesRegionOptionRelationForm,
+	countriesRegionOptionRelationList,
+	countriesRegionOptionForm,
+	countriesRegionOptionList,
+	countriesRegionStatus,
+	countriesRegionStatusForm,
+	countriesRegionStatusList,
+	countriesType,
+	countriesTypeForm,
+	countriesTypeFormRelationList,
+	countriesTypeFormRelationForm,
+	countriesTypeList,
+	countriesTypeOption,
+	countriesTypeOptionRelationForm,
+	countriesTypeOptionRelationList,
+	countriesTypeOptionForm,
+	countriesTypeOptionList,
+	countriesTypeStatus,
+	countriesTypeStatusForm,
+	countriesTypeStatusList,
 };
 
 export default config;

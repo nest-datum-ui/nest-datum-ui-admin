@@ -4,8 +4,8 @@ import {
 } from '@nest-datum-utils/check';
 import { hookNavigate } from '../hooks';
 
-export const fireUpdate = async (key, value, search) => setTimeout(() => {
-	const searchSplit = (search || window.location.search)
+export const fireUpdate = async (key, value, search = window.location.search) => await (new Promise(async (resolve, reject) => {
+	const searchSplit = search
 		.split('?')
 		.slice(1)
 		.join('?')
@@ -29,5 +29,7 @@ export const fireUpdate = async (key, value, search) => setTimeout(() => {
 	else {
 		searchSplit.push(`${key}=${valueProcessed}`);
 	}
-	return hookNavigate(`${window.location.pathname}?${searchSplit.join('&')}`);
-}, 0);
+	const output = await hookNavigate(`${window.location.pathname}?${searchSplit.join('&')}`);
+
+	return setTimeout(() => resolve(output), 0);
+}));

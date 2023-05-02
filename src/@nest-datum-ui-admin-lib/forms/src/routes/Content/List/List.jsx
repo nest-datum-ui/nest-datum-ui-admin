@@ -4,7 +4,7 @@ import PaperList from 'components/Paper/List';
 import ListContent from '../../../components/List/Content';
 
 let List = () => {
-	return <ContextRoute.Provider value="mailContentList">
+	return <ContextRoute.Provider value="formsContentList">
 		<PaperList>
 			<ListContent />
 		</PaperList>

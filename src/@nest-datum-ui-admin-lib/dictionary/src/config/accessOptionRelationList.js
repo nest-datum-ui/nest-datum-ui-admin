@@ -11,7 +11,7 @@ const accessOptionRelationList = {
 	id: 'dictionary-accesses-option-relations-list',
 	storeName: 'dictionary-accesses-option-relations-list',
 	columnName: 'accessId',
-	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/access`,
+	apiMainModelUrl: `${process.env.URL_API_FORMS}/access`,
 	apiUrl: 'access/option',
 	initialPage: 1,
 	initialLimit: 9999,

@@ -158,7 +158,7 @@ let Letter = () => {
 				Component={InputText}
 				form={id}
 				name="subject"
-				lebel="Subject"
+				label="Subject"
 				required />
 		</Box>
 		<Box py={1}>
@@ -166,7 +166,7 @@ let Letter = () => {
 				Component={InputText}
 				form={id}
 				name="textPart"
-				lebel="Letter subtitle"
+				label="Letter subtitle"
 				required />
 		</Box>
 		<Box py={1}>

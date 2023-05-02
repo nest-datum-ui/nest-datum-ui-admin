@@ -1,10 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { 
-	ContextService,
-	ContextProps,
-	ContextRoute, 
-} from '@nest-datum-ui/Context';
+import { ContextProps } from '@nest-datum-ui/Context';
 import { selectorMainExtract } from '@nest-datum-ui/Store';
 import Table from 'components/Table';
 import FilesDialogDisable from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Disable';
@@ -13,27 +10,42 @@ import FilesFolder from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Fo
 import FilesFile from '@nest-datum-ui-admin-lib/files/src/components/Dialog/File';
 import Row from './Row';
 
-let Manager = (props) => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
+let Manager = ({ 
+	onCheck, 
+	onFile,
+	onFolder,
+	querySource, 
+	withContextMenu, 
+	bulkDeletion, 
+	...props 
+}) => {
 	const { 
-		[serviceName]: { 
-			[routeName]: { 
+		files: { 
+			filesManagerList: { 
 				storeName, 
 			}, 
 		}, 
 	} = React.useContext(ContextProps);
 	const data = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data' ]));
+	const onCheckWrapper = React.useCallback((item) => (e) => onCheck(e, item), [
+		onCheck,
+	]);
 
-	return <Table BottomComponent={<React.Fragment>
-		<FilesDialogDisable />
-		<FilesDialogDrop />
-		<FilesFolder />
-		<FilesFile />
-	</React.Fragment>}>
+	return <Table 
+		{ ...props }
+		querySource={querySource}
+		BottomComponent={<React.Fragment>
+			<FilesDialogDisable />
+			<FilesDialogDrop />
+			<FilesFolder />
+			<FilesFile />
+		</React.Fragment>}>
 		{data
 			&& data.map((item, index) => <Row
 				key={item.id}
+				querySource={querySource}
+				withContextMenu={withContextMenu}
+				bulkDeletion={bulkDeletion}
 				id={item.id}
 				parentId={item.parentId}
 				path={item.path}
@@ -46,14 +58,23 @@ let Manager = (props) => {
 				isNotDelete={item.isNotDelete}
 				createdAt={item.createdAt}
 				updatedAt={item.updatedAt}
+				onCheck={onCheckWrapper(item)}
+				onFile={onFile}
+				onFolder={onFolder}
 				disableLink />)}
 	</Table>;
 };
 
 Manager = React.memo(Manager);
 Manager.defaultProps = {
+	onCheck: (() => {}),
+	onFile: (() => {}),
+	onFolder: (() => {}),
 };
 Manager.propTypes = {
+	onCheck: PropTypes.func,
+	onFile: PropTypes.func,
+	onFolder: PropTypes.func,
 };
 
 export default Manager;

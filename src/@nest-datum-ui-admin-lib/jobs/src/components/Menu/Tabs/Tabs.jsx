@@ -6,18 +6,22 @@ import MenuTabsTab from 'components/Menu/Tabs/Tab';
 
 let Tabs = () => {
 	const { 
-		countries: { 
-			countriesAccess,
-			countriesSetting,
-			countriesCountry,
+		jobs: { 
+			jobsAccess,
+			jobsSetting,
+			jobsPost,
+			jobsCategory,
+			jobsTag,
 		}, 
 	} = React.useContext(ContextProps);
 
 	return <MenuTabs>
 		{([
-			countriesCountry,
-			countriesAccess,
-			countriesSetting,
+			jobsPost,
+			jobsCategory,
+			jobsTag,
+			jobsAccess,
+			jobsSetting,
 		]).map((item) => ({
 			label: item.headerTabMenuTitle,
 			to: item.pageFullUrl,

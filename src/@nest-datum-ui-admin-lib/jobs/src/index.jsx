@@ -8,12 +8,24 @@ import {
 	ContextProps, 
 } from '@nest-datum-ui/Context';
 import Layout from './layouts';
-import RouteJobList from './routes/Job/List';
-import RouteJobForm from './routes/Job/Form';
-import RouteJobOptionList from './routes/Job/Option/List';
-import RouteJobOptionForm from './routes/Job/Option/Form';
-import RouteJobStatusList from './routes/Job/Status/List';
-import RouteJobStatusForm from './routes/Job/Status/Form';
+import RoutePostList from './routes/Post/List';
+import RoutePostForm from './routes/Post/Form';
+import RoutePostOptionList from './routes/Post/Option/List';
+import RoutePostOptionForm from './routes/Post/Option/Form';
+import RoutePostStatusList from './routes/Post/Status/List';
+import RoutePostStatusForm from './routes/Post/Status/Form';
+import RouteCategoryList from './routes/Category/List';
+import RouteCategoryForm from './routes/Category/Form';
+import RouteCategoryOptionList from './routes/Category/Option/List';
+import RouteCategoryOptionForm from './routes/Category/Option/Form';
+import RouteCategoryStatusList from './routes/Category/Status/List';
+import RouteCategoryStatusForm from './routes/Category/Status/Form';
+import RouteTagList from './routes/Tag/List';
+import RouteTagForm from './routes/Tag/Form';
+import RouteTagOptionList from './routes/Tag/Option/List';
+import RouteTagOptionForm from './routes/Tag/Option/Form';
+import RouteTagStatusList from './routes/Tag/Status/List';
+import RouteTagStatusForm from './routes/Tag/Status/Form';
 import RouteAccessList from './routes/Access/List';
 import RouteAccessForm from './routes/Access/Form';
 import RouteAccessOptionList from './routes/Access/Option/List';
@@ -31,9 +43,15 @@ let Jobs = () => {
 			jobsAccessOption,
 			jobsAccessStatus,
 			jobsSetting,
-			jobsJob,
-			jobsJobOption,
-			jobsJobStatus,
+			jobsPost,
+			jobsPostOption,
+			jobsPostStatus,
+			jobsCategory,
+			jobsCategoryOption,
+			jobsCategoryStatus,
+			jobsTag,
+			jobsTagOption,
+			jobsTagStatus,
 		}, 
 	} = React.useContext(ContextProps);
 
@@ -44,25 +62,61 @@ let Jobs = () => {
 				element={<Layout />}>
 				<Route
 					index
-					element={<RouteJobList />} />
+					element={<RoutePostList />} />
 				<Route
-					path={jobsJob.pageUrl}
-					element={<RouteJobList />} />
+					path={jobsPost.pageUrl}
+					element={<RoutePostList />} />
 				<Route
-					path={`${jobsJob.pageUrl}/:entityId`}
-					element={<RouteJobForm />} />
+					path={`${jobsPost.pageUrl}/:entityId`}
+					element={<RoutePostForm />} />
 				<Route
-					path={jobsJobOption.pageUrl}
-					element={<RouteJobOptionList />} />
+					path={jobsPostOption.pageUrl}
+					element={<RoutePostOptionList />} />
 				<Route
-					path={`${jobsJobOption.pageUrl}/:entityId`}
-					element={<RouteJobOptionForm />} />
+					path={`${jobsPostOption.pageUrl}/:entityId`}
+					element={<RoutePostOptionForm />} />
 				<Route
-					path={jobsJobStatus.pageUrl}
-					element={<RouteJobStatusList />} />
+					path={jobsPostStatus.pageUrl}
+					element={<RoutePostStatusList />} />
 				<Route
-					path={`${jobsJobStatus.pageUrl}/:entityId`}
-					element={<RouteJobStatusForm />} />
+					path={`${jobsPostStatus.pageUrl}/:entityId`}
+					element={<RoutePostStatusForm />} />
+				<Route
+					path={jobsCategory.pageUrl}
+					element={<RouteCategoryList />} />
+				<Route
+					path={`${jobsCategory.pageUrl}/:entityId`}
+					element={<RouteCategoryForm />} />
+				<Route
+					path={jobsCategoryOption.pageUrl}
+					element={<RouteCategoryOptionList />} />
+				<Route
+					path={`${jobsCategoryOption.pageUrl}/:entityId`}
+					element={<RouteCategoryOptionForm />} />
+				<Route
+					path={jobsCategoryStatus.pageUrl}
+					element={<RouteCategoryStatusList />} />
+				<Route
+					path={`${jobsCategoryStatus.pageUrl}/:entityId`}
+					element={<RouteCategoryStatusForm />} />
+				<Route
+					path={jobsTag.pageUrl}
+					element={<RouteTagList />} />
+				<Route
+					path={`${jobsTag.pageUrl}/:entityId`}
+					element={<RouteTagForm />} />
+				<Route
+					path={jobsTagOption.pageUrl}
+					element={<RouteTagOptionList />} />
+				<Route
+					path={`${jobsTagOption.pageUrl}/:entityId`}
+					element={<RouteTagOptionForm />} />
+				<Route
+					path={jobsTagStatus.pageUrl}
+					element={<RouteTagStatusList />} />
+				<Route
+					path={`${jobsTagStatus.pageUrl}/:entityId`}
+					element={<RouteTagStatusForm />} />
 				<Route
 					path={jobsAccess.pageUrl}
 					element={<RouteAccessList />} />

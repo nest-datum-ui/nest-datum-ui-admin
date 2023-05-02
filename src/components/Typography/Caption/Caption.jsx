@@ -5,15 +5,13 @@ let Caption = ({
 	children,
 	...props
 }) => {
-	return <React.Fragment>
-		<Typography
-			component="div"
-			variant="caption"
-			color="textSecondary"
-			{ ...props }>
-			{children}
-		</Typography>
-	</React.Fragment>;
+	return <Typography
+		component="div"
+		variant="caption"
+		color="textSecondary"
+		{ ...props }>
+		{children}
+	</Typography>;
 };
 
 Caption = React.memo(Caption);

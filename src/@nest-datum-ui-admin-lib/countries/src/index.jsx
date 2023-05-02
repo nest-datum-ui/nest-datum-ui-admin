@@ -8,12 +8,18 @@ import {
 	ContextProps, 
 } from '@nest-datum-ui/Context';
 import Layout from './layouts';
-import RouteCountryList from './routes/Country/List';
-import RouteCountryForm from './routes/Country/Form';
-import RouteCountryOptionList from './routes/Country/Option/List';
-import RouteCountryOptionForm from './routes/Country/Option/Form';
-import RouteCountryStatusList from './routes/Country/Status/List';
-import RouteCountryStatusForm from './routes/Country/Status/Form';
+import RouteRegionList from './routes/Region/List';
+import RouteRegionForm from './routes/Region/Form';
+import RouteRegionOptionList from './routes/Region/Option/List';
+import RouteRegionOptionForm from './routes/Region/Option/Form';
+import RouteRegionStatusList from './routes/Region/Status/List';
+import RouteRegionStatusForm from './routes/Region/Status/Form';
+import RouteTypeList from './routes/Type/List';
+import RouteTypeForm from './routes/Type/Form';
+import RouteTypeOptionList from './routes/Type/Option/List';
+import RouteTypeOptionForm from './routes/Type/Option/Form';
+import RouteTypeStatusList from './routes/Type/Status/List';
+import RouteTypeStatusForm from './routes/Type/Status/Form';
 import RouteAccessList from './routes/Access/List';
 import RouteAccessForm from './routes/Access/Form';
 import RouteAccessOptionList from './routes/Access/Option/List';
@@ -31,9 +37,12 @@ let Countries = () => {
 			countriesAccessOption,
 			countriesAccessStatus,
 			countriesSetting,
-			countriesCountry,
-			countriesCountryOption,
-			countriesCountryStatus,
+			countriesRegion,
+			countriesRegionOption,
+			countriesRegionStatus,
+			countriesType,
+			countriesTypeOption,
+			countriesTypeStatus,
 		}, 
 	} = React.useContext(ContextProps);
 
@@ -44,25 +53,43 @@ let Countries = () => {
 				element={<Layout />}>
 				<Route
 					index
-					element={<RouteCountryList />} />
+					element={<RouteRegionList />} />
 				<Route
-					path={countriesCountry.pageUrl}
-					element={<RouteCountryList />} />
+					path={countriesRegion.pageUrl}
+					element={<RouteRegionList />} />
 				<Route
-					path={`${countriesCountry.pageUrl}/:entityId`}
-					element={<RouteCountryForm />} />
+					path={`${countriesRegion.pageUrl}/:entityId`}
+					element={<RouteRegionForm />} />
 				<Route
-					path={countriesCountryOption.pageUrl}
-					element={<RouteCountryOptionList />} />
+					path={countriesRegionOption.pageUrl}
+					element={<RouteRegionOptionList />} />
 				<Route
-					path={`${countriesCountryOption.pageUrl}/:entityId`}
-					element={<RouteCountryOptionForm />} />
+					path={`${countriesRegionOption.pageUrl}/:entityId`}
+					element={<RouteRegionOptionForm />} />
 				<Route
-					path={countriesCountryStatus.pageUrl}
-					element={<RouteCountryStatusList />} />
+					path={countriesRegionStatus.pageUrl}
+					element={<RouteRegionStatusList />} />
 				<Route
-					path={`${countriesCountryStatus.pageUrl}/:entityId`}
-					element={<RouteCountryStatusForm />} />
+					path={`${countriesRegionStatus.pageUrl}/:entityId`}
+					element={<RouteRegionStatusForm />} />
+				<Route
+					path={countriesType.pageUrl}
+					element={<RouteTypeList />} />
+				<Route
+					path={`${countriesType.pageUrl}/:entityId`}
+					element={<RouteTypeForm />} />
+				<Route
+					path={countriesTypeOption.pageUrl}
+					element={<RouteTypeOptionList />} />
+				<Route
+					path={`${countriesTypeOption.pageUrl}/:entityId`}
+					element={<RouteTypeOptionForm />} />
+				<Route
+					path={countriesTypeStatus.pageUrl}
+					element={<RouteTypeStatusList />} />
+				<Route
+					path={`${countriesTypeStatus.pageUrl}/:entityId`}
+					element={<RouteTypeStatusForm />} />
 				<Route
 					path={countriesAccess.pageUrl}
 					element={<RouteAccessList />} />

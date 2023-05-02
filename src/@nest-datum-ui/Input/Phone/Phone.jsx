@@ -95,7 +95,7 @@ Phone.defaultProps = {
 	name: 'phone',
 	countryDefaultValue: '380',
 	countryProps: { label: 'UA +380' },
-	lebel: 'Phone',
+	label: 'Phone',
 	placeholder: 'Phone number',
 	onInput: () => {},
 	onCountry: () => {},
@@ -103,7 +103,7 @@ Phone.defaultProps = {
 };
 Phone.propTypes = {
 	name: PropTypes.string.isRequired,
-	lebel: PropTypes.string,
+	label: PropTypes.string,
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
 	onInput: PropTypes.func,

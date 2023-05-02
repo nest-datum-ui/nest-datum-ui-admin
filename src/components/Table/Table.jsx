@@ -6,14 +6,17 @@ import {
 	ContextProps,
 	ContextRoute, 
 } from '@nest-datum-ui/Context';
-import { 
+import Store, { 
 	selectorMainExtract,
 	actionUrlSort,
 	actionUrlUpdate,
+	actionUrlFilterClear,
+	actionApiListProp,
+	actionApiListMerge,
 } from '@nest-datum-ui/Store';
 import TablePagination from '@nest-datum-ui/Table/Pagination';
 
-let Table = ({ children, ...props }) => {
+let Table = ({ children, querySource, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -31,12 +34,43 @@ let Table = ({ children, ...props }) => {
 	const dataLength = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data', 'length' ]));
 	const page = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'page' ]));
 	const limit = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'limit' ]));
-	const onChangePage = React.useCallback((e, newPage) => actionUrlUpdate('page', newPage), [
-	]);
-	const onLimit = React.useCallback((e) => actionUrlUpdate('limit', e.target.value), [
-	]);
-	const onSort = React.useCallback((key) => (value) => actionUrlSort(storeName, key, value), [
+	const onChangePage = React.useCallback((e, newPage) => actionApiListProp(storeName, 'loader', true)(() => (newPage !== page)
+		&& (querySource === 'url')
+			? actionUrlUpdate('page', newPage)
+			: actionApiListProp(storeName, 'page', newPage)()), [
 		storeName,
+		page,
+		querySource,
+	]);
+	const onLimit = React.useCallback((e) => {
+		actionApiListProp(storeName, 'loader', true)(async () => {
+			if (querySource === 'url') {
+				await actionUrlFilterClear('page');
+				await actionUrlUpdate('limit', e.target.value);
+			}
+			else {
+				actionApiListMerge(storeName, {
+					page: 1,
+					limit: e.target.value,
+				})();
+			}
+		});
+	}, [
+		storeName,
+		querySource,
+	]);
+	const onSort = React.useCallback((key) => (value) => actionApiListProp(storeName, 'loader', true)(() => (querySource === 'url')
+		? actionUrlSort(key, value)
+		: actionApiListProp(storeName, 'sort', {
+			...(Store()
+				.getState()
+				.api
+				.list[storeName] || {})
+				.sort || {},
+			[key]: value,
+		})()), [
+		storeName,
+		querySource,
 	]);
 
 	return <TablePagination
@@ -57,6 +91,7 @@ let Table = ({ children, ...props }) => {
 Table = React.memo(Table);
 Table.defaultProps = {
 	withChangeLimit: true,
+	querySource: 'url',
 };
 Table.propTypes = {
 	storeName: PropTypes.string, 
@@ -65,6 +100,7 @@ Table.propTypes = {
 	initialLimit: PropTypes.number, 
 	rowColumns: PropTypes.array,
 	withChangeLimit: PropTypes.bool,
+	querySource: PropTypes.string,
 };
 
 export default Table;

@@ -7,16 +7,17 @@ let Group = (props) => {
 	const { 
 		dictionary: { 
 			dictionaryAccess,
-			dictionarySetting,
-			dictionaryTemplate,
+			dictionaryetting,
+			dictionaryForm,
 			dictionaryField,
 			dictionaryContent,
 		}, 
 	} = React.useContext(ContextProps);
+
 	const { pathname, search } = useLocation();
-	const isTemplateGroup = pathname.indexOf(dictionaryTemplate.pageFullUrl) === 0;
-	const isTemplateGroupOptions = pathname.indexOf(`${dictionaryTemplate.pageFullUrl}/options`) === 0;
-	const isTemplateGroupStatuses = pathname.indexOf(`${dictionaryTemplate.pageFullUrl}/statuses`) === 0;
+	const isFormGroup = pathname.indexOf(dictionaryForm.pageFullUrl) === 0;
+	const isFormGroupOptions = pathname.indexOf(`${dictionaryForm.pageFullUrl}/options`) === 0;
+	const isFormGroupStatuses = pathname.indexOf(`${dictionaryForm.pageFullUrl}/statuses`) === 0;
 	const isFieldGroup = pathname.indexOf(dictionaryField.pageFullUrl) === 0;
 	const isFieldGroupOptions = pathname.indexOf(`${dictionaryField.pageFullUrl}/options`) === 0;
 	const isFieldGroupStatuses = pathname.indexOf(`${dictionaryField.pageFullUrl}/statuses`) === 0;
@@ -26,14 +27,14 @@ let Group = (props) => {
 	const isAccessesGroupOptions = pathname.indexOf(`${dictionaryAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${dictionaryAccess.pageFullUrl}/statuses`) === 0;
 
-	return (pathname.indexOf(dictionarySetting.pageFullUrl) === -1)
+	return (pathname.indexOf(dictionaryetting.pageFullUrl) === -1)
 		&& <StyledWrapper { ...props }>
 			{([{
 				text: 'Data',
-				check: isTemplateGroup
+				check: isFormGroup
 					? [{
-						flag: (pathname.length > dictionaryTemplate.pageFullUrl.length && (isTemplateGroupOptions || isTemplateGroupStatuses)),
-						to: dictionaryTemplate.pageFullUrl + search,
+						flag: (pathname.length > dictionaryForm.pageFullUrl.length && (isFormGroupOptions || isFormGroupStatuses)),
+						to: dictionaryForm.pageFullUrl + search,
 					}]
 					: (isFieldGroup
 						? [{
@@ -51,30 +52,34 @@ let Group = (props) => {
 									to: dictionaryAccess.pageFullUrl + search,
 								}]
 								: []))),
-			}, {
-				text: 'Options',
-				check: isTemplateGroup
-					? [{
-						flag: !isTemplateGroupOptions,
-						to: `${dictionaryTemplate.pageFullUrl}/options${search}`,
-					}]
-					: (isFieldGroup
+			}, 
+			...isContentGroup
+				? []
+				: [{
+					text: 'Options',
+					check: isFormGroup
 						? [{
-							flag: !isFieldGroupOptions,
-							to: `${dictionaryField.pageFullUrl}/options${search}`,
+							flag: !isFormGroupOptions,
+							to: `${dictionaryForm.pageFullUrl}/options${search}`,
 						}]
-						: (isAccessesGroup
+						: (isFieldGroup
 							? [{
-								flag: !isAccessesGroupOptions,
-								to: `${dictionaryAccess.pageFullUrl}/options${search}`,
+								flag: !isFieldGroupOptions,
+								to: `${dictionaryField.pageFullUrl}/options${search}`,
 							}]
-							: [])),
-			}, {
+							: (isAccessesGroup
+								? [{
+									flag: !isAccessesGroupOptions,
+									to: `${dictionaryAccess.pageFullUrl}/options`,
+								}]
+								: [])),
+				}], 
+			{
 				text: 'Statuses',
-				check: isTemplateGroup
+				check: isFormGroup
 					? [{
-						flag: !isTemplateGroupStatuses,
-						to: `${dictionaryTemplate.pageFullUrl}/statuses${search}`,
+						flag: !isFormGroupStatuses,
+						to: `${dictionaryForm.pageFullUrl}/statuses${search}`,
 					}]
 					: (isFieldGroup
 						? [{

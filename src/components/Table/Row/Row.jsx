@@ -28,6 +28,9 @@ import MenuContext from 'components/Menu/Context';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Row = ({
+	withContextMenu: propWithContextMenu,
+	withForceDropMenu: propWithForceDropMenu,
+	bulkDeletion: propBulkDeletion,
 	children,
 	id,
 	isDeleted,
@@ -49,13 +52,16 @@ let Row = ({
 			[routeName]: { 
 				storeName, 
 				apiFullUrl: apiUrl, 
-				bulkDeletion, 
 				rowColumns, 
-				withContextMenu,
-				withForceDropMenu,  
+				bulkDeletion: contextBulkDeletion, 
+				withContextMenu: contextWithContextMenu,
+				withForceDropMenu: contextWithForceDropMenu,  
 			}, 
 		},
 	} = React.useContext(ContextProps);
+	const bulkDeletion = propBulkDeletion ?? contextBulkDeletion;
+	const withContextMenu = propWithContextMenu ?? contextWithContextMenu;
+	const withForceDropMenu = propWithForceDropMenu ?? contextWithForceDropMenu;
 	const checked = useSelector(selectorMainArrayIncludes([ 'api', 'list', storeName, 'selected' ], id));
 	const onDropWrapper = React.useCallback((e) => (utilsCheckFunc(onDrop))
 		? onDrop(e, { id, isDeleted })
@@ -78,9 +84,10 @@ let Row = ({
 		id,
 		onRestore,
 	]);
-	const onCheckWrapper = React.useCallback((e) => (utilsCheckFunc(onCheck))
-		? onCheck(e, { id, isNotDelete, isDeleted })
-		: actionApiListCheck(storeName, id, isNotDelete, isDeleted)(e), [
+	const onCheckWrapper = React.useCallback((e) => {
+		actionApiListCheck(storeName, id, isNotDelete, isDeleted)(e);
+		onCheck(e, { id, isNotDelete, isDeleted });
+	}, [
 		storeName,
 		id,
 		isNotDelete,
@@ -114,7 +121,10 @@ let Row = ({
 		{utilsCheckArr(children)
 			? children.map((item, index) => (utilsCheckObj(item) && typeof item['$$typeof'] === 'symbol')
 				? item
-				: <TableCell key={index} sx={{ minWidth: `${firstCellWith}%` }} { ...(item.props || {}) }>
+				: <TableCell 
+					key={index} 
+					sx={{ minWidth: `${firstCellWith}%` }} 
+					{ ...(item.props || {}) }>
 					{item.children}
 				</TableCell>)
 			: children}
@@ -126,7 +136,9 @@ let Row = ({
 			</TableCell>}
 		{withForceDropMenu
 			? <TableCell sx={{ width: '1%' }}>
-				<IconButton color="error" onClick={onDropForceWrapper}>
+				<IconButton 
+					color="error" 
+					onClick={onDropForceWrapper}>
 					<CloseIcon color="error" />
 				</IconButton>
 			</TableCell>
@@ -148,6 +160,7 @@ let Row = ({
 
 Row = React.memo(Row);
 Row.defaultProps = {
+	onCheck: () => {},
 };
 Row.propTypes = {
 	id: PropTypes.oneOfType([

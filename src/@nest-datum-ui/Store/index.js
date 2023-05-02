@@ -32,7 +32,6 @@ import selectorLoaderVisible from './loader/selectors/visible.js';
 import selectorLoaderProgressPercentage from './loader/selectors/progressPercentage.js';
 import selectorLoaderText from './loader/selectors/text.js';
 import selectorMenuNode from './menu/selectors/node.js';
-import selectorUrlFindFilterItem from './url/selectors/findFilterItem.js';
 
 import { fireSchema as actionApiSchema } from './api/actions/schema.js';
 import { fireListPurge as actionApiListPurge } from './api/actions/list/purge.js';
@@ -132,7 +131,6 @@ export {
 	selectorLoaderProgressPercentage,
 	selectorLoaderText,
 	selectorMenuNode,
-	selectorUrlFindFilterItem,
 
 	actionApiSchema,
 	actionApiListPurge,

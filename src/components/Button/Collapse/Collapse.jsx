@@ -22,31 +22,29 @@ let Collapse = ({
 		onClick,
 	]);
 
-	return <React.Fragment>
-		<Button 
-			onClick={onOpen}
-			startIcon={<React.Fragment>
-				<ExpandLessIcon 
-					sx={{ 
-						display: state 
-							? 'block'
-							: 'none',
-						}} />
-				<ExpandMoreIcon
-					sx={{ 
-						display: state 
-							? 'none'
-							: 'block',
-						}} />
-			</React.Fragment>}
-			{ ...props }>
-			{state
-				? <Typography>
-					Collapse
-				</Typography>
-				: children}
-		</Button>
-	</React.Fragment>;
+	return <Button 
+		onClick={onOpen}
+		startIcon={<React.Fragment>
+			<ExpandLessIcon 
+				sx={{ 
+					display: state 
+						? 'block'
+						: 'none',
+					}} />
+			<ExpandMoreIcon
+				sx={{ 
+					display: state 
+						? 'none'
+						: 'block',
+					}} />
+		</React.Fragment>}
+		{ ...props }>
+		{state
+			? <Typography>
+				Collapse
+			</Typography>
+			: children}
+	</Button>;
 };
 
 Collapse = React.memo(Collapse);

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import {
 	str as utilsCheckStr,
+	strFilled as utilsCheckStrFilled,
 	strUrl as utilsCheckStrUrl,
 	numericInt as utilsCheckNumericInt,
 	obj as utilsCheckObj,
+	objFilled as utilsCheckObjFilled,
 } from '@nest-datum-utils/check';
 import { 
 	urlApiStr as utilsFormatUrlApiStr,
@@ -65,24 +67,24 @@ export const fireListGet = (storeName, {
 			...utilsCheckStr(query)
 				? { query }
 				: {},
-			...utilsCheckObj(relations)
+			...utilsCheckObjFilled(relations)
 				? { relations }
-				: (utilsCheckStr(relations)
+				: (utilsCheckStrFilled(relations)
 					? { relations: JSON.parse(decodeURI(relations)) }
 					: {}), 
-			...utilsCheckObj(select)
+			...utilsCheckObjFilled(select)
 				? { select }
-				: (utilsCheckStr(select)
+				: (utilsCheckStrFilled(select)
 					? { select: JSON.parse(decodeURI(select)) }
 					: {}), 
-			...utilsCheckObj(filter)
+			...utilsCheckObjFilled(filter)
 				? { filter }
-				: (utilsCheckStr(filter)
+				: (utilsCheckStrFilled(filter)
 					? { filter: JSON.parse(decodeURI(filter)) }
 					: {}), 
-			...utilsCheckObj(sort)
+			...utilsCheckObjFilled(sort)
 				? { sort }
-				: (utilsCheckStr(sort)
+				: (utilsCheckStrFilled(sort)
 					? { sort: JSON.parse(decodeURI(sort)) }
 					: {}), 
 		};

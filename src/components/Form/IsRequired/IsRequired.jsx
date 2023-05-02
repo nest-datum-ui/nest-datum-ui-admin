@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { 
@@ -6,7 +8,9 @@ import {
 	ContextRoute, 
 	ContextService,
 } from '@nest-datum-ui/Context';
-import {
+import StoreRedux, {
+	selectorMainExtract,
+	actionApiListProp,
 	actionUrlFilter,
 	hookUrlFilterItem,
 } from '@nest-datum-ui/Store';
@@ -16,20 +20,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-let IsRequired = () => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
-	const { search } = useLocation();
+let IsRequired = ({ value, onChange, ...props }) => {
 	const [ id ] = React.useState(() => uuidv4());
-	const value = hookUrlFilterItem('isRequired', search);
-	const valueProcessed = (value === undefined)
-		? ''
-		: String(Number(value));
-	const onChange = React.useCallback((e) => actionUrlFilter(storeName, 'isRequired', e.target.value, { type: Boolean }), [
-		storeName,
-	]);
-
+	
 	return <React.Fragment>
 		<FormControl>
 			<FormLabel id={id}>
@@ -38,8 +31,8 @@ let IsRequired = () => {
 			<RadioGroup
 				aria-labelledby={id}
 				name={id}
-				value={valueProcessed}
-				onChange={onChangeMemo}>
+				value={value}
+				onChange={onChange}>
 				<FormControlLabel
 					control={<Radio />}  
 					value="" 
@@ -57,14 +50,76 @@ let IsRequired = () => {
 	</React.Fragment>;
 };
 
-IsRequired = React.memo(IsRequired);
-IsRequired.defaultProps = {
-	onChange: () => {},
-	onInput: () => {},
-};
-IsRequired.propTypes = {
-	onChange: PropTypes.func,
-	onInput: PropTypes.func,
+let Store = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
+	const value = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'filter', 'isRequired' ])) ?? '';
+	const onChange = React.useCallback((e) => {
+		actionApiListProp(storeName, 'loader', true)(() => {
+			const currentFilter = (StoreRedux()
+				.getState()
+				.api
+				.list[storeName] || {})
+				.filter || {};
+
+			if (e.target.value) {
+				currentFilter['isRequired'] = e.target.value;
+			}
+			else {
+				delete currentFilter['isRequired'];
+			}
+
+			actionApiListProp(storeName, 'filter', { ...currentFilter })();
+		});
+	}, [
+		storeName,
+	]);
+
+	return <IsRequired value={String(value)} onChange={onChange} />;
 };
 
-export default IsRequired;
+const Url = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
+	const { search } = useLocation();
+	const value = String(hookUrlFilterItem('isRequired', search) ?? '');
+	const onChange = React.useCallback((e) => {
+		const value = e.target.value;
+
+		actionApiListProp(storeName, 'loader', true)(() => {
+			actionUrlFilter('isRequired', value, { type: Boolean });
+		});
+	}, [
+		storeName,
+	]);
+
+	return <IsRequired value={String(value)} onChange={onChange} />;
+};
+
+let StoreUrl = ({ querySource, ...props }) => (querySource === 'url')
+	? <Url { ...props } />
+	: <Store { ...props } />;
+
+StoreUrl = React.memo(StoreUrl);
+StoreUrl.defaultProps = {
+	querySource: 'url',
+};
+StoreUrl.propTypes = {
+	querySource: PropTypes.string,
+};
+
+export default StoreUrl;

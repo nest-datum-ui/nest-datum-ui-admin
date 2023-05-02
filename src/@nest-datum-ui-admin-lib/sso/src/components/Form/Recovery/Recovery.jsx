@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { 
-	ContextService,
-	ContextProps,
-	ContextRoute, 
-} from '@nest-datum-ui/Context';
+import { ContextProps } from '@nest-datum-ui/Context';
 import { selectorMainExtract } from '@nest-datum-ui/Store';
 import { actionSsoRecovery } from '../../Store';
 import Box from '@mui/material/Box';
@@ -20,9 +16,7 @@ let Recovery = ({
 	onSubmit,
 	...props
 }) => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { id, storeName, apiFullUrl } } } = React.useContext(ContextProps);
+	const { sso: { ssoRecovery: { id, storeName, apiFullUrl } } } = React.useContext(ContextProps);
 	const successfulRequestFlag = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'successfulRequestFlag' ]));
 	const onSubmitWrapper = React.useCallback((e) => {
 		actionSsoRecovery(storeName, apiFullUrl);

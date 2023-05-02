@@ -35,7 +35,7 @@ let TablePagination = ({
 		<Progress visible={loaderProcessed} />
 		{(length > 0)
 			? <StyledNotEmpty>
-				{total >= 20
+				{(total >= 20 && loaderProcessed === false)
 					&& <Pagination
 						withChangeLimit={withChangeLimit}
 						total={total}

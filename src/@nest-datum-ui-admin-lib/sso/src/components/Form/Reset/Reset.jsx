@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-	ContextProps,
-	ContextRoute,
-	ContextService, 
-} from '@nest-datum-ui/Context';
+import { ContextProps } from '@nest-datum-ui/Context';
 import { actionSsoReset } from '../../Store';
 import Box from '@mui/material/Box';
 import SendIcon from '@mui/icons-material/Send';
@@ -17,9 +13,7 @@ let Reset = ({
 	onSubmit,
 	...props
 }) => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { id, storeName, apiFullUrl } } } = React.useContext(ContextProps);
+	const { sso: { ssoReset: { id, storeName, apiFullUrl } } } = React.useContext(ContextProps);
 	const onSubmitWrapper = React.useCallback((e) => {
 		actionSsoReset(storeName, apiFullUrl);
 		onSubmit(e);

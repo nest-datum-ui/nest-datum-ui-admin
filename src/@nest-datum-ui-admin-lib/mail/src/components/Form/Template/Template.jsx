@@ -152,8 +152,8 @@ let Template = () => {
 			<Field
 				Component={InputEmail}
 				form={id}
-				name="fromName"
-				lebel="From email"
+				name="fromEmail"
+				label="From email"
 				required />
 		</Box>
 		<Box py={1}>
@@ -161,7 +161,7 @@ let Template = () => {
 				Component={InputText}
 				form={id}
 				name="fromName"
-				lebel="From name"
+				label="From name"
 				required />
 		</Box>
 		<Box py={1}>

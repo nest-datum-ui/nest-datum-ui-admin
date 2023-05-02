@@ -15,8 +15,24 @@ import Typography from '@mui/material/Typography';
 let List = ({ children }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { parentName } } } = React.useContext(ContextProps);
-	const { [serviceName]: { [parentName]: { pageTitle, pageFullUrl, breadcrumbsMenuTitle, orderInHeaderTabMenu, prevPage = [] } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				parentName
+			} 
+		} 
+	} = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[parentName]: { 
+				pageTitle, 
+				pageFullUrl, 
+				breadcrumbsMenuTitle, 
+				orderInHeaderTabMenu, 
+				prevPage = [], 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 
 	React.useEffect(() => {
 		setTimeout(() => {

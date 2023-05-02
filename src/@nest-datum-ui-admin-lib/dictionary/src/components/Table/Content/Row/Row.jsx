@@ -35,8 +35,8 @@ let Row = ({
 			dictionaryContentStatusList: {
 				apiFullUrl: dictionaryContentStatusListApiUrl,
 			},
-			dictionaryTemplateist: {
-				apiFullUrl: dictionaryTemplateistApiUrl,
+			dictionaryFormList: {
+				apiFullUrl: dictionaryFormListApiUrl,
 			}
 		},
 	} = React.useContext(ContextProps);
@@ -58,7 +58,7 @@ let Row = ({
 		}, { 
 			children: <TypographyFetch 
 				key={2} 
-				apiUrl={dictionaryTemplateistApiUrl}>
+				apiUrl={dictionaryFormListApiUrl}>
 				{formId}
 			</TypographyFetch>, 
 		}, { 

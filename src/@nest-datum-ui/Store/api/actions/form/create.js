@@ -46,7 +46,10 @@ export const fireFormCreate = (storeName, options = {}) => async (callback = () 
 
 	if (!utilsCheckStrUrl(options.apiUrl)) {
 		return await storeDispatch(prefix, prefix +'.formCreate', {
-			payload: data,
+			payload: {
+				...data,
+				callback,
+			},
 		});
 	}
 	const request = await axios.post(utilsFormatUrlApiStr(options.apiUrl), data);

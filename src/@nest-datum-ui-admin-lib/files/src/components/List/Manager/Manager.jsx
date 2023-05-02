@@ -1,13 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { 
 	ContextProps,
 	ContextRoute,
 	ContextService, 
 } from '@nest-datum-ui/Context';
-import { 
+import ReduxStore, { 
+	selectorMainExtract,
 	actionApiListGet,
+	actionApiListProp,
 	actionApiListPurge,
+	actionApiListMerge,
 	actionApiFormPurge,
 	actionApiFormProp,
 	actionBreadcrumbsSet,
@@ -19,12 +24,23 @@ import { objFilled as utilsCheckObjFilled } from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MenuBreadcrumbs from '@nest-datum-ui/Menu/Breadcrumbs';
-import PaperManage from '../../Paper/Manage';
+import PaperManager from '../../Paper/Manager';
 import TableManager from '../../Table/Manager';
 import FormSystemId from '../../Form/SystemId';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let Manager = (props) => {
+let Manager = ({
+	systemId,
+	parentId,
+	allowSelectSystem,
+	querySource,
+	withContextMenu,
+	bulkDeletion,
+	onCheck,
+	onFolder,
+	onFile,
+	...props
+}) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -38,29 +54,28 @@ let Manager = (props) => {
 			}, 
 			filesSystemList: {
 				storeName: filesSystemListStoreName,
-			}
+			},
 		}, 
 	} = React.useContext(ContextProps);
-	const { search } = useLocation();
-	const systemIdUrl = hookUrlFilterItem('systemId', search);
-	const parentIdUrl = hookUrlFilterItem('parentId', search);
-	const systemId = (systemIdUrl === undefined)
-		? ''
-		: String(systemIdUrl);
-	const parentId = (parentIdUrl === undefined)
-		? ''
-		: String(parentIdUrl);
-	const processFilter = React.useCallback((data) => {
-		data = JSON.parse(data);
+	const onBreadcrumbs = React.useCallback((e, { key, index }) => {
+		if (querySource === 'url') {
+			actionUrlFilter('parentId', key);
+		}
+		else {
+			actionApiListProp(filesSystemListStoreName, 'parentId', key)(() => {
+				const currentFilter = (ReduxStore()
+					.getState()
+					.api
+					.list[storeName] || {})
+					.filter || {};
 
-		delete data['systemId'];
-		return (utilsCheckObjFilled(data))
-			? JSON.stringify(data)
-			: undefined;
+				actionApiListProp(storeName, 'filter', { ...currentFilter, parentId: key })();
+			});
+		}
 	}, [
-	]);
-	const onBreadcrumbs = React.useCallback((e, { key, index }) => actionUrlFilter(storeName, 'parentId', key), [
 		storeName,
+		filesSystemListStoreName,
+		querySource,
 	]);
 
 	React.useEffect(() => {
@@ -73,69 +88,77 @@ let Manager = (props) => {
 					systemId,
 				},
 			})(async ({ data = [] }) => {
-				const parentIdUrl = hookUrlFilterItem('parentId');
+				const parentId = (querySource === 'url')
+					? hookUrlFilterItem('parentId')
+					: (ReduxStore()
+						.getState()
+						.api
+						.list[filesSystemListStoreName] || {})
+						.parentId;
 
-				if (parentIdUrl) {
+				if (parentId) {
 					const core = data[0];
 
 					actionApiListGet(`${storeName}_parentFolder`, { 
 						apiUrl: foldersApiUrl, 
 						limit: 1, 
 						filter: {
-							id: parentIdUrl,
+							id: parentId,
 							systemId,
 						},
 					})(async ({ data = [] }) => {
-						const dataSplit = data[0]['path'].replace(core['path'], '').split('/');
+						if (data.length > 0) {
+							const dataSplit = data[0]['path'].replace(core['path'], '').split('/');
 
-						if (dataSplit.length > 1) {
-							const last = data[0];
-							let i = 0,
-								paths = [];
+							if (dataSplit.length > 1) {
+								const last = data[0];
+								let i = 0,
+									paths = [];
 
-							while (i < dataSplit.length - 1) {
-								paths.push(paths.length === 0
-									? `${core['path']}/${dataSplit[i]}`.replace(new RegExp('//', 'g'), '/')
-									: `${dataSplit[dataSplit.length - 1]}/${dataSplit[i]}`.replace(new RegExp('//', 'g'), '/'));
-								i++;
+								while (i < dataSplit.length - 1) {
+									paths.push(paths.length === 0
+										? `${core['path']}/${dataSplit[i]}`.replace(new RegExp('//', 'g'), '/')
+										: `${dataSplit[dataSplit.length - 1]}/${dataSplit[i]}`.replace(new RegExp('//', 'g'), '/'));
+									i++;
+								}
+								actionApiListGet(`${storeName}_parentFolder`, { 
+									apiUrl: foldersApiUrl, 
+									limit: 1, 
+									filter: {
+										systemId,
+										path: [ '$In', ...paths ],
+									},
+								})(async ({ data = [] }) => {
+									await actionApiFormProp(storeName, 'systemId', systemId)();
+									await actionApiFormProp(storeName, 'parentId', parentId)();
+									await actionBreadcrumbsSet(storeName, [{ 
+										key: core['id'], 
+										text: '...', 
+									}, 
+									...paths.map((path) => {
+										const item = data.find((item) => item['path'] === path);
+
+										return {
+											key: item['id'], 
+											text: item['name'], 
+										};
+									}), {
+										key: parentId, 
+										text: last['name'], 
+									}])();
+								});
 							}
-							actionApiListGet(`${storeName}_parentFolder`, { 
-								apiUrl: foldersApiUrl, 
-								limit: 1, 
-								filter: {
-									systemId,
-									path: [ '$In', ...paths ],
-								},
-							})(async ({ data = [] }) => {
+							else {
 								await actionApiFormProp(storeName, 'systemId', systemId)();
-								await actionApiFormProp(storeName, 'parentId', parentIdUrl)();
+								await actionApiFormProp(storeName, 'parentId', parentId)();
 								await actionBreadcrumbsSet(storeName, [{ 
 									key: core['id'], 
 									text: '...', 
-								}, 
-								...paths.map((path) => {
-									const item = data.find((item) => item['path'] === path);
-
-									return {
-										key: item['id'], 
-										text: item['name'], 
-									};
-								}), {
-									key: parentIdUrl, 
-									text: last['name'], 
+								}, {
+									key: parentId, 
+									text: data[0]['name'], 
 								}])();
-							});
-						}
-						else {
-							await actionApiFormProp(storeName, 'systemId', systemId)();
-							await actionApiFormProp(storeName, 'parentId', parentIdUrl)();
-							await actionBreadcrumbsSet(storeName, [{ 
-								key: core['id'], 
-								text: '...', 
-							}, {
-								key: parentIdUrl, 
-								text: data[0]['name'], 
-							}])();
+							}
 						}
 					});
 				}
@@ -144,7 +167,15 @@ let Manager = (props) => {
 					await actionApiFormProp(storeName, 'parentId', data[0]['id'])();
 					await actionBreadcrumbsSet(storeName, [{ key: data[0]['id'], text: '...' }])();
 
-					hookUrlNavigate(`${window.location.pathname}?filter={"systemId":"${systemId}","parentId":"${data[0]['id']}"}`);
+					if (querySource === 'url') {
+						hookUrlNavigate(`${window.location.pathname}?filter={"systemId":"${systemId}","parentId":"${data[0]['id']}"}`);
+					}
+					else {
+						actionApiListMerge(filesSystemListStoreName, {
+							parentId: data[0]['id'],
+							systemId,
+						})();
+					}
 				}
 			});
 		}
@@ -152,6 +183,8 @@ let Manager = (props) => {
 		systemId,
 		foldersApiUrl,
 		storeName,
+		filesSystemListStoreName,
+		querySource,
 	]);
 
 	React.useEffect(() => () => {
@@ -171,20 +204,28 @@ let Manager = (props) => {
 	]);
 
 	return <React.Fragment>
-		<Box maxWidth="180px">
-			<FormSystemId />
-		</Box>
+		{allowSelectSystem
+			&& <Box maxWidth="180px">
+				<FormSystemId querySource={querySource} />
+			</Box>}
 		{(systemId && parentId)
 			? <StyledWrapper 
+				{ ...props }
+				querySource={querySource}
 				apiUrl={apiUrl.replace(':id', systemId)} 
-				processFilter={processFilter}
-				ManageComponent={() => <PaperManage systemId={systemId} />}>
+				ManageComponent={() => <PaperManager systemId={systemId} />}>
 				<Box pb={2}>
 					<MenuBreadcrumbs 
 						name={storeName}
 						onClick={onBreadcrumbs} />
 				</Box>
-				<TableManager />
+				<TableManager 
+					querySource={querySource}
+					withContextMenu={withContextMenu}
+					bulkDeletion={bulkDeletion}
+					onCheck={onCheck}
+					onFolder={onFolder}
+					onFile={onFile} />
 			</StyledWrapper>
 			: <Box 
 				pt={2}
@@ -200,10 +241,71 @@ let Manager = (props) => {
 	</React.Fragment>;
 };
 
-Manager = React.memo(Manager);
-Manager.defaultProps = {
-};
-Manager.propManagers = {
+let Store = ({ 
+	systemId: propsSystemId, 
+	...props 
+}) => {
+	const serviceName = React.useContext(ContextService);
+	const { 
+		[serviceName]: { 
+			filesSystemList: {
+				storeName: filesSystemListStoreName,
+			},
+		}, 
+	} = React.useContext(ContextProps);
+	const systemId = useSelector(selectorMainExtract([ 'api', 'list', filesSystemListStoreName, 'systemId' ]));
+	const parentId = useSelector(selectorMainExtract([ 'api', 'list', filesSystemListStoreName, 'parentId' ]));
+
+	return <Manager
+		{ ...props }
+		systemId={propsSystemId ?? systemId}
+		parentId={parentId}
+		querySource="store" />;
 };
 
-export default Manager;
+let Url = ({ 
+	systemId: propsSystemId, 
+	...props 
+}) => {
+	const { search } = useLocation();
+	const systemId = String(hookUrlFilterItem('systemId', search) ?? '');
+	const parentId = String(hookUrlFilterItem('parentId', search) ?? '');
+	const filterWrapper = React.useCallback((data) => {
+		data = JSON.parse(data);
+
+		delete data['systemId'];
+		return (utilsCheckObjFilled(data))
+			? JSON.stringify(data)
+			: undefined;
+	}, [
+	]);
+
+	return <Manager
+		{ ...props }
+		systemId={propsSystemId ?? systemId}
+		parentId={parentId}
+		filterWrapper={filterWrapper}
+		querySource="url" />;
+};
+
+let StoreUrl = ({ querySource, ...props }) => {
+	return (querySource === 'url')
+		? <Url { ...props } />
+		: <Store { ...props } />
+};
+
+StoreUrl = React.memo(StoreUrl);
+StoreUrl.defaultProps = {
+	querySource: 'url',
+	onFile: () => {},
+	onFolder: () => {},
+	allowSelectSystem: true,
+};
+StoreUrl.propManagers = {
+	querySource: PropTypes.string,
+	onFile: PropTypes.func,
+	onFolder: PropTypes.onFolder,
+	allowSelectSystem: PropTypes.bool,
+};
+
+export default StoreUrl;

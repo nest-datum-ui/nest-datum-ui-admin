@@ -11,7 +11,7 @@ const fieldOptionRelationList = {
 	id: 'dictionary-field-option-relations-list',
 	storeName: 'dictionary-field-option-relations-list',
 	columnName: 'fieldId',
-	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/field`,
+	apiMainModelUrl: `${process.env.URL_API_FORMS}/field`,
 	apiUrl: 'field/option',
 	initialPage: 1,
 	initialLimit: 9999,

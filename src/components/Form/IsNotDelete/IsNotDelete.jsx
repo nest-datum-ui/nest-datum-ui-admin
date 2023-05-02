@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { 
@@ -6,7 +8,9 @@ import {
 	ContextRoute, 
 	ContextService,
 } from '@nest-datum-ui/Context';
-import {
+import StoreRedux, {
+	selectorMainExtract,
+	actionApiListProp,
 	actionUrlFilter,
 	hookUrlFilterItem,
 } from '@nest-datum-ui/Store';
@@ -16,20 +20,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-let IsNotDelete = () => {
-	const serviceName = React.useContext(ContextService);
-	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
+let IsNotDelete = ({ value, onChange, ...props }) => {
 	const [ id ] = React.useState(() => uuidv4());
-	const { search } = useLocation();
-	const value = hookUrlFilterItem('isNotDelete', search);
-	const valueProcessed = (value === undefined)
-		? ''
-		: String(Number(value));
-	const onChange = React.useCallback((e) => actionUrlFilter(storeName, 'isNotDelete', e.target.value, { type: Boolean }), [
-		storeName,
-	]);
-
+	
 	return <FormControl>
 		<FormLabel id={id}>
 			Possibility of deletion
@@ -37,7 +30,7 @@ let IsNotDelete = () => {
 		<RadioGroup
 			aria-labelledby={id}
 			name={id}
-			value={valueProcessed}
+			value={value}
 			onChange={onChange}>
 			<FormControlLabel
 				control={<Radio />}  
@@ -55,10 +48,76 @@ let IsNotDelete = () => {
 	</FormControl>;
 };
 
-IsNotDelete = React.memo(IsNotDelete);
-IsNotDelete.defaultProps = {
-};
-IsNotDelete.propTypes = {
+let Store = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
+	const value = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'filter', 'isNotDelete' ])) ?? '';
+	const onChange = React.useCallback((e) => {
+		actionApiListProp(storeName, 'loader', true)(() => {
+			const currentFilter = (StoreRedux()
+				.getState()
+				.api
+				.list[storeName] || {})
+				.filter || {};
+
+			if (e.target.value) {
+				currentFilter['isNotDelete'] = e.target.value;
+			}
+			else {
+				delete currentFilter['isNotDelete'];
+			}
+
+			actionApiListProp(storeName, 'filter', { ...currentFilter })();
+		});
+	}, [
+		storeName,
+	]);
+
+	return <IsNotDelete value={String(value)} onChange={onChange} />;
 };
 
-export default IsNotDelete;
+const Url = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
+	const { search } = useLocation();
+	const value = String(hookUrlFilterItem('isNotDelete', search) ?? '');
+	const onChange = React.useCallback((e) => {
+		const value = e.target.value;
+
+		actionApiListProp(storeName, 'loader', true)(() => {
+			actionUrlFilter('isNotDelete', value, { type: Boolean });
+		});
+	}, [
+		storeName,
+	]);
+
+	return <IsNotDelete value={String(value)} onChange={onChange} />;
+};
+
+let StoreUrl = ({ querySource, ...props }) => (querySource === 'url')
+	? <Url { ...props } />
+	: <Store { ...props } />;
+
+StoreUrl = React.memo(StoreUrl);
+StoreUrl.defaultProps = {
+	querySource: 'url',
+};
+StoreUrl.propTypes = {
+	querySource: PropTypes.string,
+};
+
+export default StoreUrl;
