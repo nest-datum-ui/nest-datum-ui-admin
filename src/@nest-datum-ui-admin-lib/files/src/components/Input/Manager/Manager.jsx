@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { actionDialogOpen } from '@nest-datum-ui/Store';
+import { 
+	actionDialogOpen,
+	actionDialogClose, 
+} from '@nest-datum-ui/Store';
 import { 
 	obj as utilsCheckObj,
-	strUrl as utilsCheckStrUrl, 
+	strUrl as utilsCheckStrUrl,
+	strIdExists as utilsCheckStrIdExists, 
 	exists as utilsCheckExists,
 } from '@nest-datum-utils/check';
 import TypographyHelperText from '@nest-datum-ui/Typography/HelperText';
@@ -12,9 +16,9 @@ import FilesDialogManager from '@nest-datum-ui-admin-lib/files/src/components/Di
 import FilesPaperPreview from '../../Paper/Preview';
 
 let Manager = ({ 
+	allowSelectSystem,
 	systemId,
 	parentId,
-	select,
 	children,
 	storeName, 
 	lebel,
@@ -25,25 +29,28 @@ let Manager = ({
 	defaultValue,
 	onChange,
 	onOpen,
-	onClose,
+	onFile,
 	...props 
 }) => {
 	const [ valueState, setValueState ] = React.useState(() => value ?? defaultValue);
 	const onOpenWrapper = React.useCallback((e) => {
-		actionDialogOpen('filesManager', { setValueState, onClose, systemId, parentId })();
+		actionDialogOpen('filesManager')();
 		onOpen(e);
 	}, [
-		setValueState,
 		onOpen,
-		onClose,
-		systemId,
-		parentId,
 	]);
-	const onChangeWrapper = React.useCallback((e) => {
-		setValueState(e.target.value);
-		onChange(e);
+	const onFileWrapper = React.useCallback((e, item) => {
+		if (utilsCheckStrIdExists(item['id'])) {
+			e.target.value = item['id'];
+
+			setValueState(item['id']);
+			onFile(e, item);
+			onChange(e);
+			actionDialogClose('filesManager')();
+		}
 	}, [
 		setValueState,
+		onFile,
 		onChange,
 	]);
 
@@ -52,17 +59,25 @@ let Manager = ({
 			&& <ButtonLabel onClick={onOpenWrapper}>
 				{lebel}
 			</ButtonLabel>}
-		<input { ...props } type="hidden" onChange={onChangeWrapper} />
-		{utilsCheckExists(valueState)
-			&& (utilsCheckObj(valueState)
-				? <FilesPaperPreview value={valueState} />
-				: (<FilesPaperPreview value={utilsCheckStrUrl(valueState)
-					? { src: valueState }
-					: { id: valueState }} />))}
+		{(utilsCheckExists(valueState) && valueState)
+			&& <React.Fragment>
+				<input { ...props } type="hidden" value={(utilsCheckStrUrl(valueState)
+					? valueState
+					: valueState)} />
+				{(utilsCheckObj(valueState)
+					? <FilesPaperPreview value={valueState} />
+					: (<FilesPaperPreview value={utilsCheckStrUrl(valueState)
+						? { src: valueState }
+						: { id: valueState }} />))}
+			</React.Fragment>}
 		<TypographyHelperText
 			error={error}
 			helperText={helperText} />
-		<FilesDialogManager />
+		<FilesDialogManager
+			onFile={onFileWrapper}
+			allowSelectSystem={allowSelectSystem}
+			systemId={systemId}
+			parentId={parentId} />
 	</React.Fragment>;
 };
 
@@ -73,13 +88,17 @@ Manager.defaultProps = {
 	accept: '*',
 	onChange: (() => {}),
 	onOpen: (() => {}),
+	onFile: (() => {}),
 	systemId: 'files-system-default',
 	parentId: '',
+	allowSelectSystem: false,
 };
 Manager.propTypes = {
 	name: PropTypes.string,
 	onChange: PropTypes.func,
 	onOpen: PropTypes.func,
+	onFile: PropTypes.func,
+	allowSelectSystem: PropTypes.bool,
 };
 
 export default Manager;

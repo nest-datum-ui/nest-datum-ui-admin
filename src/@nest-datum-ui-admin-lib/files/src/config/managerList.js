@@ -64,7 +64,6 @@ const managerList = {
 	rowColumns: [{
 		name: 'ID',
 		id: 'id',
-		sortable: true,
 		order: 0,
 	}, {
 		name: 'Main',
@@ -77,7 +76,6 @@ const managerList = {
 	}, {
 		name: 'Story',
 		id: 'story',
-		sortable: true,
 		order: 5,
 	}],
 };

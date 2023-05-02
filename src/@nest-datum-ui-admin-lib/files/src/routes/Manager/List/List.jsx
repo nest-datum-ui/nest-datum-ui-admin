@@ -6,7 +6,7 @@ import ListManager from '../../../components/List/Manager';
 let List = () => {
 	return <ContextRoute.Provider value="filesManagerList">
 		<PaperList>
-			<ListManager />
+			<ListManager querySource="store" />
 		</PaperList>
 	</ContextRoute.Provider>;
 };

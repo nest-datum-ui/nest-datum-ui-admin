@@ -87,6 +87,7 @@ let Manager = ({ systemId, ...props }) => {
 			xs={false}>
 			<InputUpload
 				disablePreview
+				multiple
 				variant="contained"
 				color="secondary"
 				form={storeName}

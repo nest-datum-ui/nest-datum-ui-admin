@@ -17,7 +17,7 @@ import { func as utilsCheckFunc } from '@nest-datum-utils/check';
 import PaperFilter from 'components/Paper/Filter';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let ListMemo = ({ 
+let List = ({ 
 	withFilter: propWithFilter,
 	apiUrl: propsApiUrl,
 	page, 
@@ -27,9 +27,12 @@ let ListMemo = ({
 	filter, 
 	initialFilter, 
 	sort, 
-	processFilter,
+	selectWrapper,
+	filterWrapper,
+	sortWrapper,
 	ManageComponent,
 	children, 
+	querySource,
 	...props 
 }) => {
 	const serviceName = React.useContext(ContextService);
@@ -54,11 +57,17 @@ let ListMemo = ({
 				page,
 				limit,
 				query,
-				select,
-				filter: processFilter(utilsCheckFunc(initialFilter)
+				select: selectWrapper(utilsCheckFunc(select)
+					? select()
+					: select),
+				filter: filterWrapper(utilsCheckFunc(initialFilter)
 					? initialFilter()
-					: (filter ?? initialFilter)),
-				sort,
+					: utilsCheckFunc(filter)
+						? filter()
+						: (filter ?? initialFilter)),
+				sort: sortWrapper(utilsCheckFunc(sort)
+					? sort()
+					: sort),
 			})();
 		}
 	}, [
@@ -71,7 +80,9 @@ let ListMemo = ({
 		filter,
 		initialFilter,
 		sort,
-		processFilter,
+		selectWrapper,
+		filterWrapper,
+		sortWrapper,
 		updatedIndex,
 	]);
 
@@ -82,14 +93,16 @@ let ListMemo = ({
 	]);
 
 	return <StyledWrapper { ...props }>
-		{withFilter && <PaperFilter ManageComponent={ManageComponent} />}
+		{withFilter && <PaperFilter 
+			querySource={querySource} 
+			ManageComponent={ManageComponent} />}
 		{children}
 	</StyledWrapper>;
 };
 
-ListMemo = React.memo(ListMemo);
+List = React.memo(List);
 
-let ListUrlQuerySource = (props) => {
+let Url = (props) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -111,19 +124,20 @@ let ListUrlQuerySource = (props) => {
 	const pageUrl = Number(hookUrlProperty('page', search) || initialPage);
 	const limitUrl = Number(hookUrlProperty('limit', search) || initialLimit);
 
-	return <ListMemo
+	return <List
 		query={queryUrl}
 		select={selectUrl}
 		filter={filterUrl}
 		sort={sortUrl}
 		page={pageUrl}
 		limit={limitUrl}
+		querySource="url"
 		{ ...props } />;
 };
 
-ListUrlQuerySource = React.memo(ListUrlQuerySource);
+Url = React.memo(Url);
 
-let ListStoreQuerySource = (props) => {
+let Store = (props) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -144,38 +158,49 @@ let ListStoreQuerySource = (props) => {
 	const sort = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'sort' ])) ?? initialSort;
 	const page = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'page' ])) ?? initialPage;
 	const limit = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'limit' ])) ?? initialLimit;
-	const [ selectMemo ] = React.useState(() => select);
-	const [ filterMemo ] = React.useState(() => filter);
-	const [ sortMemo ] = React.useState(() => sort);
+	const filterMemo = React.useCallback(() => filter, [
+		filter,
+	]);
+	const selectMemo = React.useCallback(() => select, [
+		select,
+	]);
+	const sortMemo = React.useCallback(() => sort, [
+		sort,
+	]);
 
-	return <ListMemo
+	return <List
 		query={query}
 		select={selectMemo}
 		filter={filterMemo}
 		sort={sortMemo}
 		page={page}
 		limit={limit}
+		querySource="store"
 		{ ...props } />;
 };
 
-ListStoreQuerySource = React.memo(ListStoreQuerySource);
+Store = React.memo(Store);
 
-let List = ({ querySource, ...props }) => {
+let StoreUrl = ({ querySource, ...props }) => {
 	return (querySource === 'url')
-		? <ListUrlQuerySource { ...props } />
+		? <Url { ...props } />
 		: ((querySource === 'store')
-			? <ListStoreQuerySource { ...props } />
-			: <ListMemo { ...props } />);
+			? <Store { ...props } />
+			: <List { ...props } />);
 };
 
-List = React.memo(List);
-List.defaultProps = {
+StoreUrl = React.memo(StoreUrl);
+StoreUrl.defaultProps = {
 	querySource: 'url',
-	processFilter: (data) => data,
+	selectWrapper: (data) => data,
+	filterWrapper: (data) => data,
+	sortWrapper: (data) => data,
 };
-List.propTypes = {
+StoreUrl.propTypes = {
 	querySource: PropTypes.string,
-	processFilter: PropTypes.func,
+	selectWrapper: PropTypes.func,
+	filterWrapper: PropTypes.func,
+	sortWrapper: PropTypes.func,
 };
 
-export default List;
+export default StoreUrl;

@@ -1,12 +1,9 @@
-import { fireListProp } from '../../api/actions/list/prop.js';
 import { fireUpdate } from './update.js';
 import hookProperty from '../hooks/hookProperty.js';
 
-export const fireFilter = async (storeName, key, value, options = {}, search) => {
-	await fireListProp(storeName, 'loader', true)();
-
+export const fireFilter = async (key, value, options = {}, search) => await (new Promise(async (resolve, reject) => {
 	const valueProcessed = value ? (((options['type'] || {})['name'] === 'Boolean')
-		? !!Number(value)
+		? Number(value)
 		: value) : undefined;
 	const filter = hookProperty('filter', search || window.location.search, true) || {};
 
@@ -16,5 +13,7 @@ export const fireFilter = async (storeName, key, value, options = {}, search) =>
 	else {
 		filter[key] = valueProcessed;
 	}
-	return fireUpdate('filter', filter);
-};
+	const output = await fireUpdate('filter', filter);
+
+	return setTimeout(() => resolve(output), 0);
+}));

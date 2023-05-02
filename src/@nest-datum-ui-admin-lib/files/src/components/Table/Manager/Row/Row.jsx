@@ -1,21 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
 	ContextService,
 	ContextProps,
 	ContextRoute, 
 } from '@nest-datum-ui/Context';
-import { 
+import Store, { 
+	actionApiListProp,
 	actionApiFormRestore,
 	actionApiFormProp,
 	actionDialogOpen,
 	actionBreadcrumbsPush,
 	actionUrlFilter,
 } from '@nest-datum-ui/Store';
+import { func as utilsCheckFunc } from '@nest-datum-utils/check';
 import TypographyTable from 'components/Typography/Table';
 import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Row = ({
+	querySource,
 	id,
 	parentId,
 	path,
@@ -30,6 +34,10 @@ let Row = ({
 	updatedAt,
 	disableLink,
 	onCheck,
+	onFile,
+	onFolder,
+	withContextMenu,
+	bulkDeletion,
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
@@ -41,6 +49,9 @@ let Row = ({
 					apiFullUrl: filesApiUrl,
 				},
 			}, 
+			filesSystemList: {
+				storeName: filesSystemListStoreName,
+			},
 		},
 		sso: {
 			ssoUserList: {
@@ -67,18 +78,39 @@ let Row = ({
 		id,
 		type,
 	]);
-	const onFolder = React.useCallback(() => {
-		actionUrlFilter(storeName, 'parentId', id);
+	const onFolderWrapper = React.useCallback((e) => actionApiListProp(storeName, 'loader', true)(() => {
+		if (querySource === 'url') {
+			actionUrlFilter('parentId', id);
+		}
+		else {
+			actionApiListProp(filesSystemListStoreName, 'parentId',id)(() => {
+				const currentFilter = (Store()
+					.getState()
+					.api
+					.list[storeName] || {})
+					.filter || {};
+				
+				actionApiListProp(storeName, 'filter', { ...currentFilter, parentId: id })();
+			});
+		}
 		actionBreadcrumbsPush(storeName, { key: id, text: name })();
-	}, [
+		onFolder(e, { id, name });
+	}), [
 		storeName,
+		filesSystemListStoreName,
 		name,
 		id,
+		querySource,
+		onFolder,
 	]);
-	const onCheckWrapper = React.useCallback((e) => {
-		onCheck(e);
+	const onFileWrapper = React.useCallback((e) => {
+		if (utilsCheckFunc(onFile)) {
+			onFile(e, { id, name });
+		}
 	}, [
-		onCheck,
+		onFile,
+		id,
+		name,
 	]);
 
 	return <StyledWrapper 
@@ -91,22 +123,28 @@ let Row = ({
 		onDropForce={onDropForce}
 		onRestore={onRestore}
 		onEdit={onEdit}
-		onCheck={onCheckWrapper}>
+		onCheck={onCheck}
+		withContextMenu={withContextMenu}
+		bulkDeletion={bulkDeletion}>
 		{([{ 
 			children: <TypographyTable 
 				key={0} 
 				isDeleted={isDeleted}
 				{ ...(type === 'folder')
-					? { onClick: onFolder, style: { cursor: 'pointer' } }
-					: {} }>
+					? { onClick: onFolderWrapper, style: { cursor: 'pointer' } }
+					: (utilsCheckFunc(onFile)
+						? { onClick: onFileWrapper, style: { cursor: 'pointer' } }
+						: {}) }>
 				{id}
 			</TypographyTable>, 
 		}, { 
 			children: <React.Fragment key={1}>
 				<TypographyTable 
 					{ ...(type === 'folder')
-						? { onClick: onFolder, style: { cursor: 'pointer' } }
-						: {} }
+						? { onClick: onFolderWrapper, style: { cursor: 'pointer' } }
+						: (utilsCheckFunc(onFile)
+							? { onClick: onFileWrapper, style: { cursor: 'pointer' } }
+							: {}) }
 					isDeleted={isDeleted} 
 					variant="h6">
 					{name}
@@ -114,8 +152,10 @@ let Row = ({
 				<div />
 				<TypographyTable 
 					{ ...(type === 'folder')
-						? { onClick: onFolder, style: { cursor: 'pointer' } }
-						: {} }
+						? { onClick: onFolderWrapper, style: { cursor: 'pointer' } }
+						: (utilsCheckFunc(onFile)
+							? { onClick: onFileWrapper, style: { cursor: 'pointer' } }
+							: {}) }
 					isDeleted={isDeleted} 
 					variant="subtitle1">
 					{description}
@@ -135,8 +175,12 @@ let Row = ({
 Row = React.memo(Row);
 Row.defaultProps = {
 	onCheck: (() => {}),
+	onFolder: (() => {}),
 };
 Row.propTypes = {
+	onCheck: PropTypes.func,
+	onFile: PropTypes.func,
+	onFolder: PropTypes.func,
 };
 
 export default Row;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { 
@@ -122,55 +123,69 @@ let User = () => {
 
 	React.useEffect(() => {
 		if (utilsCheckStrIdExists(entityId) && ready === undefined) {
-			actionApiListGet(ssoUserListStoreName, {
-				apiUrl: ssoUserListApiUrl,
-				filter: {
-					userUserOptions: {
-						userId: entityId,
-					},
-				},
-			})(({ data: contentData = [] }) => {
-				actionApiListGet(optionListStoreName, {
-					apiUrl: optionListApiUrl,
+			setTimeout(() => {
+				actionApiListGet(ssoUserListStoreName, {
+					apiUrl: ssoUserListApiUrl,
 					filter: {
-						isDeleted: false,
+						userUserOptions: {
+							userId: entityId,
+						},
 					},
-				})(({ data: optionsData = [] }) => {
-					let i = 0;
+				})(({ data: contentData = [] }) => {
+					if (contentData.length > 0) {
+						actionApiListGet(optionListStoreName, {
+							apiUrl: optionListApiUrl,
+							filter: {
+								isDeleted: false,
+							},
+						})(({ data: optionsData = [] }) => {
+							let i = 0;
 
-					while (i < optionsData.length) {
-						const optionsDataItem = optionsData[i];
-						const id = optionsDataItem['id'];
+							while (i < optionsData.length) {
+								const optionsDataItem = optionsData[i];
+								const id = optionsDataItem['id'];
 
-						optionsData[i]['userUserOptions'] = [{
-							userId: contentData[0]['userId'] || '',
-							userOptionId: optionsDataItem['id'],
-							id,
-							userUserUserOptions: (contentData[0]['userUserOptions'] ?? [])
-								.filter((item) => item['userOptionId'] === optionsDataItem['id'])
-								.map((item) => ({
-									id: item['id'],
-									userUserOptionId: id,
-									userId: item['userId'] || '',
-									content: item['content'] ?? optionsDataItem['defaultValue'] ?? '',
-								})),
-							}];
-						i++;
-					}
-					if (optionsData.length > 0) {
-						actionApiListMerge(ssoUserListStoreName, {
-							data: [ ...optionsData ],
-							ready: true,
-						})();
+								if (!contentData[0]['userUserOptions'].find((item) => item['userOptionId'] === optionsDataItem['id'])) {
+									contentData[0]['userUserOptions'] = contentData[0]['userUserOptions'] ?? [];
+									contentData[0]['userUserOptions'].push({
+										id: uuidv4(),
+										userId: optionsDataItem['userId'],
+										userOptionId: optionsDataItem['id'],
+										content: '',
+									});
+								}
+								optionsData[i]['userUserOptions'] = [{
+									userId: contentData[0]['userId'] || '',
+									userOptionId: optionsDataItem['id'],
+									id,
+									userUserUserOptions: (contentData[0]['userUserOptions'] ?? [])
+										.filter((item) => item['userOptionId'] === optionsDataItem['id'])
+										.map((item) => ({
+											id: item['id'],
+											userUserOptionId: id,
+											userId: item['userId'] || '',
+											content: item['content'] ?? optionsDataItem['defaultValue'] ?? '',
+										})),
+									}];
+								i++;
+							}
+							if (optionsData.length > 0) {
+								actionApiListMerge(ssoUserListStoreName, {
+									data: [ ...optionsData ],
+									ready: true,
+								})();
+							}
+						});
 					}
 				});
-			});
+			}, 1000);
 		}
 	}, [
 		ssoUserListStoreName,
 		ssoUserListApiUrl,
 		optionListStoreName,
 		optionListApiUrl,
+		optionRelationListEntityOptionRelation,
 		entityId,
 		ready,
 	]);
@@ -260,7 +275,9 @@ let User = () => {
 				name="isNotDelete" />
 		</Box>
 		{(utilsCheckStrIdExists(entityId) && fieldsBlock && ready) 
-			&& <FormOptionValue entityId={entityId} storeName={ssoUserListStoreName} />}
+			&& <FormOptionValue 
+				entityId={entityId} 
+				storeName={ssoUserListStoreName} />}
 		<Box pb={2}>
 			<Grid container spacing={2} justifyContent="flex-end">
 				<Grid

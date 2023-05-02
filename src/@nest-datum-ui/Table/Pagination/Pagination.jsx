@@ -29,13 +29,13 @@ let TablePagination = ({
 	children,
 	BottomComponent,
 }) => {
-	const loaderProcessed = (loader || !utilsCheckArr(children) || !(length >= 0))
+	const loaderProcessed = (loader || !utilsCheckArr(children) || !(length >= 0));
 
 	return <StyledWrapper>
 		<Progress visible={loaderProcessed} />
 		{(length > 0)
 			? <StyledNotEmpty>
-				{total >= 20
+				{(total >= 20 && loaderProcessed === false)
 					&& <Pagination
 						withChangeLimit={withChangeLimit}
 						total={total}

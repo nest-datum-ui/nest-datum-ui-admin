@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ContextProps } from '@nest-datum-ui/Context';
 import { selectorMainExtract } from '@nest-datum-ui/Store';
@@ -9,7 +10,15 @@ import FilesFolder from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Fo
 import FilesFile from '@nest-datum-ui-admin-lib/files/src/components/Dialog/File';
 import Row from './Row';
 
-let Manager = ({ onCheck, ...props }) => {
+let Manager = ({ 
+	onCheck, 
+	onFile,
+	onFolder,
+	querySource, 
+	withContextMenu, 
+	bulkDeletion, 
+	...props 
+}) => {
 	const { 
 		files: { 
 			filesManagerList: { 
@@ -22,15 +31,21 @@ let Manager = ({ onCheck, ...props }) => {
 		onCheck,
 	]);
 
-	return <Table BottomComponent={<React.Fragment>
-		<FilesDialogDisable />
-		<FilesDialogDrop />
-		<FilesFolder />
-		<FilesFile />
-	</React.Fragment>}>
+	return <Table 
+		{ ...props }
+		querySource={querySource}
+		BottomComponent={<React.Fragment>
+			<FilesDialogDisable />
+			<FilesDialogDrop />
+			<FilesFolder />
+			<FilesFile />
+		</React.Fragment>}>
 		{data
 			&& data.map((item, index) => <Row
 				key={item.id}
+				querySource={querySource}
+				withContextMenu={withContextMenu}
+				bulkDeletion={bulkDeletion}
 				id={item.id}
 				parentId={item.parentId}
 				path={item.path}
@@ -44,6 +59,8 @@ let Manager = ({ onCheck, ...props }) => {
 				createdAt={item.createdAt}
 				updatedAt={item.updatedAt}
 				onCheck={onCheckWrapper(item)}
+				onFile={onFile}
+				onFolder={onFolder}
 				disableLink />)}
 	</Table>;
 };
@@ -51,8 +68,13 @@ let Manager = ({ onCheck, ...props }) => {
 Manager = React.memo(Manager);
 Manager.defaultProps = {
 	onCheck: (() => {}),
+	onFile: (() => {}),
+	onFolder: (() => {}),
 };
 Manager.propTypes = {
+	onCheck: PropTypes.func,
+	onFile: PropTypes.func,
+	onFolder: PropTypes.func,
 };
 
 export default Manager;

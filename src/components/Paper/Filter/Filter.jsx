@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { 
 	ContextProps,
@@ -9,16 +10,19 @@ import {
 	selectorMainExtract,
 	actionApiListBulk,
 	actionApiListBulkDrop,
+	actionApiListMerge,
 	actionUrlFilterClear,
 	hookUrlProperty,
 } from '@nest-datum-ui/Store';
 import { 
 	func as utilsCheckFunc,
 	obj as utilsCheckObj,
+	objFilled as utilsCheckObjFilled,
 	strFilled as utilsCheckStrFilled,
 } from '@nest-datum-utils/check';
 import Grid from '@mui/material/Grid';
 import CloseIcon from '@mui/icons-material/Close';
+import FormSearch from '@nest-datum-ui/Form/Search';
 import FormSearchUrl from '@nest-datum-ui/Form/Search/Url';
 import Button from '@nest-datum-ui/Button';
 import ButtonCollapse from 'components/Button/Collapse';
@@ -27,14 +31,22 @@ import FormIsDeleted from 'components/Form/IsDeleted';
 import FormIsNotDelete from 'components/Form/IsNotDelete';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let Filter = ({ ManageComponent, ...props }) => {
+let Filter = ({ ManageComponent, querySource, query, filter, onClear, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: list } } = React.useContext(ContextProps);
-	const { storeName, bulkDeletion, search, manage, filters } = list;
+	const { 
+		[serviceName]: { 
+			[routeName]: list,
+		}, 
+	} = React.useContext(ContextProps);
+	const { 
+		storeName, 
+		bulkDeletion, 
+		search, 
+		manage, 
+		filters, 
+	} = list;
 	const [ filterFlag, setFilterFlag ] = React.useState(() => false);
-	const query = hookUrlProperty('query', search);
-	const filterStr = hookUrlProperty('filter', search);
 	const length = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data', 'length' ]));
 	const selected = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'selected' ])) || [];
 	const selectedForDrop = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'selectedForDrop' ])) || [];
@@ -49,10 +61,9 @@ let Filter = ({ ManageComponent, ...props }) => {
 		filterFlag,
 		setFilterFlag,
 	]);
-	const onClear = React.useCallback(() => actionUrlFilterClear(), [
-	]);
-	const onManage = React.useCallback((onClick, index, selected, selectedForDrop, selectedForDropPermanently) => (e) => onClick(e, index, selected, selectedForDrop, selectedForDropPermanently, { ...list }), [
+	const onManage = React.useCallback((onClick, index, selected, selectedForDrop, selectedForDropPermanently) => (e) => onClick(e, index, selected, selectedForDrop, selectedForDropPermanently, { ...list }, querySource), [
 		list,
+		querySource,
 	]);
 
 	return <StyledWrapper container display={Number(filterFlag)}>
@@ -72,7 +83,7 @@ let Filter = ({ ManageComponent, ...props }) => {
 			{ManageComponent
 				? <ManageComponent
 					query={query}
-					filter={filterStr}
+					filter={filter}
 					length={length}
 					selected={selected}
 					selectedForDrop={selectedForDrop}
@@ -99,11 +110,15 @@ let Filter = ({ ManageComponent, ...props }) => {
 							</Grid>)}
 				</Grid>}
 		</Grid>
-		{search && <FormSearchUrl />}
+		{search && ((querySource === 'url')
+			? <FormSearchUrl />
+			: <FormSearch />)}
 		{filters
 			&& <React.Fragment>
 				<Grid container spacing={1} className="paper-filter__manage-wrapper">
-					{(utilsCheckStrFilled(query) || utilsCheckStrFilled(filterStr))
+					{(utilsCheckStrFilled(query) 
+						|| utilsCheckStrFilled(filter)
+						|| utilsCheckObjFilled(filter))
 						&& <Grid
 							item
 							xs={false}>
@@ -135,15 +150,16 @@ let Filter = ({ ManageComponent, ...props }) => {
 								xl={2}>
 								{filters[key]
 									&& ((key === 'isNotDeleted') 
-										? <FormIsNotDelete />
+										? <FormIsNotDelete querySource={querySource} />
 										: (key === 'isDeleted')
-											? <FormIsDeleted />
+											? <FormIsDeleted querySource={querySource} />
 											: (() => {
 												const Component = filters[key];
 
 												return <Component
+													querySource={querySource}
 													query={query}
-													filterStr={filterStr}
+													filter={filter}
 													length={length}
 													storeName={storeName} />;
 											})())}
@@ -153,10 +169,69 @@ let Filter = ({ ManageComponent, ...props }) => {
 	</StyledWrapper>;
 };
 
-Filter = React.memo(Filter);
-Filter.defaultProps = {
-};
-Filter.propTypes = {
+let Store = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: {
+				storeName,
+			},
+		}, 
+	} = React.useContext(ContextProps);
+	const query = useSelector(selectorMainExtract([ 'api', 'list', `${storeName}_query`, 'query' ]));
+	const filter = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'filter' ]));
+	const filterMemo = React.useCallback(() => filter, [
+		filter,
+	]);
+	const onClear = React.useCallback(() => actionApiListMerge(storeName, {
+		loader: true,
+		filter: {},
+	})(), [
+		storeName,
+	]);
+
+	return <Filter 
+		{ ...props } 
+		query={query} 
+		filter={filterMemo} 
+		onClear={onClear}
+		querySource="store" />;
 };
 
-export default Filter;
+let Url = (props) => {
+	const serviceName = React.useContext(ContextService);
+	const routeName = React.useContext(ContextRoute);
+	const { 
+		[serviceName]: { 
+			[routeName]: {
+				search,
+			},
+		}, 
+	} = React.useContext(ContextProps);
+	const query = hookUrlProperty('query', search);
+	const filter = hookUrlProperty('filter', search);
+	const onClear = React.useCallback(() => actionUrlFilterClear(), [
+	]);
+
+	return <Filter 
+		{ ...props } 
+		query={query} 
+		filter={filter} 
+		onClear={onClear}
+		querySource="url" />;
+};
+
+let StoreUrl = ({ querySource, ...props }) => (querySource === 'url')
+	? <Url { ...props } />
+	: <Store { ...props } />;
+
+StoreUrl = React.memo(StoreUrl);
+StoreUrl.defaultProps = {
+	querySource: 'url',
+};
+StoreUrl.propTypes = {
+	querySource: PropTypes.string,
+};
+
+export default StoreUrl;

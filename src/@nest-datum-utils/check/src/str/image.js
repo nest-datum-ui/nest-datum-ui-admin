@@ -4,7 +4,7 @@ const image = (value) => {
 	if (!str(value)) {
 		return false;
 	}
-	const valueSplit = value.split('.');
+	const valueSplit = (value.split('?'))[0].split('.');
 
 	return valueSplit[valueSplit.length - 1] === 'png'
 		|| valueSplit[valueSplit.length - 1] === 'jpeg'

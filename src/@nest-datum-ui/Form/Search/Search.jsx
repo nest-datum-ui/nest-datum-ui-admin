@@ -6,12 +6,14 @@ import {
 	ContextRoute, 
 	ContextService,
 } from '@nest-datum-ui/Context';
+import Store, { 
+	actionApiListMerge, 
+} from '@nest-datum-ui/Store';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@nest-datum-ui/Input';
 import StyledWrapper from './Styled/Wrapper.jsx';
-import handlerSubmit from './handler/submit.js';
 
 let Search = ({
 	name,
@@ -21,9 +23,32 @@ let Search = ({
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName,
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 	const [ id ] = React.useState(() => uuidv4());
-	const onSubmit = React.useCallback((e) => handlerSubmit(e, name, onSearch, `${storeName}_query`), [
+	const onSubmit = React.useCallback((e) => {
+		e.preventDefault();
+
+		const query = String(e.target.elements[name].value ?? '');
+
+		if ((Store()
+			.getState()
+			.api
+			.list[storeName] || {})['query'] !== query) {
+			actionApiListMerge(storeName, {
+				loader: true,
+				page: 1,
+				limit: 20,
+				query,
+			})();
+			onSearch(String(e.target.elements[name].value ?? ''));
+		}
+	}, [
 		name,
 		onSearch,
 		storeName,

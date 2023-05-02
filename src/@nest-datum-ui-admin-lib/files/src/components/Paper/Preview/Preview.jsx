@@ -1,27 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { ContextProps } from '@nest-datum-ui/Context';
+import {
+	selectorMainExtract,
+	actionApiFormGet,
+	actionApiFormPurge,
+} from '@nest-datum-ui/Store';
 import {
 	strImage as utilsCheckStrImage,
 	strPdf as utilsCheckStrPdf,
 	strEjs as utilsCheckStrEjs,
 } from '@nest-datum-utils/check';
+import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Preview = ({ value, isDeleted, ...props }) => {
-	const isImage = React.useMemo(() => utilsCheckStrImage(value['src']), [
+	const { 
+		files: { 
+			filesManagerList: { 
+				files: {
+					apiFullUrl: apiUrl,
+				},
+			},
+		}, 
+	} = React.useContext(ContextProps);
+	const id = value['id'];
+	const path = useSelector(selectorMainExtract([ 'api', 'form', id, 'path' ]));
+	const src = path && (utilsFormatUrlApiStr(process.env.URL_API_FILES + path));
+	const isImage = React.useMemo(() => utilsCheckStrImage(src ?? value['src']), [
 		value,
+		src,
 	]);
-	const isPdf = React.useMemo(() => utilsCheckStrPdf(value['src']), [
+	const isPdf = React.useMemo(() => utilsCheckStrPdf(src ?? value['src']), [
 		value,
+		src,
 	]);
-	const isEjs = React.useMemo(() => utilsCheckStrEjs(value['src']), [
+	const isEjs = React.useMemo(() => utilsCheckStrEjs(src ?? value['src']), [
 		value,
+		src,
 	]);
 
-	return <StyledWrapper url={value['src']} isimage={Number(isImage)}>
+	React.useEffect(() => {
+		actionApiFormGet(id, { apiUrl, entityId: id })()
+	}, [
+		id,
+		apiUrl,
+	]);
+
+	React.useEffect(() => () => {
+		actionApiFormPurge(id)();
+	}, [
+		id,
+	]);
+
+	return <StyledWrapper url={src ?? value['src']} isimage={Number(isImage)}>
 		{(() => {
 			switch (true) {
 				case isPdf:

@@ -1,31 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { 
 	ContextService,
 	ContextRoute, 
 } from '@nest-datum-ui/Context';
-import { selectorMainExtract } from '@nest-datum-ui/Store';
 import Dialog from '@nest-datum-ui/Dialog';
 import ListManager from '../../../components/List/Manager';
 
-let Manager = ({ id, ...props }) => {
-	const systemId = useSelector(selectorMainExtract([ 'dialog', id, 'systemId' ]));
-	const parentId = useSelector(selectorMainExtract([ 'dialog', id, 'parentId' ]));
-	const setValueState = useSelector(selectorMainExtract([ 'dialog', id, 'setValueState' ]));
-	const onClose = useSelector(selectorMainExtract([ 'dialog', id, 'onClose' ]));
-	const onCheck = React.useCallback((e, item) => {
-		console.log('e, item', e, item);
-	}, [
-	]);
-
-	return <Dialog maxWidth="md" { ...props } id={id}>
+let Manager = ({ 
+	id, 
+	allowSelectSystem,
+	systemId,
+	parentId,
+	onCheck,
+	onFolder,
+	onFile, 
+	...props 
+}) => {
+	return <Dialog maxWidth="lg" { ...props } id={id}>
 		<ContextService.Provider value="files">
 			<ContextRoute.Provider value="filesManagerList">
 				<ListManager 
-					withFilter={false} 
+					withFilter={false}
+					withContextMenu={false} 
+					bulkDeletion={false}
 					querySource="store"
-					onCheck={onCheck} />
+					allowSelectSystem={allowSelectSystem}
+					systemId={systemId}
+					parentId={parentId}
+					onCheck={onCheck}
+					onFolder={onFolder}
+					onFile={onFile} />
 			</ContextRoute.Provider>
 		</ContextService.Provider>
 	</Dialog>;
@@ -36,9 +41,11 @@ Manager.defaultProps = {
 	title: 'Select file',
 	id: 'filesManager',
 	onSubmit: () => {},
+	onCheck: () => {},
 };
 Manager.propTypes = {
 	onSubmit: PropTypes.func,
+	onCheck: PropTypes.func,
 };
 
 export default Manager;

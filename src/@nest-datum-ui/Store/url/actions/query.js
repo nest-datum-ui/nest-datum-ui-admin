@@ -1,13 +1,10 @@
-import { fireListProp } from '../../api/actions/list/prop.js';
 import { fireUpdate } from './update.js';
 import hookProperty from '../hooks/hookProperty.js';
 
-export const fireQuery = async (storeName, newQuery, search) => {
-	await fireListProp(storeName, 'loader', true)();
-
+export const fireQuery = async (newQuery, search) => {
 	const currentQuery = hookProperty('query', search || window.location.search) || '';
 
 	if (newQuery !== currentQuery) {
-		return fireUpdate('query', ((newQuery || '').length > 0) ? newQuery : undefined, search);
+		return await fireUpdate('query', ((newQuery || '').length > 0) ? newQuery : undefined, search);
 	}
 };

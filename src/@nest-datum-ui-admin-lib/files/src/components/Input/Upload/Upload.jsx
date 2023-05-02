@@ -7,6 +7,7 @@ import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Upload = ({ 
 	disablePreview,
+	multiple,
 	storeName, 
 	name, 
 	id, 
@@ -56,6 +57,7 @@ let Upload = ({
 				id={savedId} 
 				form={form} 
 				accept={accept}
+				multiple={multiple}
 				onChange={onChangeWrapper} />
 			{label || children}
 		</StyledWrapper>
@@ -71,6 +73,7 @@ let Upload = ({
 Upload = React.memo(Upload);
 Upload.defaultProps = {
 	disablePreview: false,
+	multiple: false,
 	type: 'object',
 	name: 'file',
 	accept: '*',
@@ -79,6 +82,7 @@ Upload.defaultProps = {
 Upload.propTypes = {
 	name: PropTypes.string,
 	onChange: PropTypes.func,
+	multiple: PropTypes.bool,
 };
 
 export default Upload;

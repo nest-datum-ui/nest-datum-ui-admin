@@ -12,7 +12,7 @@ import { httpErrorMessage as utilsFormatHttpErrorMessage } from '@nest-datum-uti
 import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
 import { getStore } from '../../../Store.js';
 
-export const fireFormCreateOptions = (storeName, options = {}) => async (prefix = 'api') => {
+export const fireFormCreateOptions = (storeName, options = {}) => async (callback = () => {}, prefix = 'api') => {
 	if (!utilsCheckStrId(options.entityId)) {
 		throw new Error(`Can't create options api store form. Property entityId "${options.entityId}" is not valid.`);
 	}
@@ -129,6 +129,7 @@ export const fireFormCreateOptions = (storeName, options = {}) => async (prefix 
 			}
 			i++;
 		}
+		callback(form, list);
 	}
 	catch (err) {
 		throw new Error(utilsFormatHttpErrorMessage(err, options.apiUrl));

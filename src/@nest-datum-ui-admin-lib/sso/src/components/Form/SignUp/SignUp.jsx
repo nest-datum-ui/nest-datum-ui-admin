@@ -35,7 +35,7 @@ let SignUp = ({
 	} = React.useContext(ContextProps);
 	const successfulRegistrationFlag = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'successfulRegistrationFlag' ]));
 	const onSubmitWrapper = React.useCallback((e) => {
-		actionSsoRegister(storeName, apiFullUrl);
+		actionSsoRegister(storeName, apiFullUrl)();
 		onSubmit(e);
 	}, [
 		onSubmit,

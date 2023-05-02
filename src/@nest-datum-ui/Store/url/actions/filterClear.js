@@ -1,18 +1,18 @@
-import findFilterItem from '../selectors/findFilterItem.js';
 import { 
 	str as utilsCheckStr,
 	objFilled as utilsCheckObjFilled, 
 } from '@nest-datum-utils/check';
 import { hookNavigate } from '../hooks';
+import hookProperty from '../hooks/hookProperty.js';
 
-export const fireFilterClear = (columnName) => {
-	let query = findFilterItem('query', window.location.search) || '',
-		sort = findFilterItem('sort', window.location.search, true),
+export const fireFilterClear = async (columnName) => await (new Promise(async (resolve, reject) => {
+	let query = hookProperty('query', window.location.search) || '',
+		sort = hookProperty('sort', window.location.search, true),
 		url = '';
 
 	if (utilsCheckStr(columnName)) {
-		let filter = findFilterItem('filter', window.location.search, true) || {};
-	
+		let filter = hookProperty('filter', window.location.search, true) || {};
+
 		delete filter[columnName];
 
 		if (utilsCheckObjFilled(filter)) {
@@ -33,8 +33,11 @@ export const fireFilterClear = (columnName) => {
 		}
 	}
 	url = window.location.pathname + url;
-	
+
 	if (url !== window.location.href) {
-		hookNavigate(url);
+		await hookNavigate(url);
+
+		return setTimeout(() => resolve(true), 0);
 	}
-};
+	return setTimeout(() => resolve(false), 0);
+}));
