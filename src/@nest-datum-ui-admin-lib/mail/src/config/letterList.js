@@ -5,7 +5,7 @@ import {
 
 const letterList = {
 	parentName: 'mailLetter',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-list',
 	storeName: 'mail-letter-list',
 	apiUrl: 'letter',

@@ -10,7 +10,7 @@ const providerForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Provider',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'providers/:id',
 	pageTitle: 'Provider',
 

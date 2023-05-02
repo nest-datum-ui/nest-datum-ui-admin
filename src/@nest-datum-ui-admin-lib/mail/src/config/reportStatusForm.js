@@ -11,7 +11,8 @@ const reportStatusForm = {
 	id: 'mail-report-statuses-form',
 	storeName: 'mail-report-statuses-form',
 	apiUrl: 'report-status',
-
+	orderInHeaderTabMenu: 2,
+	
 	manage: {
 		create: {
 			text: 'Save',

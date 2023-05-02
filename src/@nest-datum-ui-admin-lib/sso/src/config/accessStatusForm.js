@@ -11,7 +11,7 @@ const accessStatusForm = {
 	id: 'sso-accesses-statuses-form',
 	storeName: 'sso-accesses-statuses-form',
 	apiUrl: 'access-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

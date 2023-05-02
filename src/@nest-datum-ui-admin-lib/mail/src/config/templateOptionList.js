@@ -15,7 +15,7 @@ const templateOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'templateId', 
 	entityRelation: 'templateOptionId',
 	entityOptionRelation: 'templateTemplateOptionId',

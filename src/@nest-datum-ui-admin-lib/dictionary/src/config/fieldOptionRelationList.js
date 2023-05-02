@@ -7,7 +7,7 @@ const fieldOptionRelationList = {
 	title: 'Fields',
 	subtitle: 'List of fields that own the current setting.',
 	formName: 'dictionaryFieldOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-field-option-relations-list',
 	storeName: 'dictionary-field-option-relations-list',
 	columnName: 'fieldId',

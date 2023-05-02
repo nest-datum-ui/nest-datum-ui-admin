@@ -8,7 +8,7 @@ const formOptionForm = {
 
 	pageUrl: 'dictionary/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-form-options-form',
 	storeName: 'dictionary-form-options-form',
 	apiUrl: 'form-option',

@@ -5,6 +5,7 @@ const templateStatus = {
 
 	pageUrl: 'templates/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default templateStatus;

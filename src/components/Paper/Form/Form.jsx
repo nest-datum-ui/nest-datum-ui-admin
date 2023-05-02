@@ -46,7 +46,7 @@ let Form = ({ children, ...props }) => {
 	React.useEffect(() => {
 		const startIndex = (orderInHeaderTabMenu === 0 || (prevPage[0] || {}).orderInHeaderTabMenu === 0)
 			? 1
-			: 2;
+			: orderInHeaderTabMenu + 1;
 
 		setTimeout(() => actionBreadcrumbsSet('breadcrumbs-header', [ 
 			...prevPage, 

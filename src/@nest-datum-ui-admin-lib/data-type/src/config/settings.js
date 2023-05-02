@@ -10,7 +10,7 @@ const config = {
 	displayInHeaderTabMenu: true,
 	orderInHeaderTabMenu: 9999,
 	headerTabMenuTitle: 'Settings',
-
+	orderInHeaderTabMenu: 1,
 	pageUrl: 'settings',
 	pageTitle: 'Settings',
 

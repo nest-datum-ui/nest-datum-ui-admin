@@ -29,7 +29,7 @@ let List = ({ children }) => {
 				pageFullUrl, 
 				breadcrumbsMenuTitle, 
 				orderInHeaderTabMenu, 
-				prevPage = [], 
+				prevPage = [],
 			}, 
 		}, 
 	} = React.useContext(ContextProps);
@@ -38,7 +38,14 @@ let List = ({ children }) => {
 		setTimeout(() => {
 			(orderInHeaderTabMenu === 0)
 				? actionBreadcrumbsDel('breadcrumbs-header', 0, 2)()
-				: actionBreadcrumbsSet('breadcrumbs-header', [ ...prevPage, { key: pageFullUrl, text: breadcrumbsMenuTitle }], ((prevPage[0] || {}).orderInHeaderTabMenu === 0) ? 1 : 2, 5)();
+				: actionBreadcrumbsSet(
+					'breadcrumbs-header', 
+					[ ...prevPage, 
+						{ key: pageFullUrl, text: breadcrumbsMenuTitle }
+					], 
+					((prevPage[0] || {}).orderInHeaderTabMenu === 0) ? 1 : orderInHeaderTabMenu + 1,
+					5
+				)();
 		}, 0);
 	}, [
 		orderInHeaderTabMenu,

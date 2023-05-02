@@ -5,7 +5,7 @@ import {
 
 const typeStatusList = {
 	parentName: 'countriesTypeStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'countries-type-statuses-list',
 	storeName: 'countries-type-statuses-list',
 	apiUrl: 'type-status',

@@ -7,6 +7,7 @@ const reportStatusForm = {
 
 	pageUrl: 'reports/statuses/:id',
 	pageTitle: 'Status',
+	orderInHeaderTabMenu: 2,
 
 	id: 'lensa-report-statuses-form',
 	storeName: 'lensa-report-statuses-form',

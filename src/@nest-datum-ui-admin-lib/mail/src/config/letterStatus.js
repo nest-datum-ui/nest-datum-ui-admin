@@ -5,6 +5,7 @@ const letterStatus = {
 
 	pageUrl: 'letters/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default letterStatus;

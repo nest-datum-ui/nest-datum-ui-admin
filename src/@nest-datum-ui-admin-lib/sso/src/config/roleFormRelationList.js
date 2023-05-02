@@ -7,7 +7,7 @@ const roleFormRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'ssoRoleOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'sso-role-option-relations-list',
 	storeName: 'sso-role-option-relations-list',
 	columnName: 'roleId',

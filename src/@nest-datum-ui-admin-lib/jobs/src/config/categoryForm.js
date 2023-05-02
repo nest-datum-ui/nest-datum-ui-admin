@@ -7,7 +7,7 @@ const categoryForm = {
 	statusName: 'jobjCategoryStatus',
 	statusListName: 'jobjCategoryStatusList',
 	relationListName: 'jobjCategoryFormRelationList',
-
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Category',
 

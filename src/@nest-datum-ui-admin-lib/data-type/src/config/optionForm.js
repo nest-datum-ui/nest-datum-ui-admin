@@ -8,7 +8,7 @@ const optionForm = {
 
 	pageUrl: 'types/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-type-options-form',
 	storeName: 'data-type-type-options-form',
 	apiUrl: 'type-option',

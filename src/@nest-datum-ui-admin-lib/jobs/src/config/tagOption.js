@@ -8,6 +8,7 @@ const tagOption = {
 
 	fieldsBlock: true,
 	fieldsBlockTitle: 'Options:',
+	orderInHeaderTabMenu: 2,
 };
 
 export default tagOption;

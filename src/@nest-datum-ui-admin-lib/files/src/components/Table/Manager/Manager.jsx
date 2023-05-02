@@ -8,6 +8,8 @@ import FilesDialogDisable from '@nest-datum-ui-admin-lib/files/src/components/Di
 import FilesDialogDrop from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Drop';
 import FilesFolder from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Folder';
 import FilesFile from '@nest-datum-ui-admin-lib/files/src/components/Dialog/File';
+import FilesDialogDisableMany from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Disable/Many';
+import FilesDialogDropMany from '@nest-datum-ui-admin-lib/files/src/components/Dialog/Drop/Many';
 import Row from './Row';
 
 let Manager = ({ 
@@ -36,7 +38,9 @@ let Manager = ({
 		querySource={querySource}
 		BottomComponent={<React.Fragment>
 			<FilesDialogDisable />
+			<FilesDialogDisableMany />
 			<FilesDialogDrop />
+			<FilesDialogDropMany />
 			<FilesFolder />
 			<FilesFile />
 		</React.Fragment>}>

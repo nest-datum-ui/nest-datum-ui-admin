@@ -9,7 +9,7 @@ const tagForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Tag',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'tags/:id',
 	pageTitle: 'Tag',
 

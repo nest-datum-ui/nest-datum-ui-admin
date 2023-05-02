@@ -11,7 +11,7 @@ const accessStatusForm = {
 	id: 'mail-accesses-statuses-form',
 	storeName: 'mail-accesses-statuses-form',
 	apiUrl: 'access-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

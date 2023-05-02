@@ -5,7 +5,7 @@ import {
 
 const jobList = {
 	parentName: 'jobsPost',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-post-list',
 	storeName: 'jobs-post-list',
 	apiUrl: 'post',

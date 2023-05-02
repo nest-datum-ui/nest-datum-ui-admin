@@ -5,7 +5,7 @@ import {
 
 const contentStatusList = {
 	parentName: 'formsContentStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-content-statuses-list',
 	storeName: 'forms-content-statuses-list',
 	apiUrl: 'content-status',

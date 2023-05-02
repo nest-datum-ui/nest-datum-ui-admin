@@ -10,7 +10,7 @@ const accessForm = {
 	
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'accesses/:id',
 	pageTitle: 'Access',
 

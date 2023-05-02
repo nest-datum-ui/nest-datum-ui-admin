@@ -13,7 +13,7 @@ const fieldOptionForm = {
 	storeName: 'dictionary-field-options-form',
 	apiUrl: 'field-option',
 	apiRelationUrl: 'field/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'fieldId', 
 	entityRelation: 'fieldOptionId',
 	entityOptionRelation: 'fieldFieldOptionId',

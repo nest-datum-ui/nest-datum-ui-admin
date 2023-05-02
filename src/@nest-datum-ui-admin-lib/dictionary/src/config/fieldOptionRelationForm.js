@@ -7,7 +7,7 @@ const fieldOptionRelationForm = {
 	apiUrl: 'field/:id/option',
 
 	title: 'Field',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'field/:id/options',
 	},

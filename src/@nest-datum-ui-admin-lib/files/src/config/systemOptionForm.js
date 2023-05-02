@@ -8,7 +8,7 @@ const systemOptionForm = {
 
 	pageUrl: 'systems/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'files-system-options-form',
 	storeName: 'files-system-options-form',
 	apiUrl: 'system-option',

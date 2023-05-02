@@ -5,7 +5,7 @@ import {
 
 const accessOptionList = {
 	parentName: 'formsAccessOption',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-accesses-options-list',
 	storeName: 'forms-accesses-options-list',
 	apiUrl: 'access-option',

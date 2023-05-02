@@ -11,7 +11,8 @@ const userOptionForm = {
 	id: 'sso-user-options-form',
 	storeName: 'sso-user-options-form',
 	apiUrl: 'user-option',
-
+	orderInHeaderTabMenu: 2,
+	
 	relations: {
 		apiUrl: 'user/:id/options',
 	},

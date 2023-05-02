@@ -10,7 +10,7 @@ const systemForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'System',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'systems/:id',
 	pageTitle: 'System',
 

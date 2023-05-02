@@ -5,6 +5,7 @@ const contentStatus = {
 
 	pageUrl: 'contents/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default contentStatus;

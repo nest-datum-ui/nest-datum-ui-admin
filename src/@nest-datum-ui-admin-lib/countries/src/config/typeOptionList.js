@@ -15,7 +15,7 @@ const typeOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'typeId', 
 	entityRelation: 'typeOptionId',
 	entityOptionRelation: 'typeTypeOptionId',

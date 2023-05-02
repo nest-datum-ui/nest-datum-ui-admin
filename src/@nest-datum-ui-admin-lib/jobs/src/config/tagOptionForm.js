@@ -11,6 +11,7 @@ const tagOptionForm = {
 	id: 'jobs-tag-options-form',
 	storeName: 'jobs-tag-options-form',
 	apiUrl: 'tag-option',
+	orderInHeaderTabMenu: 2,
 
 	relations: {
 		apiUrl: 'tag/:id/options',

@@ -5,7 +5,7 @@ import {
 
 const fieldList = {
 	parentName: 'dictionaryField',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-field-list',
 	storeName: 'dictionary-field-list',
 	apiUrl: 'field',

@@ -7,6 +7,7 @@ const accessForm = {
 	statusName: 'lensaAccessStatus',
 	statusListName: 'lensaAccessStatusList',
 	relationListName: 'lensaAccessFormRelationList',
+	orderInHeaderTabMenu: 2,
 	
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',

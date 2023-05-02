@@ -7,7 +7,7 @@ const accessForm = {
 	statusName: 'formsAccessStatus',
 	statusListName: 'formsAccessStatusList',
 	relationListName: 'formsAccessFormRelationList',
-	
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

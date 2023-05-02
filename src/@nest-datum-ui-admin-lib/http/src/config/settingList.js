@@ -5,7 +5,7 @@ import {
 
 const settingList = {
 	parentName: 'httpSetting',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'http-settings-list',
 	storeName: 'http-settings-list',
 	apiUrl: 'setting',

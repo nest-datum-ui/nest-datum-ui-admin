@@ -10,7 +10,7 @@ const fieldForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Field',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'fields/:id',
 	pageTitle: 'Field',
 

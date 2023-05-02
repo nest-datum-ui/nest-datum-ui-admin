@@ -15,6 +15,7 @@ const accessStatusList = {
 	search: true,
 	withContextMenu: true,
 	withFilter: true,
+	orderInHeaderTabMenu: 2,
 
 	manage: {
 		drop: {

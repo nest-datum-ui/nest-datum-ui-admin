@@ -7,7 +7,7 @@ const typeStatusForm = {
 
 	pageUrl: 'types/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-type-statuses-form',
 	storeName: 'countries-type-statuses-form',
 	apiUrl: 'type-status',

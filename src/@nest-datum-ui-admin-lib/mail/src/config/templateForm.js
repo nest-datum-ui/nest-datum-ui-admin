@@ -10,7 +10,7 @@ const templateForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Template',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'templates/:id',
 	pageTitle: 'Template',
 

@@ -13,7 +13,8 @@ const config = {
 
 	pageUrl: 'settings',
 	pageTitle: 'Settings',
-
+	orderInHeaderTabMenu: 1,
+	
 	list: {
 		id: 'dictionary-settings-list',
 		storeName: 'dictionary-settings-list',

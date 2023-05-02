@@ -15,6 +15,7 @@ const postOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
+	orderInHeaderTabMenu: 2,
 
 	entity: 'postId', 
 	entityRelation: 'postOptionId',

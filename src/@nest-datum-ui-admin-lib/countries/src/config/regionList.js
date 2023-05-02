@@ -5,7 +5,7 @@ import {
 
 const regionList = {
 	parentName: 'countriesRegion',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'countries-region-list',
 	storeName: 'countries-region-list',
 	apiUrl: 'region',

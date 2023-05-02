@@ -11,7 +11,7 @@ const templateStatusForm = {
 	id: 'mail-template-statuses-form',
 	storeName: 'mail-template-statuses-form',
 	apiUrl: 'template-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

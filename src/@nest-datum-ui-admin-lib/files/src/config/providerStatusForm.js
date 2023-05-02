@@ -11,7 +11,7 @@ const providerStatusForm = {
 	id: 'files-provider-statuses-form',
 	storeName: 'files-provider-statuses-form',
 	apiUrl: 'provider-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

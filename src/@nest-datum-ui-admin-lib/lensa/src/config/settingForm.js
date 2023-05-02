@@ -11,6 +11,7 @@ const settingForm = {
 	id: 'setting-form',
 	storeName: 'setting-form',
 	apiUrl: 'setting',
+	orderInHeaderTabMenu: 2,
 
 	manage: {
 		create: {

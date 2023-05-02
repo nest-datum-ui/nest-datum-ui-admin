@@ -7,7 +7,7 @@ const jobFormRelationForm = {
 	apiUrl: 'post/:id/option',
 
 	title: 'Post',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'post/:id/options',
 	},

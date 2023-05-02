@@ -9,6 +9,7 @@ const config = {
 
 	pageUrl: 'settings',
 	pageTitle: 'Settings',
+	orderInHeaderTabMenu: 1,
 };
 
 export default config;

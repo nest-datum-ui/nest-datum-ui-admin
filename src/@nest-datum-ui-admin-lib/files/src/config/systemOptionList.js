@@ -15,7 +15,7 @@ const systemOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'systemId', 
 	entityRelation: 'systemOptionId',
 	entityOptionRelation: 'systemSystemOptionId',

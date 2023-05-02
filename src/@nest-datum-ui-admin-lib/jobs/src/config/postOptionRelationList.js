@@ -16,7 +16,7 @@ const postOptionRelationList = {
 	initialPage: 1,
 	initialLimit: 9999,
 	withForceDropMenu: true,
-
+	orderInHeaderTabMenu: 2,
 	listTitle: 'Related data',
 	listSubtitle: 'Intermediate data between the main model and current option.',
 

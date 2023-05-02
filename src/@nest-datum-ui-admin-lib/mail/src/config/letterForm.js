@@ -10,7 +10,7 @@ const letterForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Letter',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'letters/:id',
 	pageTitle: 'Letter',
 

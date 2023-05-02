@@ -7,7 +7,7 @@ const jobStatusForm = {
 
 	pageUrl: 'posts/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-post-statuses-form',
 	storeName: 'jobs-post-statuses-form',
 	apiUrl: 'post-status',

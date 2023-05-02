@@ -11,7 +11,7 @@ const reportStatusForm = {
 	id: 'cv-report-statuses-form',
 	storeName: 'cv-report-statuses-form',
 	apiUrl: 'report-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

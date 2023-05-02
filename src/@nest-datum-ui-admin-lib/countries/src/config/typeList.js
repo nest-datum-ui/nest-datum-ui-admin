@@ -5,7 +5,7 @@ import {
 
 const typeList = {
 	parentName: 'countriesType',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'countries-type-list',
 	storeName: 'countries-type-list',
 	apiUrl: 'type',

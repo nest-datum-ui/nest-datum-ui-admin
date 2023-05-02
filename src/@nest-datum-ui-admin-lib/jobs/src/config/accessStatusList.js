@@ -5,7 +5,7 @@ import {
 
 const accessStatusList = {
 	parentName: 'jobsAccessStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-accesses-statuses-list',
 	storeName: 'jobs-accesses-statuses-list',
 	apiUrl: 'access-status',

@@ -5,7 +5,7 @@ import {
 
 const providerStatusList = {
 	parentName: 'filesProviderStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'files-provider-statuses-list',
 	storeName: 'files-provider-statuses-list',
 	apiUrl: 'provider-status',

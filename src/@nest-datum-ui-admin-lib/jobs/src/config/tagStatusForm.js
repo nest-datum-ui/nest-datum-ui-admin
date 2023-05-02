@@ -11,7 +11,8 @@ const tagStatusForm = {
 	id: 'jobs-tag-statuses-form',
 	storeName: 'jobs-tag-statuses-form',
 	apiUrl: 'tag-status',
-
+	orderInHeaderTabMenu: 2,
+	
 	manage: {
 		create: {
 			text: 'Save',

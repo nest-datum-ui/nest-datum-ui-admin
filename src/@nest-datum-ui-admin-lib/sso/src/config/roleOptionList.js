@@ -15,7 +15,7 @@ const roleOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'roleId', 
 	entityRelation: 'roleOptionId',
 	entityOptionRelation: 'roleRoleOptionId',

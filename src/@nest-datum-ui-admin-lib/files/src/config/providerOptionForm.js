@@ -5,7 +5,7 @@ const providerOptionForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'providers/options/:id',
 	pageTitle: 'Option',
 

@@ -8,7 +8,7 @@ const accessOptionForm = {
 
 	pageUrl: 'accesses/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-accesses-options-form',
 	storeName: 'forms-accesses-options-form',
 	apiUrl: 'access-option',

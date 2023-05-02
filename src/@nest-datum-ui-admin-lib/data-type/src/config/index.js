@@ -50,6 +50,7 @@ const config = {
 
 		fieldsBlock: true,
 		fieldsBlockTitle: 'Options:',
+		orderInHeaderTabMenu: 2,
 	},
 	dataTypeAccessStatus: {
 		displayInBreadcrumbsMenu: true,
@@ -57,6 +58,7 @@ const config = {
 
 		pageUrl: 'accesses/statuses',
 		pageTitle: 'Options',
+		orderInHeaderTabMenu: 2,
 	},
 	dataTypeSetting: {
 		displayInBreadcrumbsMenu: true,
@@ -68,6 +70,7 @@ const config = {
 
 		pageUrl: 'settings',
 		pageTitle: 'Settings',
+		orderInHeaderTabMenu: 1,
 	},
 	dataType: {
 		displayInBreadcrumbsMenu: true,
@@ -89,6 +92,7 @@ const config = {
 
 		fieldsBlock: true,
 		fieldsBlockTitle: 'Options:',
+		orderInHeaderTabMenu: 2,
 	},
 	dataTypeStatus: {
 		displayInBreadcrumbsMenu: true,
@@ -96,6 +100,7 @@ const config = {
 
 		pageUrl: 'types/statuses',
 		pageTitle: 'Options',
+		orderInHeaderTabMenu: 2,
 	},
 	dataTypeAccessForm,
 	dataTypeAccessFormRelationList,

@@ -7,7 +7,7 @@ const categoryFormRelationForm = {
 	apiUrl: 'category/:id/option',
 
 	title: 'Category',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'category/:id/options',
 	},

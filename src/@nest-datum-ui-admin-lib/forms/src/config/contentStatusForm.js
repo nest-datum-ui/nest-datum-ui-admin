@@ -7,7 +7,7 @@ const contentStatusForm = {
 
 	pageUrl: 'contents/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-content-statuses-form',
 	storeName: 'forms-content-statuses-form',
 	apiUrl: 'content-status',

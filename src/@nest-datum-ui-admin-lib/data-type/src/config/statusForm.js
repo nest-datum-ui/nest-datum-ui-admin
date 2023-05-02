@@ -11,7 +11,8 @@ const statusForm = {
 	id: 'data-type-type-statuses-form',
 	storeName: 'data-type-type-statuses-form',
 	apiUrl: 'type-status',
-
+	orderInHeaderTabMenu: 2,
+	
 	manage: {
 		create: {
 			text: 'Save',

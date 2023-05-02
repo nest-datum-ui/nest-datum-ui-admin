@@ -5,6 +5,7 @@ const accessStatus = {
 
 	pageUrl: 'providers/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default accessStatus;

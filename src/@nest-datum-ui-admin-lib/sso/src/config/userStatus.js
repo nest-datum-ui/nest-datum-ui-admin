@@ -5,6 +5,7 @@ const userStatus = {
 
 	pageUrl: 'users/statuses',
 	pageTitle: 'Options',
+	orderInHeaderTabMenu: 2,
 };
 
 export default userStatus;

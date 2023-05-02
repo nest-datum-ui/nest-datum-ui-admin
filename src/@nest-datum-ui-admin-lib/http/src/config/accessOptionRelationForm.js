@@ -7,7 +7,7 @@ const accessOptionRelationForm = {
 	apiUrl: 'access/:id/option',
 
 	title: 'Access',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'access/:id/options',
 	},

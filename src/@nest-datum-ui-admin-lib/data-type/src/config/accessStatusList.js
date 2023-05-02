@@ -5,7 +5,7 @@ import {
 
 const dataTypeAccessStatusList = {
 	parentName: 'dataTypeAccessStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-accesses-statuses-list',
 	storeName: 'data-type-accesses-statuses-list',
 	apiUrl: 'access-status',

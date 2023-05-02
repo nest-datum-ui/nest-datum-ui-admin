@@ -5,7 +5,7 @@ const accessOptionRelationForm = {
 	id: 'lensa-accesses-option-relations-form',
 	storeName: 'lensa-accesses-option-relations-form',
 	apiUrl: 'access/:id/option',
-
+	orderInHeaderTabMenu: 2,
 	title: 'Access',
 
 	post: {

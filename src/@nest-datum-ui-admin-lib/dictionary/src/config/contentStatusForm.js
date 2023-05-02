@@ -11,7 +11,7 @@ const contentStatusForm = {
 	id: 'dictionary-content-statuses-form',
 	storeName: 'dictionary-content-statuses-form',
 	apiUrl: 'content-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

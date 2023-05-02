@@ -7,7 +7,7 @@ const accessForm = {
 	statusName: 'httpAccessStatus',
 	statusListName: 'httpAccessStatusList',
 	relationListName: 'httpAccessFormRelationList',
-	
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

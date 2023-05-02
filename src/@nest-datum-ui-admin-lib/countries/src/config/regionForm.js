@@ -10,7 +10,7 @@ const regionForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Countries',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'regions/:id',
 	pageTitle: 'Region',
 

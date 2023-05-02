@@ -5,7 +5,7 @@ import {
 
 const letterStatusList = {
 	parentName: 'mailLetterStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-statuses-list',
 	storeName: 'mail-letter-statuses-list',
 	apiUrl: 'letter-status',

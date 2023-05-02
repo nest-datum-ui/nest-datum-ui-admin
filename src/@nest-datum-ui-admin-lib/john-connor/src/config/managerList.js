@@ -5,6 +5,7 @@ const managerList = {
 	id: 'john-connor-manager-list',
 	storeName: 'john-connor-manager-list',
 	apiUrl: 'connection',
+	orderInHeaderTabMenu: 2,
 };
 
 export default managerList;

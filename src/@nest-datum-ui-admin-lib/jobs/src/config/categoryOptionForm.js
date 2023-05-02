@@ -13,7 +13,7 @@ const categoryOptionForm = {
 	storeName: 'mail-category-options-form',
 	apiUrl: 'category-option',
 	apiRelationUrl: 'category/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'categoryId', 
 	entityRelation: 'categoryOptionId',
 	entityOptionRelation: 'categoryCategoryOptionId',

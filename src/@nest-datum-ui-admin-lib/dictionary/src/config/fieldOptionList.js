@@ -15,7 +15,7 @@ const fieldOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'fieldId', 
 	entityRelation: 'fieldOptionId',
 	entityOptionRelation: 'fieldFieldOptionId',

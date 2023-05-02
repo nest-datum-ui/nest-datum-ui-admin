@@ -9,6 +9,7 @@ const config = {
 
 	pageUrl: 'accesses',
 	pageTitle: 'Accesses',
+	orderInHeaderTabMenu: 1,
 };
 
 export default config;

@@ -5,6 +5,7 @@ const reportStatus = {
 
 	pageUrl: 'reports/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default reportStatus;

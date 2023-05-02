@@ -8,7 +8,7 @@ const letterOptionForm = {
 
 	pageUrl: 'letters/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-options-form',
 	storeName: 'mail-letter-options-form',
 	apiUrl: 'letter-option',

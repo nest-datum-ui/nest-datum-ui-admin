@@ -7,7 +7,7 @@ const formRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'dictionaryFormOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-form-option-relations-list',
 	storeName: 'dictionary-form-option-relations-list',
 	columnName: 'formId',

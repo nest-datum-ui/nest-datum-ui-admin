@@ -13,7 +13,7 @@ const typeOptionForm = {
 	storeName: 'countries-type-options-form',
 	apiUrl: 'type-option',
 	apiRelationUrl: 'type/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'typeId', 
 	entityRelation: 'typeOptionId',
 	entityOptionRelation: 'typeTypeOptionId',

@@ -5,7 +5,7 @@ import {
 
 const list = {
 	parentName: 'dataType',
-	
+	orderInHeaderTabMenu: 1,
 	id: 'data-type-types-list',
 	storeName: 'data-type-types-list',
 	apiUrl: 'type',

@@ -7,7 +7,7 @@ const regionFormRelationForm = {
 	apiUrl: 'region/:id/option',
 
 	title: 'Regions',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'region/:id/options',
 	},

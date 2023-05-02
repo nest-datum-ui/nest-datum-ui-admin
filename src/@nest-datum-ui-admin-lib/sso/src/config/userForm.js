@@ -9,7 +9,8 @@ const userForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'User',
-
+	orderInHeaderTabMenu: 2,
+	
 	pageUrl: 'users/:id',
 	pageTitle: 'User',
 

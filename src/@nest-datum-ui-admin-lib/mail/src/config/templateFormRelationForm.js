@@ -7,7 +7,7 @@ const templateFormRelationForm = {
 	apiUrl: 'template/:id/option',
 
 	title: 'Data type',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'template/:id/options',
 	},

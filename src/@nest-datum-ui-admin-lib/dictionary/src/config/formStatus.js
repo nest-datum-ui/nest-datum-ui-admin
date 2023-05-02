@@ -5,6 +5,7 @@ const formStatus = {
 
 	pageUrl: 'dictionary/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default formStatus;

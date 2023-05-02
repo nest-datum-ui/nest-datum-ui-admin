@@ -5,7 +5,7 @@ import {
 
 const tagList = {
 	parentName: 'jobsTag',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-tag-list',
 	storeName: 'jobs-tag-list',
 	apiUrl: 'tag',

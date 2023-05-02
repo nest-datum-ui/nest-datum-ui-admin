@@ -10,7 +10,7 @@ const jobForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Posts',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'posts/:id',
 	pageTitle: 'Post',
 

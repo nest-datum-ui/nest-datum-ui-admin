@@ -11,6 +11,7 @@ const reportForm = {
 	id: 'lensa-report-form',
 	storeName: 'lensa-report-form',
 	apiUrl: 'report',
+	orderInHeaderTabMenu: 2,
 
 	manage: {
 		create: {

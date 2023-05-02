@@ -15,7 +15,7 @@ const userOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'userId', 
 	entityRelation: 'userOptionId',
 	entityOptionRelation: 'userUserOptionId',

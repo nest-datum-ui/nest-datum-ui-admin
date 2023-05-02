@@ -5,6 +5,7 @@ const tagStatus = {
 
 	pageUrl: 'tags/statuses',
 	pageTitle: 'Options',
+	orderInHeaderTabMenu: 2,
 };
 
 export default tagStatus;

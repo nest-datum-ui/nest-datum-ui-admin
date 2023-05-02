@@ -15,6 +15,7 @@ const reportStatusList = {
 	search: true,
 	withContextMenu: true,
 	withFilter: true,
+	orderInHeaderTabMenu: 2,
 
 	manage: {
 		drop: {

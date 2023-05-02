@@ -7,7 +7,7 @@ const jobRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'jobsPostOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-post-option-relations-list',
 	storeName: 'jobs-post-option-relations-list',
 	columnName: 'formId',

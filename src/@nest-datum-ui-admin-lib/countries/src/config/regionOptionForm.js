@@ -8,7 +8,7 @@ const regionOptionForm = {
 
 	pageUrl: 'regions/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-region-options-form',
 	storeName: 'countries-region-options-form',
 	apiUrl: 'region-option',

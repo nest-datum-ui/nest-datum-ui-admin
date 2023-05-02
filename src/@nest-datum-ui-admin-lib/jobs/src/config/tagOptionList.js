@@ -15,6 +15,7 @@ const tagOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
+	orderInHeaderTabMenu: 2,
 
 	entity: 'tagId', 
 	entityRelation: 'tagOptionId',

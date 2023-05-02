@@ -7,7 +7,7 @@ const letterOptionRelationList = {
 	title: 'Letters',
 	subtitle: 'List of letters that own the current setting.',
 	formName: 'mailLetterOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-option-relations-list',
 	storeName: 'mail-letter-option-relations-list',
 	columnName: 'letterId',

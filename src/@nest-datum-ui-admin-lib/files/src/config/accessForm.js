@@ -7,7 +7,7 @@ const accessForm = {
 	statusName: 'filesAccessStatus',
 	statusListName: 'filesAccessStatusList',
 	relationListName: 'filesAccessFormRelationList',
-	
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

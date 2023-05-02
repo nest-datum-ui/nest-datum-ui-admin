@@ -7,7 +7,7 @@ const accessOptionRelationList = {
 	title: 'Accesses',
 	subtitle: 'List of accesses that own the current setting.',
 	formName: 'webSocketAccessOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'web-socket-accesses-option-relations-list',
 	storeName: 'web-socket-accesses-option-relations-list',
 	columnName: 'accessId',

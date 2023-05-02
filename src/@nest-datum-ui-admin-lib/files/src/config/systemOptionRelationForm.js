@@ -7,7 +7,7 @@ const systemOptionRelationForm = {
 	apiUrl: 'system/:id/option',
 
 	title: 'System',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'system/:id/options',
 	},

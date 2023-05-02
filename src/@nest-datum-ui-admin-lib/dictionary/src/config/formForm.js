@@ -10,7 +10,7 @@ const formForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Form',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'dictionary/:id',
 	pageTitle: 'Form',
 

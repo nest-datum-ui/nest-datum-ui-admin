@@ -5,7 +5,7 @@ import {
 
 const fieldStatusList = {
 	parentName: 'dictionaryFieldStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-field-statuses-list',
 	storeName: 'dictionary-field-statuses-list',
 	apiUrl: 'field-status',

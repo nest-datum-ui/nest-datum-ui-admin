@@ -5,7 +5,7 @@ import {
 
 const fieldOptionList = {
 	parentName: 'formsFieldOption',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-options-list',
 	storeName: 'forms-field-options-list',
 	apiUrl: 'field-option',

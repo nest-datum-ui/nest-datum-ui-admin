@@ -7,7 +7,7 @@ const letterOptionRelationForm = {
 	apiUrl: 'letter/:id/option',
 
 	title: 'Letter',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'letter/:id/options',
 	},

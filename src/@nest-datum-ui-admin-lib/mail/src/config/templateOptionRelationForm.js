@@ -11,7 +11,7 @@ const templateOptionRelationForm = {
 	post: {
 		apiUrl: 'template/:id/options',
 	},
-
+	orderInHeaderTabMenu: 2,
 	fields: [{
 		Component: Select,
 		storeName: 'mail-template-option-relations-form',

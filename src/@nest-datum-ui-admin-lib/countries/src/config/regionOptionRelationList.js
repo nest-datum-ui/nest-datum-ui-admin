@@ -7,7 +7,7 @@ const regionOptionRelationList = {
 	title: 'countries',
 	subtitle: 'List of countries that own the current setting.',
 	formName: 'countriesRegionOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-region-option-relations-list',
 	storeName: 'countries-region-option-relations-list',
 	columnName: 'regionId',

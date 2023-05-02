@@ -15,7 +15,7 @@ const categoryOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'categoryId', 
 	entityRelation: 'categoryOptionId',
 	entityOptionRelation: 'categoryCategoryOptionId',

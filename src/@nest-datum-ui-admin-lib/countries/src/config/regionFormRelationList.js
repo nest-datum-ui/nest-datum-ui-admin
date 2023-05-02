@@ -7,7 +7,7 @@ const regionRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'countriesRegionOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-region-option-relations-list',
 	storeName: 'countries-region-option-relations-list',
 	columnName: 'formId',

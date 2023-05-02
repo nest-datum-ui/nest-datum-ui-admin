@@ -11,7 +11,7 @@ const contentForm = {
 	id: 'dictionary-content-form',
 	storeName: 'dictionary-content-form',
 	apiUrl: 'content',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

@@ -4,7 +4,7 @@ const accessFormRelationList = {
 	title: 'Roles',
 	subtitle: 'List of roles that own the current setting.',
 	formName: 'lensaAccessFormRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'lensa-role-access-option-relations-list',
 	storeName: 'lensa-role-access-option-relations-list',
 	columnName: 'accessId',

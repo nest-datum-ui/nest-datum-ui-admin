@@ -5,7 +5,7 @@ import {
 
 const settingList = {
 	parentName: 'formsSetting',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-settings-list',
 	storeName: 'forms-settings-list',
 	apiUrl: 'setting',

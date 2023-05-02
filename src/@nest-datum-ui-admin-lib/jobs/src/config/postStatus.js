@@ -5,6 +5,7 @@ const jobStatus = {
 
 	pageUrl: 'posts/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default jobStatus;
