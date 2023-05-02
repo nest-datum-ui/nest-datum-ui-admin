@@ -1,5 +1,11 @@
 import React from 'react';
 import { ContextProps } from '@nest-datum-ui/Context';
+import { strToObj as utilsFormatStrToObj } from '@nest-datum-utils/format';
+import { 
+	objFilled as utilsCheckObjFilled,
+	strFilled as utilsCheckStrFilled, 
+} from '@nest-datum-utils/check';
+import Typography from '@mui/material/Typography';
 import TypographyTable from 'components/Typography/Table';
 import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
 import StyledWrapper from './Styled/Wrapper.jsx';
@@ -14,17 +20,13 @@ let Row = ({
 	updatedAt,
 }) => {
 	const { 
-		sso: {
-			ssoUserList: {
-				apiFullUrl: ssoUserListApiUrl,
-			},
-		},
 		mail: {
 			mailReportStatusList: {
 				apiFullUrl: mailReportStatusListApiUrl,
 			},
 		},
 	} = React.useContext(ContextProps);
+	const contentProcessed = utilsFormatStrToObj(content);
 
 	return <StyledWrapper 
 		id={id}
@@ -41,7 +43,21 @@ let Row = ({
 				</TypographyTable>
 				<div />
 				<TypographyTable variant="subtitle1">
-					{content}
+					{utilsCheckObjFilled(contentProcessed)
+						? Object
+							.keys(contentProcessed)
+							.filter((key) => key !== 'password'
+								&& key !== 'repeatedPassword'
+								&& key !== 'emailVerifyKey')
+							.map((key) => utilsCheckStrFilled(contentProcessed[key])
+								? <Typography
+									key={key}
+									component="div"
+									variant="caption">
+									<b>{key}</b>: ${contentProcessed[key]}
+								</Typography>
+								: <React.Fragment key={key} />)
+						: String(content)}
 				</TypographyTable>
 			</React.Fragment>, 
 		}, { 
@@ -49,13 +65,6 @@ let Row = ({
 				key={2} 
 				apiUrl={mailReportStatusListApiUrl}>
 				{reportStatusId}
-			</TypographyFetch>, 
-		}, { 
-			children: <TypographyFetch 
-				key={3} 
-				apiUrl={ssoUserListApiUrl} 
-				label="login">
-				{userId}
 			</TypographyFetch>, 
 		}])}
 	</StyledWrapper>;

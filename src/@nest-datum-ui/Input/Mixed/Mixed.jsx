@@ -10,7 +10,7 @@ const DataTypes = {
 	'happ-data-type-upload': () => React.lazy(() => import('@nest-datum-ui-admin-lib/files/src/components/Input/Upload')),
 	'happ-data-type-file-select': () => React.lazy(() => import('@nest-datum-ui-admin-lib/files/src/components/Input/Manager')),
 	'happ-data-type-select-avatar': () => React.lazy(() => import('@nest-datum-ui-admin-lib/sso/src/components/Input/Avatar')),
-	// 'happ-data-type-email-view': () => React.lazy(() => import('@nest-datum-ui-admin-lib/mail/src/components/Input/Views')),
+	'happ-data-type-file-email-view': () => React.lazy(() => import('@nest-datum-ui-admin-lib/mail/src/components/Input/View')),
 	// 'happ-data-type-file-cv': () => React.lazy(() => import('@nest-datum-ui-admin-lib/cv/src/components/Input/File')),
 	// 'happ-data-type-file-cv-lensa': () => React.lazy(() => import('@nest-datum-ui-admin-lib/cv-lensa/src/components/Input/File')),
 };

@@ -101,7 +101,7 @@ let Row = ({
 		onMenu,
 	]);
 	const averageWidth = 100 / rowColumns.length;
-	const firstCellWith = bulkDeletion
+	const defaultCellWith = bulkDeletion
 		? (rowColumns[0].width || averageWidth) - 1
 		: (rowColumns[0].width || averageWidth);
 	const lastCellWith = bulkDeletion
@@ -123,7 +123,7 @@ let Row = ({
 				? item
 				: <TableCell 
 					key={index} 
-					sx={{ minWidth: `${firstCellWith}%` }} 
+					sx={{ minWidth: `${rowColumns[index]['width'] ?? defaultCellWith}%` }} 
 					{ ...(item.props || {}) }>
 					{item.children}
 				</TableCell>)
