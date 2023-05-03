@@ -19,10 +19,7 @@ export const fireLogin = async (storeName, apiUrl) => {
 	try {
 		actionApiFormProp(storeName, 'loader', true)();
 
-		const {
-			login,
-			password,
-		} = await utilsValidateStore(storeName, {
+		const validatedData = await utilsValidateStore(storeName, {
 			login: {
 				text: 'Login is not valid.',
 				checkOr: [
@@ -38,7 +35,9 @@ export const fireLogin = async (storeName, apiUrl) => {
 			},
 		});
 
-		if (login && password) {
+		if (validatedData) {
+			const login = validatedData['login'];
+			const password = validatedData['password'];
 			const request = await axios.post(apiUrl, { login, password });
 
 			if (request.data.accessToken

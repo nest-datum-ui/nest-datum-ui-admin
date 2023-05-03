@@ -11,7 +11,7 @@ export const fireRecovery = async (storeName, apiUrl) => {
 	try {
 		actionApiFormProp(storeName, 'loader', true)();
 
-		const { email } = await utilsValidateStore(storeName, {
+		const validatedData = await utilsValidateStore(storeName, {
 			email: {
 				text: 'Email is not valid.',
 				check: [
@@ -20,8 +20,8 @@ export const fireRecovery = async (storeName, apiUrl) => {
 			},
 		});
 
-		if (email) {
-			await axios.post(apiUrl, { email });
+		if (validatedData) {
+			await axios.post(apiUrl, { email: validatedData['email'] });
 
 			actionApiFormClear(storeName, { successfulRequestFlag: true })();
 		}
