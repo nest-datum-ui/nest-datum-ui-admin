@@ -39,6 +39,7 @@ import strPath from './src/str/path.js';
 import strQueue from './src/str/queue.js';
 import strHost from './src/str/host.js';
 import strUserName from './src/str/userName.js';
+import strUserLogin from './src/str/userLogin.js';
 import strFilled from './src/str/filled.js';
 import strEnvKey from './src/str/envKey.js';
 
@@ -84,6 +85,7 @@ export {
 	strQueue,
 	strHost,
 	strUserName,
+	strUserLogin,
 	strFilled,
 	strEnvKey,
 };
