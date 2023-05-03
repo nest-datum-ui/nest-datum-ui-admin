@@ -26,12 +26,10 @@ let Verify = (props) => {
 	} = React.useContext(ContextProps);
 	const resultMessage = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'resultMessage' ]));
 
-	console.log('pageFullUrl', pageFullUrl);
-
 	React.useEffect(() => {
 		(async () => {
 			if (await actionSsoVerify(storeName, apiFullUrl, process.env.ROUTE_SiGN_IN)) {
-				setTimeout(() => hookUrlNavigate(pageFullUrl), 2000);
+				setTimeout(() => (window.location.href = pageFullUrl), 2000);
 			}
 		})();
 	}, [

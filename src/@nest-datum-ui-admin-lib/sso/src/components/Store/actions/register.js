@@ -47,8 +47,6 @@ export const fireRegister = (storeName, apiUrl) => async (callback = () => {}) =
 				check: [
 					utilsCheckStrPassword,
 					(value, name, data) => {
-						console.log('value, name, data', value === data['password']);
-
 						return value === data['password'];
 					},
 				],
