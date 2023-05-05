@@ -9,7 +9,6 @@ import {
 	strIdExists as utilsCheckStrIdExists,
 	strName as utilsCheckStrName,
 	strDescription as utilsCheckStrDescription,
-	strEnvKey as utilsCheckStrEnvKey,
 	bool as utilsCheckBool,
 } from '@nest-datum-utils/check';
 

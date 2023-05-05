@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import TypographyHelperText from '@nest-datum-ui/Typography/HelperText';
 
 let DateTime = ({
+	componentName,
 	type,
 	storeName,
 	inputFormat,
