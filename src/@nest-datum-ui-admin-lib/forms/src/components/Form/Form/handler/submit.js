@@ -40,7 +40,7 @@ const submit = async (e, {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrDescription ]
 		},
-		systemStatusId: {
+		formStatusId: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
 			isRequired: true,

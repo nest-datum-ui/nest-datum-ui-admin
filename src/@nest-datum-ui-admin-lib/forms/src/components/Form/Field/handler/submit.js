@@ -27,10 +27,6 @@ const submit = async (e, {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
 		},
-		envKey: {
-			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrEnvKey ],
-		},
 		name: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrName ],
@@ -40,7 +36,7 @@ const submit = async (e, {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrDescription ]
 		},
-		systemStatusId: {
+		fieldStatusId: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
 			isRequired: true,
