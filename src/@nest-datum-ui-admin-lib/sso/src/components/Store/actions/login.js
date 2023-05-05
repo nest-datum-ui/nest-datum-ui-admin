@@ -26,12 +26,14 @@ export const fireLogin = async (storeName, apiUrl) => {
 					utilsCheckStrUserName,
 					utilsCheckStrEmail,
 				],
+				isRequired: true,
 			},
 			password: {
 				text: 'Password not specified.',
 				check: [
 					utilsCheckStrPassword,
 				],
+				isRequired: true,
 			},
 		});
 

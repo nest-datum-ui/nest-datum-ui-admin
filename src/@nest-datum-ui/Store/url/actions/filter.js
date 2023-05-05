@@ -5,10 +5,15 @@ export const fireFilter = async (key, value, options = {}, search) => await (new
 	const valueProcessed = value ? (((options['type'] || {})['name'] === 'Boolean')
 		? Number(value)
 		: value) : undefined;
-	const filter = hookProperty('filter', search || window.location.search, true) || {};
+	let filter = hookProperty('filter', search || window.location.search, true) || {};
 
 	if (valueProcessed === undefined) {
-		delete filter[key];
+		if (filter) {
+			delete filter[key];
+		}
+		else {
+			filter = {};
+		}
 	}
 	else {
 		filter[key] = valueProcessed;

@@ -34,6 +34,7 @@ let Manager = ({
 	return <Table 
 		{ ...props }
 		querySource={querySource}
+		bulkDeletion={bulkDeletion}
 		BottomComponent={<React.Fragment>
 			<FilesDialogDisable />
 			<FilesDialogDrop />

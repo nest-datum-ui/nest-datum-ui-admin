@@ -40,10 +40,7 @@ let Folder = ({ entityId }) => {
 		},
 	} = React.useContext(ContextProps);
 	const { search } = useLocation();
-	const value = hookUrlFilterItem('systemId', search);
-	const systemId = (value === undefined)
-		? ''
-		: String(value);
+	const systemId = String(hookUrlFilterItem('systemId', search) ?? '');
 	const breadcrumbsData = useSelector(selectorMainExtract([ 'breadcrumbs', storeName, 'data' ])) || [];
 	const parentId = (breadcrumbsData[breadcrumbsData.length - 1] || {}).key;
 	const onSubmitWrapper = React.useCallback((e) => handlerSubmit(e, storeName, apiUrl, entityId), [

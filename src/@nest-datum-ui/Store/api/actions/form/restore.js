@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
+import { 
+	urlApiStr as utilsFormatUrlApiStr,
+	httpErrorMessage as utilsFormatHttpErrorMessage, 
+} from '@nest-datum-utils/format';
 import { 
 	str as utilsCheckStrUrl,
 	obj as utilsCheckObj, 
@@ -12,55 +15,64 @@ import { fireFormProp } from './prop.js';
 import { fireFormMerge } from './merge.js';
 
 export const fireFormRestore = (storeName, options = {}) => async (callback = () => {}, prefix = 'api') => {
-	let apiUrlArr = [],
-		type = options.type || 'form';
+	let currentApiUrl;
 
-	if (utilsCheckArrFilled(options.ids)) {
-		apiUrlArr = options.ids.map((entityId) => `${options.apiUrl}/${entityId}`);
-		type = 'list';
-	}
-	else {
-		apiUrlArr.push(`${options.apiUrl}${options.entityId ? ('/'+ options.entityId) : ''}`);
-		options['ids'] = [ options.entityId ];
-	}
-	if (!utilsCheckStrUrl(apiUrlArr[0])) {
-		throw new Error(`Can't restore api store form. Property apiUrl "${apiUrlArr[0]}" is not valid.`);
-	}
-	(type === 'form')
-		? await fireFormProp(storeName, 'loader', true)()
-		: await fireListProp(storeName, 'loader', true)();
-	let i = 0;
+	try {
+		let apiUrlArr = [],
+			type = options.type || 'form';
 
-	while (i < apiUrlArr.length) {
-		await axios.patch(utilsFormatUrlApiStr(apiUrlArr[i]), { isDeleted: false });
-		i++;
-	}
-	if (type === 'form') {
-		const formData = ((getStore().getState().api || {}).form || {})[storeName];
-
-		if (utilsCheckObj(formData)) {
-			setTimeout(() => fireFormMerge(storeName, { isDeleted: false, loader: false })(), 0);
+		if (utilsCheckArrFilled(options.ids)) {
+			apiUrlArr = options.ids.map((entityId) => `${options.apiUrl}/${entityId}`);
+			type = 'list';
 		}
-	}
-	else {
-		const listData = (((getStore().getState().api || {}).list || {})[storeName] || {}).data || [];
+		else {
+			apiUrlArr.push(`${options.apiUrl}${options.entityId ? ('/'+ options.entityId) : ''}`);
+			options['ids'] = [ options.entityId ];
+		}
+		if (!utilsCheckStrUrl(apiUrlArr[0])) {
+			throw new Error(`Can't restore api store form. Property apiUrl "${apiUrlArr[0]}" is not valid.`);
+		}
+		(type === 'form')
+			? await fireFormProp(storeName, 'loader', true)()
+			: await fireListProp(storeName, 'loader', true)();
 		let i = 0;
 
-		while (i < options.ids.length) {
-			const entityId = options.ids[i];
-			const entityIndex = listData.findIndex((item) => item.id === entityId);
+		while (i < apiUrlArr.length) {
+			currentApiUrl = apiUrlArr[i];
 
-			if (entityIndex >= 0) {
-				listData[entityIndex]['isDeleted'] = false;
-			}
+			await axios.patch(utilsFormatUrlApiStr(apiUrlArr[i]), { isDeleted: false });
 			i++;
 		}
-		fireListMerge(storeName, {
-			data: [ ...listData ],
-			selected: [],
-			selectedForDrop: [],
-			selectedForDropPermanently: [],
-		})();
-		setTimeout(() => fireListProp(storeName, 'loader', false)(), 0);
+		if (type === 'form') {
+			const formData = ((getStore().getState().api || {}).form || {})[storeName];
+
+			if (utilsCheckObj(formData)) {
+				setTimeout(() => fireFormMerge(storeName, { isDeleted: false, loader: false })(), 0);
+			}
+		}
+		else {
+			const listData = (((getStore().getState().api || {}).list || {})[storeName] || {}).data || [];
+			let i = 0;
+
+			while (i < options.ids.length) {
+				const entityId = options.ids[i];
+				const entityIndex = listData.findIndex((item) => item.id === entityId);
+
+				if (entityIndex >= 0) {
+					listData[entityIndex]['isDeleted'] = false;
+				}
+				i++;
+			}
+			fireListMerge(storeName, {
+				data: [ ...listData ],
+				selected: [],
+				selectedForDrop: [],
+				selectedForDropPermanently: [],
+			})();
+			setTimeout(() => fireListProp(storeName, 'loader', false)(), 0);
+		}
+	}
+	catch (err) {
+		throw new Error(utilsFormatHttpErrorMessage(err, currentApiUrl));
 	}
 };

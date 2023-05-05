@@ -45,7 +45,7 @@ const reportList = {
 		width: 16,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 3,
 		width: 16,

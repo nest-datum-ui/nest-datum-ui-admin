@@ -1,10 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ContextProps } from '@nest-datum-ui/Context';
-import { 
-	hookUrlNavigate,
-	selectorMainExtract, 
-} from '@nest-datum-ui/Store';
+import { selectorMainExtract } from '@nest-datum-ui/Store';
 import { actionSsoVerify } from '../../Store';
 import Typography from '@mui/material/Typography';
 import Progress from '@nest-datum-ui/Progress';

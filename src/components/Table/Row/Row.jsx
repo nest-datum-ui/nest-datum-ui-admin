@@ -107,7 +107,7 @@ let Row = ({
 	const lastCellWith = bulkDeletion
 		? (rowColumns[rowColumns.length - 1].width || averageWidth) - 1
 		: (rowColumns[rowColumns.length - 1].width || averageWidth);
-	const displayRowStory = rowColumns.findIndex((item) => (item['id'] === 'story')) >= 0;
+	const displayRowStory = rowColumns.findIndex((item) => (item['id'] === 'story' || item['id'] === 'createdAt')) >= 0;
 
 	return <StyledWrapper { ...props }>
 		{bulkDeletion 

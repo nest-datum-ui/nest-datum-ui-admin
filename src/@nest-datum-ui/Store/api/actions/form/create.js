@@ -7,7 +7,10 @@ import {
 	obj as utilsCheckObj,
 	func as utilsCheckFunc,
 } from '@nest-datum-utils/check';
-import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
+import { 
+	urlApiStr as utilsFormatUrlApiStr,
+	httpErrorMessage as utilsFormatHttpErrorMessage, 
+} from '@nest-datum-utils/format';
 import { hookNavigate } from '../../../url/hooks';
 import { 
 	storeDispatch,
@@ -17,55 +20,62 @@ import hookPrevPathItem from '../../../url/hooks/hookPrevPathItem.js';
 import { fireFormProp } from './prop.js';
 
 export const fireFormCreate = (storeName, options = {}) => async (callback = () => {}, prefix = 'api') => {
-	if (!utilsCheckStr(storeName)) {
-		throw new Error(`Can't create api store form. Property storeName "${storeName}" is not valid.`);
-	}
-	const redirect = options.redirect ?? false;
-	const mergeData = utilsCheckObj(options.mergeData)
-		? options.mergeData
-		: {};
-	
-	await fireFormProp(storeName, 'loader', true)();
+	try {
+		if (!utilsCheckStr(storeName)) {
+			throw new Error(`Can't create api store form. Property storeName "${storeName}" is not valid.`);
+		}
+		const redirect = options.redirect ?? false;
+		const mergeData = utilsCheckObj(options.mergeData)
+			? options.mergeData
+			: {};
+		
+		await fireFormProp(storeName, 'loader', true)();
 
-	let data = { 
-			...(((getStore()
-				.getState()[prefix] || {})
-				.form || {})[storeName] || {}), 
-			...mergeData,
-			callback,
-		},
-		newId;
+		let data = { 
+				...(((getStore()
+					.getState()[prefix] || {})
+					.form || {})[storeName] || {}), 
+				...mergeData,
+				callback,
+			},
+			newId;
 
-	delete data['fetched'];
-	delete data['loader'];
-	delete data['errors'];
-	delete data['userId'];
-	delete data['updatedAt'];
-	delete data['createdAt'];
-	delete data['callback'];
+		delete data['fetched'];
+		delete data['loader'];
+		delete data['errors'];
+		delete data['userId'];
+		delete data['updatedAt'];
+		delete data['createdAt'];
+		delete data['callback'];
 
-	if (!utilsCheckStrUrl(options.apiUrl)) {
+		if (!utilsCheckStrUrl(options.apiUrl)) {
+			return await storeDispatch(prefix, prefix +'.formCreate', {
+				payload: {
+					...data,
+					callback,
+				},
+			});
+		}
+		const request = await axios.post(utilsFormatUrlApiStr(options.apiUrl), data);
+				
+		newId = request.data.id;
+
 		return await storeDispatch(prefix, prefix +'.formCreate', {
 			payload: {
-				...data,
+				storeName,
+				newId,
+				url: options.apiUrl,
+				data: request.data,
+				redirect,
 				callback,
 			},
 		});
 	}
-	const request = await axios.post(utilsFormatUrlApiStr(options.apiUrl), data);
-			
-	newId = request.data.id;
+	catch (err) {
+		fireFormProp(storeName, 'loader', false)();
 
-	return await storeDispatch(prefix, prefix +'.formCreate', {
-		payload: {
-			storeName,
-			newId,
-			url: options.apiUrl,
-			data: request.data,
-			redirect,
-			callback,
-		},
-	});
+		throw new Error(utilsFormatHttpErrorMessage(err, options.apiUrl));
+	}
 };
 
 export const reducerFormCreate = (state, action) => {
