@@ -20,7 +20,14 @@ let Row = ({
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { columnName, rowColumns } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				columnName, 
+				rowColumns, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 
 	return <StyledWrapper 
 		id={id} 
@@ -28,7 +35,7 @@ let Row = ({
 		createdAt={createdAt}
 		updatedAt={updatedAt}>
 		{rowColumns
-			.filter((item) => item['id'] && item['id'] !== 'story')
+			.filter((item) => item['id'] && item['id'] !== 'story' && item['id'] !== 'createdAt')
 			.map((item, index) => ({
 				children: (item['id'] === 'id')
 					? <TypographyTable key={index} isDeleted={isDeleted}>

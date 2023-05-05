@@ -28,7 +28,13 @@ let Phone = ({
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName: contextStoreName } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName: contextStoreName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 	const storeName = propStoreName ?? contextStoreName;
 	const [ country, setCountry ] = React.useState(() => countryDefaultValue);
 	const data = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data' ]));

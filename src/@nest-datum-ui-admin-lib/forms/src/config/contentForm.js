@@ -1,6 +1,8 @@
 
 const contentForm = {
 	parentName: 'formsContent',
+	statusName: 'formsContentStatus',
+	statusListName: 'formsContentStatusList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'content',

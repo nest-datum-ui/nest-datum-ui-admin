@@ -6,7 +6,7 @@ const formForm = {
 	optionFormName: 'formsFormOptionForm',
 	statusName: 'formsFormStatus',
 	statusListName: 'formsFormStatusList',
-	relationListName: 'formsFormFormRelationList',
+	relationListName: 'formsFieldFormRelationList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Form',
