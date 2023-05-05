@@ -24,6 +24,10 @@ const managerList = {
 		apiUrl: 'folder',
 	},
 
+	system: {
+		apiUrl: 'system',
+	},
+
 	manage: {
 		drop: {
 			text: (index, selected, selectedForDrop, selectedForDropPermanently) => `Disable checked (${selectedForDrop.length})`,
@@ -44,7 +48,7 @@ const managerList = {
 		restore: {
 			text: (index, selected, selectedForDrop, selectedForDropPermanently) => `Restore (${selectedForDropPermanently.length})`,
 			showStrategy: (selected, selectedForDrop, selectedForDropPermanently) => selectedForDropPermanently.length > 0,
-			onClick: (e, index, selected, selectedForDrop, selectedForDropPermanently, context) => actionApiFormRestore(context.storeName, { apiUrl: context.apiFullUrl, ids: selectedForDropPermanently })(),
+			onClick: (e, index, selected, selectedForDrop, selectedForDropPermanently, context) => actionApiFormRestore(context.storeName, { apiUrl: context.system.apiFullUrl, ids: selectedForDropPermanently })(),
 			order: 2,
 			variant: 'contained',
 			color: 'primary',

@@ -23,11 +23,20 @@ let Many = ({
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName, apiFullUrl } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+				system: {
+					apiFullUrl: systemApiUrl,
+				}, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 	const ids = useSelector(selectorMainExtract([ 'dialog', id, 'ids' ]));
-	const onSubmit = React.useCallback(() => actionApiFormDrop(storeName, { apiUrl: apiFullUrl, ids })(), [
+	const onSubmit = React.useCallback(() => actionApiFormDrop(storeName, { apiUrl: systemApiUrl, ids })(), [
 		storeName,
-		apiFullUrl,
+		systemApiUrl,
 		ids,
 	]);
 
