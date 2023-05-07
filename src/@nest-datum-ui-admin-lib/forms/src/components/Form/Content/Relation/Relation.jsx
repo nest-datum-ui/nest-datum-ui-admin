@@ -12,6 +12,8 @@ import Store, {
 	actionApiFormProp,
 	actionApiFormMerge,
 	actionApiFormRelation,
+	actionApiFormUpdate,
+	actionDialogClose,
 } from '@nest-datum-ui/Store';
 import { 
 	exists as utilsCheckExists,
@@ -36,7 +38,6 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 			[routeName]: {
 				storeName: listStoreName,
 				formName,
-				apiFullUrl: apiUrl,
 			}, 
 		},
 	} = React.useContext(ContextProps);
@@ -45,6 +46,10 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 			[formName]: {
 				id,
 				storeName,
+				apiFullUrl: apiUrl,
+				post: {
+					apiFullUrl: apiPostUrl,
+				},
 			},
 			formsFieldList: {
 				apiFullUrl: formsFieldListApiUrl,
@@ -52,6 +57,8 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 		},
 	} = React.useContext(ContextProps);
 	const { entityId } = useParams();
+	const fieldDataLength = useSelector(selectorMainExtract([ 'api', 'list', id, 'data', 'length' ]));
+	const fieldId = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'fieldId' ]));
 	const dataTypeId = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'dataTypeId' ]));
 	const onField = React.useCallback((e) => {
 		const dataTypeId = ((((Store()
@@ -74,43 +81,83 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 		id,
 	]);
 	const onSubmitWrapper = React.useCallback((e) => {
-		let check = [ utilsCheckExists ];
-
-		switch (dataTypeId) {
-			case 'happ-data-type-int':
-				check.push(utilsCheckNumericInt);
-				break;
-			case 'happ-data-type-float':
-				check.push(utilsCheckNumeric);
-				break;
-			case 'happ-data-type-bool':
-				check.push(utilsCheckBool);
-				break;
-			default:
-				break;
+		if (fieldContentId) {
+			actionApiFormUpdate(storeName, { 
+				apiUrl, 
+				entityId: fieldContentId, 
+			})(() => {
+				actionDialogClose('relation')();
+			});
 		}
-		actionApiFormRelation(storeName, { 
-			listStoreName, 
-			apiUrl, 
-			entityId, 
-			fields: [{
-				name: 'fieldId',
-				required: true,
-				check: [ utilsCheckStrIdExists ],
-			}, {
-				name: 'value',
-				check,
-			}], 
-		});
+		else {
+			let check = [ utilsCheckExists ];
+
+			switch (dataTypeId) {
+				case 'happ-data-type-int':
+					check.push(utilsCheckNumericInt);
+					break;
+				case 'happ-data-type-float':
+					check.push(utilsCheckNumeric);
+					break;
+				case 'happ-data-type-bool':
+					check.push(utilsCheckBool);
+					break;
+				default:
+					break;
+			}
+			actionApiFormRelation(storeName, { 
+				listStoreName, 
+				apiUrl: apiPostUrl, 
+				entityId, 
+				fields: [{
+					name: 'fieldId',
+					required: true,
+					check: [ utilsCheckStrIdExists ],
+				}, {
+					name: 'value',
+					check,
+				}], 
+			});
+		}
 	}, [
 		storeName,
 		listStoreName,
-		apiUrl,
-		entityId,
 		dataTypeId,
+		entityId,
+		fieldContentId,
+		apiPostUrl,
+		apiUrl,
+	]);
+	const filterMemo = React.useMemo(() => ({ 
+		formFields: { 
+			formId: (Store()
+				.getState()
+				.api
+				.form['forms-content-form'] || {})['formId'], 
+		}, 
+	}), [
 	]);
 
-	console.log('fieldContentId>>>', apiUrl, fieldContentId);
+	React.useEffect(() => {
+		if (utilsCheckStrIdExists(fieldContentId)
+			&& utilsCheckStrIdExists(fieldId)
+			&& fieldDataLength > 0) {
+			const dataTypeId = ((((Store()
+				.getState()
+				.api
+				.list[id] || {})
+				.data || [])
+				.filter((item) => item['id'] === fieldId))[0] || {})['dataTypeId'];
+
+			actionApiFormProp(storeName, 'dataTypeId', dataTypeId)();
+		}
+	}, [
+		storeName,
+		fieldContentId,
+		fieldId,
+		id,
+		fieldDataLength,
+	]);
 
 	return <StyledWrapper
 		storeName={storeName} 
@@ -118,20 +165,13 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 		apiUrl={apiUrl}
 		entityId={fieldContentId}
 		onSubmit={onSubmitWrapper}
-		loadOnFirstRender>
+		loadOnFirstRender={!!fieldContentId}>
 		<Box py={1}>
 			<Field 
 				Component={Select} 
 				form={storeName} 
 				apiUrl={formsFieldListApiUrl}
-				filter={{ 
-					formFields: { 
-						formId: (Store()
-							.getState()
-							.api
-							.form['forms-content-form'] || {})['formId'], 
-					}, 
-				}}
+				filter={filterMemo}
 				onChange={onField}
 				name="fieldId"
 				itemKey="name"

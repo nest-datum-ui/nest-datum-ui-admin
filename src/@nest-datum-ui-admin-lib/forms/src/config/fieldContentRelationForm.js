@@ -5,7 +5,7 @@ import Select from 'components/Select';
 const fieldContentRelationForm = {
 	id: 'forms-field-content-relations-form',
 	storeName: 'forms-field-content-relations-form',
-	apiUrl: 'field/content/:id',
+	apiUrl: 'field/content',
 
 	title: 'Field',
 
