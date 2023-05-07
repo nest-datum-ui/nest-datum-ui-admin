@@ -11,18 +11,27 @@ import {
 	actionDialogOpen, 
 	actionApiFormRestore,
 } from '@nest-datum-ui/Store';
-import { strId as utilsCheckStrId } from '@nest-datum-utils/check';
+import { 
+	strId as utilsCheckStrId,
+	strIdExists as utilsCheckStrIdExists, 
+} from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
+import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
+import ListRelation from 'components/List/Relation';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
+import InputIsNotDelete from 'components/Input/IsNotDelete';
 import DialogDrop from 'components/Dialog/Drop';
 import DialogDisable from 'components/Dialog/Disable';
+import DialogDropForce from 'components/Dialog/Drop/Force';
+import DialogContentRelation from '../../Dialog/Content/Relation';
 import StyledWrapper from './Styled/Wrapper.jsx';
 import handlerSubmit from './handler/submit.js';
 
@@ -33,15 +42,25 @@ let Content = () => {
 		[serviceName]: {
 			[routeName]: { 
 				statusListName,
+				relationListName,
 				id, 
 				storeName, 
 				apiFullUrl: apiUrl,  
 			},
 			formsFormList: {
-				storeName: formStoreName, 
-				apiFullUrl: formApiUrl,
+				storeName: formsFormListStoreName, 
+				apiFullUrl: formsFormListApiUrl,
+			},
+			formsFieldList: {
+				apiFullUrl: relationApiUrl,
 			},
 		},
+		sso: {
+			ssoUserList: {
+				storeName: ssoUserListStoreName, 
+				apiFullUrl: ssoUserListApiUrl,
+			},
+		}
 	} = React.useContext(ContextProps);
 	const { 
 		[serviceName]: { 
@@ -68,6 +87,9 @@ let Content = () => {
 		apiUrl,
 		entityId,
 	]);
+	const initialFilter = React.useMemo(() => ({ contentId: entityId }), [
+		entityId,
+	]);
 
 	return <StyledWrapper
 		storeName={storeName} 
@@ -85,12 +107,24 @@ let Content = () => {
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={formStoreName}
-					apiUrl={formApiUrl} />)}
+					storeName={formsFormListStoreName}
+					apiUrl={formsFormListApiUrl} />)}
 				form={id}
 				itemKey="name"
 				name="formId"
 				label="Form"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={React.memo((props) => <Select 
+					{ ...props }
+					storeName={ssoUserListStoreName}
+					apiUrl={ssoUserListApiUrl} />)}
+				form={id}
+				itemKey="login"
+				name="userId"
+				label="User"
 				required />
 		</Box>
 		<Box py={1}>
@@ -104,6 +138,13 @@ let Content = () => {
 				name="contentStatusId"
 				label="Status"
 				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputIsNotDelete}
+				form={id}
+				type="checkbox"
+				name="isNotDelete" />
 		</Box>
 		<Box pb={2}>
 			<Grid container spacing={2} justifyContent="flex-end">
@@ -133,6 +174,27 @@ let Content = () => {
 						</ButtonPrimary>
 					</Grid>}
 			</Grid>
+			{utilsCheckStrIdExists(entityId) 
+				&& <ContextRoute.Provider value={relationListName}>
+					<Box py={2}>
+						<Divider />
+					</Box>
+					<ListRelation 
+						initialFilter={initialFilter}
+						BottomComponent={<React.Fragment>
+							<DialogDropForce reloadImmediately type="list" />
+							<DialogContentRelation />
+						</React.Fragment>}
+						Component={({ 
+							id, 
+							fieldId, 
+							isDeleted, 
+						}) => <TypographyFetch 
+							key={id ?? fieldId} 
+							apiUrl={relationApiUrl}>
+								{fieldId}
+							</TypographyFetch>} />
+				</ContextRoute.Provider>}
 		</Box>
 		<DialogDrop redirect />
 		<DialogDisable />

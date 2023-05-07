@@ -21,7 +21,7 @@ import TableRelation from 'components/Table/Relation';
 import CheckboxBulk from 'components/Checkbox/Bulk';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let Relation = ({ Component, initialFilter, ...props }) => {
+let Relation = ({ Component, BottomComponent, initialFilter, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -78,14 +78,23 @@ let Relation = ({ Component, initialFilter, ...props }) => {
 					<Button 
 						variant={manage[key].variant || 'contained'} 
 						color={manage[key].color || 'inherit'}
-						{ ...manage[key].onClick ? { onClick: onClick(manage[key].onClick, { index, selected, selectedForDrop, selectedForDropPermanently }) } : {} }>
+						{ ...manage[key].onClick ? 
+							{ 
+								onClick: onClick(manage[key].onClick, { 
+									index, 
+									selected, 
+									selectedForDrop, 
+									selectedForDropPermanently, 
+								}), 
+							} 
+							: {} }>
 						{utilsCheckFunc(manage[key].text)
 							? manage[key].text(index, selected, selectedForDrop, selectedForDropPermanently)
 							: manage[key].text}
 					</Button>
 				</Grid>)}
 		</Grid>
-		<TableRelation Component={Component} />
+		<TableRelation Component={Component} BottomComponent={BottomComponent} />
 	</StyledWrapper>;
 };
 

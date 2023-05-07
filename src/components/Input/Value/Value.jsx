@@ -12,10 +12,17 @@ import Store, {
 } from '@nest-datum-ui/Store';
 import InputMixed from '@nest-datum-ui/Input/Mixed';
 
-let Value = ({ name, value, onChange, ...props }) => {
+let Value = ({ storeName: propStoreName, name, value, onChange, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName: contextStoreName,
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
+	const storeName = propStoreName ?? contextStoreName;
 	const [ state, setState ] = React.useState(() => value || '');
 	const dataTypeId = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'dataTypeId' ]));
 	const onState = React.useCallback((e) => {
@@ -26,7 +33,9 @@ let Value = ({ name, value, onChange, ...props }) => {
 
 				return e.target.files;
 			})()
-			: e.target.value;
+			: ((dataTypeId === 'happ-data-type-bool')
+				? e.target.checked
+				: e.target.value);
 
 		actionApiFormProp(storeName, name, value)();
 		onChange(e, value);
@@ -34,6 +43,7 @@ let Value = ({ name, value, onChange, ...props }) => {
 		storeName,
 		name,
 		onChange,
+		dataTypeId,
 	]);
 
 	React.useEffect(() => {

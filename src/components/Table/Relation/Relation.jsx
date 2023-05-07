@@ -27,7 +27,8 @@ let Relation = ({ Component, ...props }) => {
 		BottomComponent={<React.Fragment>
 			<DialogDropForce reloadImmediately type="list" />
 			<DialogRelation />
-		</React.Fragment>}>
+		</React.Fragment>}
+		{ ...props }>
 		{data && data.map((item, index) => <Row 
 			{ ...item } 
 			key={item.id} 

@@ -8,14 +8,26 @@ import {
 import { strIdExists as utilsCheckStrIdExists } from '@nest-datum-utils/check'; 
 import StyledWrapper from './Styled/Wrapper.jsx';
 
-let Form = ({ storeName, entityId: entityPropId, id, apiUrl, loadOnFirstRender, ...props }) => {
+let Form = ({ 
+	storeName, 
+	entityId: entityPropId, 
+	id, 
+	apiUrl, 
+	loadOnFirstRender, 
+	...props 
+}) => {
 	const { entityId } = useParams();
 	const processedId = String(entityPropId ?? entityId);
 
 	React.useEffect(() => {
 		if (utilsCheckStrIdExists(processedId)) {
 			loadOnFirstRender
-				? actionApiFormGet(storeName, { apiUrl, entityId: processedId, redirectIfError: true })()
+				? actionApiFormGet(storeName, { 
+					apiUrl, 
+					entityId: 
+					processedId, 
+					redirectIfError: true, 
+				})()
 				: actionApiFormGet(storeName)();
 		}
 	}, [

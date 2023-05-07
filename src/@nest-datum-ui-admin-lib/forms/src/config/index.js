@@ -43,6 +43,8 @@ import formsFieldStatusList from './fieldStatusList.js';
 import formsContent from './content.js';
 import formsContentList from './contentList.js';
 import formsContentForm from './contentForm.js';
+import formsFieldContentRelationList from './fieldContentRelationList.js';
+import formsFieldContentRelationForm from './fieldContentRelationForm.js';
 import formsContentStatus from './contentStatus.js';
 import formsContentStatusForm from './contentStatusForm.js';
 import formsContentStatusList from './contentStatusList.js';
@@ -101,6 +103,8 @@ const config = {
 	formsContent,
 	formsContentList,
 	formsContentForm,
+	formsFieldContentRelationList,
+	formsFieldContentRelationForm,
 	formsContentStatus,
 	formsContentStatusForm,
 	formsContentStatusList,

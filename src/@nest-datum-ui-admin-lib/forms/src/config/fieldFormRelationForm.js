@@ -6,7 +6,7 @@ const fieldFormRelationForm = {
 	storeName: 'forms-field-form-relations-form',
 	apiUrl: 'form/field/:id',
 
-	title: 'Data type',
+	title: 'Field',
 
 	post: {
 		apiUrl: 'form/field/:id',
