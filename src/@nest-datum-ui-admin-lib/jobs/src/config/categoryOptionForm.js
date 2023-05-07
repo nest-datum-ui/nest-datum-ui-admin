@@ -1,7 +1,7 @@
 
 const categoryOptionForm = {
-	parentName: 'mailCategoryOption',
-	relationListName: 'mailCategoryOptionRelationList',
+	parentName: 'jobsCategoryOption',
+	relationListName: 'jobsCategoryOptionRelationList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Option',
@@ -9,8 +9,8 @@ const categoryOptionForm = {
 	pageUrl: 'categories/options/:id',
 	pageTitle: 'Option',
 
-	id: 'mail-categorycategory-options-form',
-	storeName: 'mail-category-options-form',
+	id: 'jobs-category-options-form',
+	storeName: 'jobs-category-options-form',
 	apiUrl: 'category-option',
 	apiRelationUrl: 'category/option/:id',
 

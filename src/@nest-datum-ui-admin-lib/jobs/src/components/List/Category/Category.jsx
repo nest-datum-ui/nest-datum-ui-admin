@@ -11,7 +11,7 @@ let Category = (props) => {
 Category = React.memo(Category);
 Category.defaultProps = {
 };
-Category.propCategorys = {
+Category.propTypes = {
 };
 
 export default Category;

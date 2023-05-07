@@ -16,8 +16,8 @@ import countriesAccessStatusForm from './accessStatusForm.js';
 import countriesAccessStatusList from './accessStatusList.js';
 import countriesRegion from './region.js';
 import countriesRegionForm from './regionForm.js';
-import countriesRegionFormRelationList from './regionFormRelationList.js';
-import countriesRegionFormRelationForm from './regionFormRelationForm.js';
+import countriesRegionContentRelationForm from './regionContentRelationForm.js';
+import countriesRegionContentRelationList from './regionContentRelationList.js';
 import countriesRegionList from './regionList.js';
 import countriesRegionOption from './regionOption.js';
 import countriesRegionOptionRelationForm from './regionOptionRelationForm.js';
@@ -29,8 +29,6 @@ import countriesRegionStatusForm from './regionStatusForm.js';
 import countriesRegionStatusList from './regionStatusList.js';
 import countriesType from './type.js';
 import countriesTypeForm from './typeForm.js';
-import countriesTypeFormRelationList from './typeFormRelationList.js';
-import countriesTypeFormRelationForm from './typeFormRelationForm.js';
 import countriesTypeList from './typeList.js';
 import countriesTypeOption from './typeOption.js';
 import countriesTypeOptionRelationForm from './typeOptionRelationForm.js';
@@ -68,8 +66,8 @@ const config = {
 	countriesAccessStatusList,
 	countriesRegion,
 	countriesRegionForm,
-	countriesRegionFormRelationList,
-	countriesRegionFormRelationForm,
+	countriesRegionContentRelationForm,
+	countriesRegionContentRelationList,
 	countriesRegionList,
 	countriesRegionOption,
 	countriesRegionOptionRelationForm,
@@ -81,8 +79,6 @@ const config = {
 	countriesRegionStatusList,
 	countriesType,
 	countriesTypeForm,
-	countriesTypeFormRelationList,
-	countriesTypeFormRelationForm,
 	countriesTypeList,
 	countriesTypeOption,
 	countriesTypeOptionRelationForm,

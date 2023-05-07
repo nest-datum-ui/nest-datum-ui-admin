@@ -1,5 +1,5 @@
 
-const jobStatusForm = {
+const postStatusForm = {
 	parentName: 'jobsPostStatus',
 
 	displayInBreadcrumbsMenu: true,
@@ -24,4 +24,4 @@ const jobStatusForm = {
 	},
 };
 
-export default jobStatusForm;
+export default postStatusForm;

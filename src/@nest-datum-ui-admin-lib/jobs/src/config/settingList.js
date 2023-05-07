@@ -64,7 +64,7 @@ const settingList = {
 		order: 1,
 	}, {
 		name: 'Data type',
-		id: 'dataType',
+		id: 'jobs',
 		order: 2,
 	}, {
 		name: 'Value',

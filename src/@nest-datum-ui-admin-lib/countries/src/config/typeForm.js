@@ -6,7 +6,7 @@ const typeForm = {
 	optionFormName: 'countriesTypeOptionForm',
 	statusName: 'countriesTypeStatus',
 	statusListName: 'countriesTypeStatusList',
-	relationListName: 'countriesTypeFormRelationList',
+	relationListName: 'countriesTypeFormOptionList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Countries',

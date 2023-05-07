@@ -17,12 +17,16 @@ import {
 } from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
 import FormOptionValue from 'components/Form/Option/Value';
+import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
+import InputFloat from '@nest-datum-ui/Input/Float';
+import ListRelation from 'components/List/Relation';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
 import InputName from 'components/Input/Name';
@@ -30,6 +34,8 @@ import InputDescription from 'components/Input/Description';
 import InputIsNotDelete from 'components/Input/IsNotDelete';
 import DialogDrop from 'components/Dialog/Drop';
 import DialogDisable from 'components/Dialog/Disable';
+import DialogDropForce from 'components/Dialog/Drop/Force';
+import DialogPostRelation from '../../Dialog/Post/Relation';
 import StyledWrapper from './Styled/Wrapper.jsx';
 import handlerSubmit from './handler/submit.js';
 
@@ -46,12 +52,26 @@ let Post = () => {
 				storeName,
 				apiFullUrl: apiUrl,
 				id,
+				relationContentListName,
 			}, 
 			jobsCategoryList: {
-				storeName: categoryStoreName,
-				apiFullUrl: categoryApiUrl,
+				storeName: jobsCategoryStoreName,
+				apiFullUrl: jobsCategoryApiUrl,
+			},
+			jobsCategoryOptionList: {
+				apiFullUrl: relationApiUrl,
+			},
+			jobsCompanyList: {
+				storeName: jobsCompanyStoreName,
+				apiFullUrl: jobsCompanyApiUrl,
 			},
 		}, 
+		countries: {
+			countriesRegionList: {
+				storeName: countriesRegionStoreName,
+				apiFullUrl: countriesRegionApiUrl,
+			},
+		}
 	} = React.useContext(ContextProps);
 	const { 
 		[serviceName]: { 
@@ -117,6 +137,9 @@ let Post = () => {
 		apiUrl,
 		optionRelationListApiUrl,
 	]);
+	const initialFilter = React.useMemo(() => ({ postId: entityId }), [
+		entityId,
+	]);
 
 	return <StyledWrapper
 		storeName={storeName} 
@@ -147,24 +170,56 @@ let Post = () => {
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={statusStoreName}
-					apiUrl={statusApiUrl} />)}
+					storeName={jobsCategoryStoreName}
+					apiUrl={jobsCategoryApiUrl} />)}
 				form={id}
 				itemKey="name"
-				name="postStatusId"
-				label="Status"
+				name="categoryId"
+				label="Category"
 				required />
 		</Box>
 		<Box py={1}>
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={categoryStoreName}
-					apiUrl={categoryApiUrl} />)}
+					storeName={jobsCompanyStoreName}
+					apiUrl={jobsCompanyApiUrl} />)}
 				form={id}
 				itemKey="name"
-				name="categoryId"
-				label="Category"
+				name="companyId"
+				label="Company"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={React.memo((props) => <Select 
+					{ ...props }
+					storeName={countriesRegionStoreName}
+					apiUrl={countriesRegionApiUrl} />)}
+				form={id}
+				itemKey="name"
+				name="locationId"
+				label="Location"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputFloat}
+				form={id}
+				name="salary"
+				label="Salary"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={React.memo((props) => <Select 
+					{ ...props }
+					storeName={statusStoreName}
+					apiUrl={statusApiUrl} />)}
+				form={id}
+				itemKey="name"
+				name="postStatusId"
+				label="Status"
 				required />
 		</Box>
 		<Box py={1}>
@@ -204,6 +259,27 @@ let Post = () => {
 						</ButtonPrimary>
 					</Grid>}
 			</Grid>
+			{utilsCheckStrIdExists(entityId) 
+				&& <ContextRoute.Provider value={relationContentListName}>
+					<Box py={2}>
+						<Divider />
+					</Box>
+					<ListRelation 
+						initialFilter={initialFilter}
+						BottomComponent={<React.Fragment>
+							<DialogDropForce reloadImmediately type="list" />
+							<DialogPostRelation />
+						</React.Fragment>}
+						Component={({ 
+							id, 
+							categoryOptionId, 
+							isDeleted, 
+						}) => <TypographyFetch 
+							key={id ?? categoryOptionId} 
+							apiUrl={relationApiUrl}>
+								{categoryOptionId}
+							</TypographyFetch>} />
+				</ContextRoute.Provider>}
 		</Box>
 		<DialogDrop redirect />
 		<DialogDisable />

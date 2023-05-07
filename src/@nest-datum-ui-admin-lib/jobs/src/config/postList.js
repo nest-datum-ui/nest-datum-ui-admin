@@ -3,7 +3,7 @@ import {
 	actionApiFormRestore, 
 } from '@nest-datum-ui/Store';
 
-const jobList = {
+const postList = {
 	parentName: 'jobsPost',
 	
 	id: 'jobs-post-list',
@@ -74,4 +74,4 @@ const jobList = {
 	}],
 };
 
-export default jobList;
+export default postList;

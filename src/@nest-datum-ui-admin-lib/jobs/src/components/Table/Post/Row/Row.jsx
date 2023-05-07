@@ -12,8 +12,8 @@ let Row = ({
 	id,
 	name,
 	description,
-	postStatusId,
 	categoryId,
+	postStatusId,
 	isDeleted,
 	isNotDelete,
 	createdAt,
@@ -67,7 +67,8 @@ let Row = ({
 		}, { 
 			children: <TypographyFetch 
 				key={2} 
-				apiUrl={jobsPostStatusListApiUrl}>
+				apiUrl={jobsPostStatusListApiUrl} 
+				label="name">
 				{postStatusId}
 			</TypographyFetch>, 
 		}])}

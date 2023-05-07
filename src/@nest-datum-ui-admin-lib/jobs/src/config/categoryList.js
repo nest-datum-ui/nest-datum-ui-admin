@@ -67,10 +67,6 @@ const categoryList = {
 		id: 'status',
 		order: 2,
 	}, {
-		name: 'User',
-		id: 'user',
-		order: 3,
-	}, {
 		name: 'Story',
 		id: 'createdAt',
 		sortable: true,

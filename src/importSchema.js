@@ -20,11 +20,11 @@ const importSchema = {
 	'web-socket': createAppContext(webSocket),
 	'mail': createAppContext(mail),
 	'forms': createAppContext(forms),
-	'cv': createAppContext(cv),
-	'lensa': createAppContext(lensa),
-	'dictionary': createAppContext(dictionary),
 	'countries': createAppContext(countries),
 	'jobs': createAppContext(jobs),
+	'dictionary': createAppContext(dictionary),
+	'cv': createAppContext(cv),
+	'lensa': createAppContext(lensa),
 };
 
 export default importSchema;

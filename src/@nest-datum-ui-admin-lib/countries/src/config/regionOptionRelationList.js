@@ -58,7 +58,7 @@ const regionOptionRelationList = {
 		id: 'id',
 		order: 0,
 	}, {
-		name: 'region',
+		name: 'Region',
 		id: 'regionId',
 		order: 1,
 	}, {

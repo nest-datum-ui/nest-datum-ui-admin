@@ -1,21 +1,21 @@
 
 const categoryForm = {
-	parentName: 'jobjCategory',
-	optionName: 'jobjCategoryOption',
-	optionListName: 'jobjCategoryOptionList',
-	optionFormName: 'jobjCategoryOptionForm',
-	statusName: 'jobjCategoryStatus',
-	statusListName: 'jobjCategoryStatusList',
-	relationListName: 'jobjCategoryFormRelationList',
+	parentName: 'jobsCategory',
+	optionName: 'jobsCategoryOption',
+	optionListName: 'jobsCategoryOptionList',
+	optionFormName: 'jobsCategoryOptionForm',
+	statusName: 'jobsCategoryStatus',
+	statusListName: 'jobsCategoryStatusList',
+	relationListName: 'jobsCategoryFormOptionList',
 
 	displayInBreadcrumbsMenu: true,
-	breadcrumbsMenuTitle: 'Category',
+	breadcrumbsMenuTitle: 'jobs',
 
 	pageUrl: 'categories/:id',
 	pageTitle: 'Category',
 
-	id: 'jobj-categories-form',
-	storeName: 'jobj-categories-form',
+	id: 'jobs-category-form',
+	storeName: 'jobs-category-form',
 	apiUrl: 'category',
 
 	entity: 'categoryId', 

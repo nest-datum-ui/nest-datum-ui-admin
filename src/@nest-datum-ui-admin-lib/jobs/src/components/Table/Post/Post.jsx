@@ -16,7 +16,13 @@ import Row from './Row';
 let Post = (props) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 	const data = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data' ]));
 
 	return <Table BottomComponent={<React.Fragment>

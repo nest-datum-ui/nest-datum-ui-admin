@@ -37,12 +37,12 @@ const submit = async (e, {
 		},
 		postStatusId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
 		categoryId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
 		isNotDelete: {

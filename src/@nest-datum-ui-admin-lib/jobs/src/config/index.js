@@ -16,8 +16,8 @@ import jobsAccessStatusForm from './accessStatusForm.js';
 import jobsAccessStatusList from './accessStatusList.js';
 import jobsPost from './post.js';
 import jobsPostForm from './postForm.js';
-import jobsPostFormRelationList from './postFormRelationList.js';
-import jobsPostFormRelationForm from './postFormRelationForm.js';
+import jobsPostContentRelationForm from './postContentRelationForm.js';
+import jobsPostContentRelationList from './postContentRelationList.js';
 import jobsPostList from './postList.js';
 import jobsPostOption from './postOption.js';
 import jobsPostOptionRelationForm from './postOptionRelationForm.js';
@@ -29,8 +29,6 @@ import jobsPostStatusForm from './postStatusForm.js';
 import jobsPostStatusList from './postStatusList.js';
 import jobsCategory from './category.js';
 import jobsCategoryForm from './categoryForm.js';
-import jobsCategoryFormRelationList from './categoryFormRelationList.js';
-import jobsCategoryFormRelationForm from './categoryFormRelationForm.js';
 import jobsCategoryList from './categoryList.js';
 import jobsCategoryOption from './categoryOption.js';
 import jobsCategoryOptionRelationForm from './categoryOptionRelationForm.js';
@@ -40,15 +38,17 @@ import jobsCategoryOptionList from './categoryOptionList.js';
 import jobsCategoryStatus from './categoryStatus.js';
 import jobsCategoryStatusForm from './categoryStatusForm.js';
 import jobsCategoryStatusList from './categoryStatusList.js';
-import jobsTag from './tag.js';
-import jobsTagForm from './tagForm.js';
-import jobsTagList from './tagList.js';
-import jobsTagOption from './tagOption.js';
-import jobsTagOptionForm from './tagOptionForm.js';
-import jobsTagOptionList from './tagOptionList.js';
-import jobsTagStatus from './tagStatus.js';
-import jobsTagStatusForm from './tagStatusForm.js';
-import jobsTagStatusList from './tagStatusList.js';
+import jobsCompany from './company.js';
+import jobsCompanyForm from './companyForm.js';
+import jobsCompanyList from './companyList.js';
+import jobsCompanyOption from './companyOption.js';
+import jobsCompanyOptionRelationForm from './companyOptionRelationForm.js';
+import jobsCompanyOptionRelationList from './companyOptionRelationList.js';
+import jobsCompanyOptionForm from './companyOptionForm.js';
+import jobsCompanyOptionList from './companyOptionList.js';
+import jobsCompanyStatus from './companyStatus.js';
+import jobsCompanyStatusForm from './companyStatusForm.js';
+import jobsCompanyStatusList from './companyStatusList.js';
 
 const config = {
 	name: 'jobs',
@@ -77,8 +77,8 @@ const config = {
 	jobsAccessStatusList,
 	jobsPost,
 	jobsPostForm,
-	jobsPostFormRelationList,
-	jobsPostFormRelationForm,
+	jobsPostContentRelationForm,
+	jobsPostContentRelationList,
 	jobsPostList,
 	jobsPostOption,
 	jobsPostOptionRelationForm,
@@ -90,8 +90,6 @@ const config = {
 	jobsPostStatusList,
 	jobsCategory,
 	jobsCategoryForm,
-	jobsCategoryFormRelationList,
-	jobsCategoryFormRelationForm,
 	jobsCategoryList,
 	jobsCategoryOption,
 	jobsCategoryOptionRelationForm,
@@ -101,15 +99,17 @@ const config = {
 	jobsCategoryStatus,
 	jobsCategoryStatusForm,
 	jobsCategoryStatusList,
-	jobsTag,
-	jobsTagForm,
-	jobsTagList,
-	jobsTagOption,
-	jobsTagOptionForm,
-	jobsTagOptionList,
-	jobsTagStatus,
-	jobsTagStatusForm,
-	jobsTagStatusList,
+	jobsCompany,
+	jobsCompanyForm,
+	jobsCompanyList,
+	jobsCompanyOption,
+	jobsCompanyOptionRelationForm,
+	jobsCompanyOptionRelationList,
+	jobsCompanyOptionForm,
+	jobsCompanyOptionList,
+	jobsCompanyStatus,
+	jobsCompanyStatusForm,
+	jobsCompanyStatusList,
 };
 
 export default config;

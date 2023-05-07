@@ -1,5 +1,5 @@
 
-const jobOption = {
+const postOption = {
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Options',
 
@@ -10,4 +10,4 @@ const jobOption = {
 	fieldsBlockTitle: 'Options:',
 };
 
-export default jobOption;
+export default postOption;

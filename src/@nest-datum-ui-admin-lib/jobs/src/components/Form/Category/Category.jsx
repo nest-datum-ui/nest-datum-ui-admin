@@ -8,8 +8,7 @@ import {
 } from '@nest-datum-ui/Context';
 import { 
 	selectorMainExtract,
-	actionDialogOpen, 
-	actionApiFormGet,
+	actionDialogOpen,
 	actionApiFormRestore,
 } from '@nest-datum-ui/Store';
 import { 
@@ -47,7 +46,7 @@ let Category = () => {
 				storeName,
 				apiFullUrl: apiUrl,
 				id,
-			}, 
+			},
 		}, 
 	} = React.useContext(ContextProps);
 	const { 
@@ -84,16 +83,8 @@ let Category = () => {
 				},
 			},
 		},
-		jobs: {
-			jobsList: {
-				storeName: jobsCategoeyListStoreName, 
-				apiFullUrl: jobsCategoeyListApiFullUrl, 
-			},
-		}
 	} = React.useContext(ContextProps);
 	const { entityId } = useParams();
-	const [ parentOptions, setParentOptions ] = React.useState(() => []);
-	const parentId = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'parentId' ]));
 	const isNotDelete = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'isNotDelete' ]));
 	const isDeleted = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'isDeleted' ]));
 	const onDrop = React.useCallback(() => actionDialogOpen(isDeleted ? 'drop' : 'disable', { entityId })(), [
@@ -121,31 +112,6 @@ let Category = () => {
 		optionRelationListEntityOptionRelation,
 		apiUrl,
 		optionRelationListApiUrl,
-	]);
-	const onParentExistsMount = React.useCallback((entityId, collector = []) => {
-		if (utilsCheckStrIdExists(entityId)) {
-			actionApiFormGet(`${storeName}_${entityId}`, { apiUrl, entityId, redirectIfError: true })((form) => {
-				collector.push(entityId);
-
-				if (utilsCheckStrIdExists(form['parentId'])) {
-					onParentExistsMount(form['parentId'], collector);
-				}
-				else {
-					setParentOptions(collector);
-				}
-			});
-		}
-	}, [
-		storeName,
-		apiUrl,
-		setParentOptions,
-	]);
-
-	React.useEffect(() => {
-		onParentExistsMount(parentId);
-	}, [
-		onParentExistsMount,
-		parentId,
 	]);
 
 	return <StyledWrapper
@@ -177,17 +143,6 @@ let Category = () => {
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={jobsCategoeyListStoreName}
-					apiUrl={jobsCategoeyListApiFullUrl} />)}
-				form={id}
-				itemKey="name"
-				name="parentId"
-				label="Parent category" />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={React.memo((props) => <Select 
-					{ ...props }
 					storeName={statusStoreName}
 					apiUrl={statusApiUrl} />)}
 				form={id}
@@ -204,15 +159,7 @@ let Category = () => {
 				name="isNotDelete" />
 		</Box>
 		{(utilsCheckStrIdExists(entityId) && fieldsBlock) 
-			&& <React.Fragment>
-				{parentOptions.map((id) => <FormOptionValue 
-					key={id} 
-					storeName={`${optionListStoreName}_${id}`} 
-					parentId={entityId} 
-					entityId={id} 
-					loadOnFirstRender />)}
-				<FormOptionValue loadOnFirstRender entityId={entityId} />
-			</React.Fragment>}
+			&& <FormOptionValue loadOnFirstRender entityId={entityId} />}
 		<Box pb={2}>
 			<Grid container spacing={2} justifyContent="flex-end">
 				<Grid

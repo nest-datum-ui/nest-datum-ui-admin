@@ -37,13 +37,17 @@ const submit = async (e, {
 		},
 		regionStatusId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
-		typeStatusId: {
+		typeId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
+		},
+		parentId: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrIdExists ],
 		},
 		isNotDelete: {
 			text: 'The value is in the wrong format.',

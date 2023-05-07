@@ -35,10 +35,6 @@ const submit = async (e, {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrDescription ]
 		},
-		parentId: {
-			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
-		},
 		categoryStatusId: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],

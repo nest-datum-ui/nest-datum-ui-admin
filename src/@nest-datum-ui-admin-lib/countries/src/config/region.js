@@ -8,7 +8,7 @@ const config = {
 	headerTabMenuTitle: 'Regions',
 
 	pageUrl: 'regions',
-	pageTitle: 'Countries',
+	pageTitle: 'Regions',
 };
 
 export default config;

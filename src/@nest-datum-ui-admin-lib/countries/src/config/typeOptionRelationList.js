@@ -4,7 +4,7 @@ import {
 } from '@nest-datum-ui/Store';
 
 const typeOptionRelationList = {
-	title: 'countries',
+	title: 'Countries',
 	subtitle: 'List of countries that own the current setting.',
 	formName: 'countriesTypeOptionRelationForm',
 

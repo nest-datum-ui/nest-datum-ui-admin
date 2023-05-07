@@ -11,7 +11,7 @@ import DialogRelation from 'components/Dialog/Relation';
 import Table from '../Table.jsx';
 import Row from './Row';
 
-let Relation = ({ Component, ...props }) => {
+let Relation = ({ Component, BottomComponent, ...props }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -24,7 +24,7 @@ let Relation = ({ Component, ...props }) => {
 	const data = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data' ]));
 
 	return <Table
-		BottomComponent={<React.Fragment>
+		BottomComponent={BottomComponent ?? <React.Fragment>
 			<DialogDropForce reloadImmediately type="list" />
 			<DialogRelation />
 		</React.Fragment>}

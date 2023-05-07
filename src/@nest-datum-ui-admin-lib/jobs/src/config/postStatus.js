@@ -1,5 +1,5 @@
 
-const jobStatus = {
+const postStatus = {
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Statuses',
 
@@ -7,4 +7,4 @@ const jobStatus = {
 	pageTitle: 'Statuses',
 };
 
-export default jobStatus;
+export default postStatus;

@@ -68,8 +68,8 @@ let Row = ({
 		}, { 
 			children: <TypographyFetch 
 				key={2} 
-				apiUrl
-				typeId={countriesRegionStatusListApiUrl}>
+				apiUrl={countriesRegionStatusListApiUrl} 
+				label="name">
 				{regionStatusId}
 			</TypographyFetch>, 
 		}])}

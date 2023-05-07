@@ -11,7 +11,7 @@ let Tabs = () => {
 			jobsSetting,
 			jobsPost,
 			jobsCategory,
-			jobsTag,
+			jobsCompany,
 		}, 
 	} = React.useContext(ContextProps);
 
@@ -19,7 +19,7 @@ let Tabs = () => {
 		{([
 			jobsPost,
 			jobsCategory,
-			jobsTag,
+			jobsCompany,
 			jobsAccess,
 			jobsSetting,
 		]).map((item) => ({
