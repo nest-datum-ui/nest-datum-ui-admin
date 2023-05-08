@@ -288,6 +288,7 @@ let Url = ({
 
 	return <Manager
 		{ ...props }
+		allowSelectSystem={allowSelectSystem}
 		systemId={allowSelectSystem
 			? (systemId ?? propsSystemId)
 			: (propsSystemId ?? systemId)}

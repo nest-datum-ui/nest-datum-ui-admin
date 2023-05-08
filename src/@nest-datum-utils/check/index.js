@@ -6,6 +6,7 @@ import func from './src/func';
 import numeric from './src/numeric';
 import numericInt from './src/numeric/int.js';
 import obj from './src/obj';
+import objDate from './src/obj/date.js';
 import objFilled from './src/obj/filled.js';
 import objFileList from './src/obj/fileList.js';
 import objFileModel from './src/obj/fileModel.js';
@@ -52,6 +53,7 @@ export {
 	numeric,
 	numericInt,
 	obj,
+	objDate,
 	objFilled,
 	objFileList,
 	objFileModel,
