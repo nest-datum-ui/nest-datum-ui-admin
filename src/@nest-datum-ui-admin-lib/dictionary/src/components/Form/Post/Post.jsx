@@ -25,7 +25,6 @@ import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
 import FormOptionValue from 'components/Form/Option/Value';
 import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
-import InputFloat from '@nest-datum-ui/Input/Float';
 import ListRelation from 'components/List/Relation';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
@@ -61,17 +60,7 @@ let Post = () => {
 			dictionaryCategoryOptionList: {
 				apiFullUrl: relationApiUrl,
 			},
-			dictionaryCompanyList: {
-				storeName: dictionaryCompanyStoreName,
-				apiFullUrl: dictionaryCompanyApiUrl,
-			},
-		}, 
-		countries: {
-			countriesRegionList: {
-				storeName: countriesRegionStoreName,
-				apiFullUrl: countriesRegionApiUrl,
-			},
-		}
+		},
 	} = React.useContext(ContextProps);
 	const { 
 		[serviceName]: { 
@@ -176,38 +165,6 @@ let Post = () => {
 				itemKey="name"
 				name="categoryId"
 				label="Category"
-				required />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={React.memo((props) => <Select 
-					{ ...props }
-					storeName={dictionaryCompanyStoreName}
-					apiUrl={dictionaryCompanyApiUrl} />)}
-				form={id}
-				itemKey="name"
-				name="companyId"
-				label="Company"
-				required />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={React.memo((props) => <Select 
-					{ ...props }
-					storeName={countriesRegionStoreName}
-					apiUrl={countriesRegionApiUrl} />)}
-				form={id}
-				itemKey="name"
-				name="locationId"
-				label="Location"
-				required />
-		</Box>
-		<Box py={1}>
-			<Field
-				Component={InputFloat}
-				form={id}
-				name="salary"
-				label="Salary"
 				required />
 		</Box>
 		<Box py={1}>
