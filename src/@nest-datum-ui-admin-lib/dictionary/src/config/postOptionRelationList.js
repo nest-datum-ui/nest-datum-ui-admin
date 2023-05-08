@@ -3,16 +3,16 @@ import {
 	actionApiFormRestore, 
 } from '@nest-datum-ui/Store';
 
-const accessOptionRelationList = {
-	title: 'Accesses',
-	subtitle: 'List of accesses that own the current setting.',
-	formName: 'dictionaryAccessOptionRelationForm',
+const postOptionRelationList = {
+	title: 'Dictionary',
+	subtitle: 'List of dictionary items that own the current setting.',
+	formName: 'dictionaryPostOptionRelationForm',
 
-	id: 'dictionary-accesses-option-relations-list',
-	storeName: 'dictionary-accesses-option-relations-list',
-	columnName: 'accessId',
-	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/access`,
-	apiUrl: 'access/option',
+	id: 'dictionary-post-option-relations-list',
+	storeName: 'dictionary-post-option-relations-list',
+	columnName: 'postId',
+	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/post`,
+	apiUrl: 'post/option',
 	initialPage: 1,
 	initialLimit: 9999,
 	withForceDropMenu: true,
@@ -58,8 +58,8 @@ const accessOptionRelationList = {
 		id: 'id',
 		order: 0,
 	}, {
-		name: 'Access',
-		id: 'accessId',
+		name: 'Post',
+		id: 'postId',
 		order: 1,
 	}, {
 		name: 'Story',
@@ -68,4 +68,4 @@ const accessOptionRelationList = {
 	}],
 };
 
-export default accessOptionRelationList;
+export default postOptionRelationList;

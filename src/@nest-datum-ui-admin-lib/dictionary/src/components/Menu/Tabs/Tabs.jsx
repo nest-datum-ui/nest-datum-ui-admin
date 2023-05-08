@@ -8,20 +8,18 @@ let Tabs = () => {
 	const { 
 		dictionary: { 
 			dictionaryAccess,
-			dictionaryetting,
-			dictionaryForm,
-			dictionaryField,
-			dictionaryContent,
+			dictionarySetting,
+			dictionaryPost,
+			dictionaryCategory,
 		}, 
 	} = React.useContext(ContextProps);
 
 	return <MenuTabs>
 		{([
-			dictionaryForm,
-			dictionaryField,
-			dictionaryContent,
+			dictionaryPost,
+			dictionaryCategory,
 			dictionaryAccess,
-			dictionaryetting,
+			dictionarySetting,
 		]).map((item) => ({
 			label: item.headerTabMenuTitle,
 			to: item.pageFullUrl,

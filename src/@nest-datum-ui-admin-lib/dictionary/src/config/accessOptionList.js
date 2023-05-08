@@ -71,7 +71,7 @@ const accessOptionList = {
 		order: 1,
 	}, {
 		name: 'Data type',
-		id: 'dataType',
+		id: 'dictionary',
 		order: 2,
 	}, {
 		name: 'Props',

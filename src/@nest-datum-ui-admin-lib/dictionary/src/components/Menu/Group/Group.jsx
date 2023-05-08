@@ -7,103 +7,84 @@ let Group = (props) => {
 	const { 
 		dictionary: { 
 			dictionaryAccess,
-			dictionaryetting,
-			dictionaryForm,
-			dictionaryField,
-			dictionaryContent,
+			dictionarySetting,
+			dictionaryPost,
+			dictionaryCategory,
 		}, 
 	} = React.useContext(ContextProps);
 	const { pathname } = useLocation();
-	const isFormGroup = pathname.indexOf(dictionaryForm.pageFullUrl) === 0;
-	const isFormGroupOptions = pathname.indexOf(`${dictionaryForm.pageFullUrl}/options`) === 0;
-	const isFormGroupStatuses = pathname.indexOf(`${dictionaryForm.pageFullUrl}/statuses`) === 0;
-	const isFieldGroup = pathname.indexOf(dictionaryField.pageFullUrl) === 0;
-	const isFieldGroupOptions = pathname.indexOf(`${dictionaryField.pageFullUrl}/options`) === 0;
-	const isFieldGroupStatuses = pathname.indexOf(`${dictionaryField.pageFullUrl}/statuses`) === 0;
-	const isContentGroup = pathname.indexOf(dictionaryContent.pageFullUrl) === 0;
-	const isContentGroupStatuses = pathname.indexOf(`${dictionaryContent.pageFullUrl}/statuses`) === 0;
+	const isPostGroup = pathname.indexOf(dictionaryPost.pageFullUrl) === 0;
+	const isPostGroupOptions = pathname.indexOf(`${dictionaryPost.pageFullUrl}/options`) === 0;
+	const isPostGroupStatuses = pathname.indexOf(`${dictionaryPost.pageFullUrl}/statuses`) === 0;
+	const isCategoryGroup = pathname.indexOf(dictionaryCategory.pageFullUrl) === 0;
+	const isCategoryGroupOptions = pathname.indexOf(`${dictionaryCategory.pageFullUrl}/options`) === 0;
+	const isCategoryGroupStatuses = pathname.indexOf(`${dictionaryCategory.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(dictionaryAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${dictionaryAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${dictionaryAccess.pageFullUrl}/statuses`) === 0;
 
-	return (pathname.indexOf(dictionaryetting.pageFullUrl) === -1)
+	return (pathname.indexOf(dictionarySetting.pageFullUrl) === -1)
 		&& <StyledWrapper { ...props }>
 			{([{
 				text: 'Data',
-				check: isFormGroup
+				check: isPostGroup
 					? [{
-						flag: (pathname.length > dictionaryForm.pageFullUrl.length && (isFormGroupOptions || isFormGroupStatuses)),
-						to: dictionaryForm.pageFullUrl,
+						flag: (pathname.length > dictionaryPost.pageFullUrl.length && (isPostGroupOptions || isPostGroupStatuses)),
+						to: dictionaryPost.pageFullUrl,
 					}]
-					: (isFieldGroup
+					: (isCategoryGroup
 						? [{
-							flag: (pathname.length > dictionaryField.pageFullUrl.length && (isFieldGroupOptions || isFieldGroupStatuses)),
-							to: dictionaryField.pageFullUrl,
+							flag: (pathname.length > dictionaryCategory.pageFullUrl.length && (isCategoryGroupOptions || isCategoryGroupStatuses)),
+							to: dictionaryCategory.pageFullUrl,
 						}]
-						: (isContentGroup
+						: (isAccessesGroup
 							? [{
-								flag: (pathname.length > dictionaryContent.pageFullUrl.length && isContentGroupStatuses),
-								to: dictionaryContent.pageFullUrl,
+								flag: (pathname.length > dictionaryAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
+								to: dictionaryAccess.pageFullUrl,
 							}]
-							: (isAccessesGroup
-								? [{
-									flag: (pathname.length > dictionaryAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-									to: dictionaryAccess.pageFullUrl,
-								}]
-								: []))),
-			}, 
-			...isContentGroup
-				? []
-				: [{
-					text: 'Options',
-					check: isFormGroup
+							: [])),
+			}, {
+				text: 'Options',
+				check: isPostGroup
+					? [{
+						flag: !isPostGroupOptions,
+						to: `${dictionaryPost.pageFullUrl}/options`,
+					}]
+					: (isCategoryGroup
 						? [{
-							flag: !isFormGroupOptions,
-							to: `${dictionaryForm.pageFullUrl}/options`,
+							flag: !isCategoryGroupOptions,
+							to: `${dictionaryCategory.pageFullUrl}/options`,
 						}]
-						: (isFieldGroup
+						: (isAccessesGroup
 							? [{
-								flag: !isFieldGroupOptions,
-								to: `${dictionaryField.pageFullUrl}/options`,
+								flag: !isAccessesGroupOptions,
+								to: `${dictionaryAccess.pageFullUrl}/options`,
 							}]
-							: (isAccessesGroup
-								? [{
-									flag: !isAccessesGroupOptions,
-									to: `${dictionaryAccess.pageFullUrl}/options`,
-								}]
-								: [])),
-				}], 
-			{
+							: [])),
+			}, {
 				text: 'Statuses',
-				check: isFormGroup
+				check: isPostGroup
 					? [{
-						flag: !isFormGroupStatuses,
-						to: `${dictionaryForm.pageFullUrl}/statuses`,
+						flag: !isPostGroupStatuses,
+						to: `${dictionaryPost.pageFullUrl}/statuses`,
 					}]
-					: (isFieldGroup
+					: (isCategoryGroup
 						? [{
-							flag: !isFieldGroupStatuses,
-							to: `${dictionaryField.pageFullUrl}/statuses`,
+							flag: !isCategoryGroupStatuses,
+							to: `${dictionaryCategory.pageFullUrl}/statuses`,
 						}]
-						: (isContentGroup
+						: (isAccessesGroup
 							? [{
-								flag: !isContentGroupStatuses,
-								to: `${dictionaryContent.pageFullUrl}/statuses`,
+								flag: !isAccessesGroupStatuses,
+								to: `${dictionaryAccess.pageFullUrl}/statuses`,
 							}]
-							: (isAccessesGroup
-								? [{
-									flag: !isAccessesGroupStatuses,
-									to: `${dictionaryAccess.pageFullUrl}/statuses`,
-								}]
-								: []))),
+							: [])),
 			}])}
 		</StyledWrapper>;
 };
 
 Group = React.memo(Group);
 Group.defaultProps = {
-};
-Group.propTypes = {
 };
 
 export default Group;

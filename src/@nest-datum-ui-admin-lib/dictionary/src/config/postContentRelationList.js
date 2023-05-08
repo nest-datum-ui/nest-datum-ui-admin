@@ -1,20 +1,24 @@
+import React from 'react';
 import { 
 	actionDialogOpen,
 	actionApiFormRestore, 
 } from '@nest-datum-ui/Store';
+import TypographyTable from 'components/Typography/Table';
+import FormsTypographyOptionValue from '../components/Typography/Option/Value';
 
-const accessOptionRelationList = {
-	title: 'Accesses',
-	subtitle: 'List of accesses that own the current setting.',
-	formName: 'dictionaryAccessOptionRelationForm',
+const postContentRelationList = {
+	title: 'Values',
+	subtitle: 'Intermediate data between the main model and current option.',
+	formName: 'dictionaryPostContentRelationForm',
 
-	id: 'dictionary-accesses-option-relations-list',
-	storeName: 'dictionary-accesses-option-relations-list',
-	columnName: 'accessId',
-	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/access`,
-	apiUrl: 'access/option',
+	id: 'dictionary-post-content-relations-list',
+	storeName: 'dictionary-post-content-relations-list',
+	columnName: 'postOptionId',
+	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/post`,
+	apiUrl: 'post/content',
 	initialPage: 1,
-	initialLimit: 9999,
+	initialLimit: 20,
+	bulkDeletion: true,
 	withForceDropMenu: true,
 
 	listTitle: 'Related data',
@@ -57,15 +61,29 @@ const accessOptionRelationList = {
 		name: 'ID',
 		id: 'id',
 		order: 0,
+		wrapper: (item, { id }) => <TypographyTable 
+			onClick={() => actionDialogOpen('relation', { postContentId: id })()} 
+			sx={{ 
+				cursor: 'pointer', 
+			}}>
+			{String(id)}
+		</TypographyTable>,
 	}, {
-		name: 'Access',
-		id: 'accessId',
+		name: 'Type option',
+		id: 'postOptionId',
 		order: 1,
+	}, {
+		name: 'Value',
+		id: 'value',
+		order: 2,
+		wrapper: (item, { postOptionId, value }) => <FormsTypographyOptionValue 
+			postOptionId={postOptionId}
+			value={value} />
 	}, {
 		name: 'Story',
 		id: 'createdAt',
-		order: 2,
+		order: 3,
 	}],
 };
 
-export default accessOptionRelationList;
+export default postContentRelationList;

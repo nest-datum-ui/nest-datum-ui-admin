@@ -3,22 +3,18 @@ import {
 	actionApiFormRestore, 
 } from '@nest-datum-ui/Store';
 
-const accessOptionRelationList = {
-	title: 'Accesses',
-	subtitle: 'List of accesses that own the current setting.',
-	formName: 'dictionaryAccessOptionRelationForm',
-
-	id: 'dictionary-accesses-option-relations-list',
-	storeName: 'dictionary-accesses-option-relations-list',
-	columnName: 'accessId',
-	apiMainModelUrl: `${process.env.URL_API_DICTIONARY}/access`,
-	apiUrl: 'access/option',
+const postList = {
+	parentName: 'dictionaryPost',
+	
+	id: 'dictionary-post-list',
+	storeName: 'dictionary-post-list',
+	apiUrl: 'post',
 	initialPage: 1,
-	initialLimit: 9999,
-	withForceDropMenu: true,
-
-	listTitle: 'Related data',
-	listSubtitle: 'Intermediate data between the main model and current option.',
+	initialLimit: 20,
+	bulkDeletion: true,
+	search: true,
+	withContextMenu: true,
+	withFilter: true,
 
 	manage: {
 		drop: {
@@ -46,26 +42,36 @@ const accessOptionRelationList = {
 			color: 'primary',
 		},
 		create: {
-			text: 'Add relation',
+			text: 'Create',
+			to: 'posts/0',
 			order: 3,
 			variant: 'contained',
 			color: 'secondary',
-			onClick: () => actionDialogOpen('relation')(),
 		},
+	},
+	filters: {
+		isDeleted: true,
+		isNotDeleted: true,
 	},
 	rowColumns: [{
 		name: 'ID',
 		id: 'id',
+		sortable: true,
 		order: 0,
 	}, {
-		name: 'Access',
-		id: 'accessId',
+		name: 'Main',
+		id: 'main',
 		order: 1,
+	}, {
+		name: 'Status',
+		id: 'status',
+		order: 2,
 	}, {
 		name: 'Story',
 		id: 'createdAt',
-		order: 2,
+		sortable: true,
+		order: 5,
 	}],
 };
 
-export default accessOptionRelationList;
+export default postList;
