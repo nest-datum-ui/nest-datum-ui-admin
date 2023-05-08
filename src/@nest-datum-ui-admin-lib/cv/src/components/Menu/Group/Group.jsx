@@ -20,43 +20,45 @@ let Group = (props) => {
 
 	return (pathname.indexOf(cvSetting.pageFullUrl) === -1)
 		&& <StyledWrapper { ...props }>
-			{isAccessesGroup
-				? ([{
-					text: 'Data',
-					check: [{
-						flag: (pathname.length > cvAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: cvAccess.pageFullUrl,
-					}],
-				}, {
+			{([{
+				text: 'Data',
+				check: isReportGroup
+					? [{
+						flag: (pathname.length > cvReport.pageFullUrl.length && isReportGroupStatuses),
+						to: cvReport.pageFullUrl,
+					}]
+					: (isAccessesGroup
+						? [{
+							flag: (pathname.length > cvAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
+							to: cvAccess.pageFullUrl,
+						}]
+						: []),
+			}, 
+			...isReportGroup
+				? []
+				: [{
 					text: 'Options',
-					check: [{
-						flag: !isAccessesGroupOptions,
-						to: `${cvAccess.pageFullUrl}/options`,
-					}],
-				}, {
-					text: 'Statuses',
-					check: [{
-						flag: !isAccessesGroupStatuses,
-						to: `${cvAccess.pageFullUrl}/statuses`,
-					}],
-				}])
-				: ([{
-					text: 'Data',
-					check: isReportGroup
+					check: (isAccessesGroup
 						? [{
-							flag: (pathname.length > cvReport.pageFullUrl.length),
-							to: cvReport.pageFullUrl,
+							flag: !isAccessesGroupOptions,
+							to: `${cvAccess.pageFullUrl}/options`,
 						}]
-						: [],
-				}, {
-					text: 'Statuses',
-					check: isReportGroup
+						: []),
+				}], 
+			{
+				text: 'Statuses',
+				check: isReportGroup
+					? [{
+						flag: !isReportGroupStatuses,
+						to: `${cvReport.pageFullUrl}/statuses`,
+					}]
+					: (isAccessesGroup
 						? [{
-							flag: !isReportGroupStatuses,
-							to: `${cvReport.pageFullUrl}/statuses`,
+							flag: !isAccessesGroupStatuses,
+							to: `${cvAccess.pageFullUrl}/statuses`,
 						}]
-						: [],
-				}])}
+						: []),
+			}])}
 		</StyledWrapper>;
 };
 

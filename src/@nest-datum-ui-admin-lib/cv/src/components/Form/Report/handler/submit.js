@@ -6,10 +6,6 @@ import {
 import {
 	strId as utilsCheckStrId,
 	strIdExists as utilsCheckStrIdExists,
-	strName as utilsCheckStrName,
-	strDescription as utilsCheckStrDescription,
-	strRegex as utilsCheckStrRegex,
-	strEnvKey as utilsCheckStrEnvKey,
 	bool as utilsCheckBool,
 } from '@nest-datum-utils/check';
 
@@ -19,30 +15,20 @@ const submit = async (e, storeName, apiUrl, entityId) => {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
 		},
-		envKey: {
+		contentId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrEnvKey ],
-		},
-		name: {
-			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrName ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
-		description: {
+		fileId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrDescription ]
-		},
-		dataTypeId: {
-			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
-		regex: {
+		reportStatusId: {
 			text: 'The value is in the wrong format.',
-			checkOr: [ 
-				utilsCheckStrRegex,
-				(value) => (value || '').length === 0,
-			]
+			check: [ utilsCheckStrIdExists ],
+			isRequired: true,
 		},
 		isNotDelete: {
 			text: 'The value is in the wrong format.',

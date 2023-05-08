@@ -11,7 +11,7 @@ const accessOptionRelationList = {
 	id: 'cv-accesses-option-relations-list',
 	storeName: 'cv-accesses-option-relations-list',
 	columnName: 'accessId',
-	apiMainModelUrl: `${process.env.URL_API_CV}/access`,
+	apiMainModelUrl: `${process.env.URL_API_FORMS}/access`,
 	apiUrl: 'access/option',
 	initialPage: 1,
 	initialLimit: 9999,
