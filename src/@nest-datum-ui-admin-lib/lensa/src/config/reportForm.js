@@ -1,6 +1,8 @@
 
 const reportForm = {
 	parentName: 'lensaReport',
+	statusName: 'lensaReportStatus',
+	statusListName: 'lensaReportStatusList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'report',

@@ -6,11 +6,9 @@ import {
 import {
 	strId as utilsCheckStrId,
 	strIdExists as utilsCheckStrIdExists,
+	strExists as utilsCheckStrExists,
 	strName as utilsCheckStrName,
-	strDescription as utilsCheckStrDescription,
-	strRegex as utilsCheckStrRegex,
-	strEnvKey as utilsCheckStrEnvKey,
-	bool as utilsCheckBool,
+	strEmail as utilsCheckStrEmail,
 } from '@nest-datum-utils/check';
 
 const submit = async (e, storeName, apiUrl, entityId) => {
@@ -19,34 +17,60 @@ const submit = async (e, storeName, apiUrl, entityId) => {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrId ],
 		},
-		envKey: {
+		lensaId: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrEnvKey ],
+			check: [ utilsCheckStrIdExists ],
+			isRequired: true,
 		},
-		name: {
+		targetId: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrIdExists ],
+			isRequired: true,
+		},
+		source: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
+		},
+		candidateSource: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
+		},
+		customerCategory: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
+		},
+		language: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
+		},
+		jobTitle: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
+		},
+		firstName: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrName ],
 			isRequired: true,
 		},
-		description: {
+		email: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrDescription ]
-		},
-		dataTypeId: {
-			text: 'The value is in the wrong format.',
-			check: [ utilsCheckStrId ],
+			check: [ utilsCheckStrEmail ],
 			isRequired: true,
 		},
-		regex: {
+		state: {
 			text: 'The value is in the wrong format.',
-			checkOr: [ 
-				utilsCheckStrRegex,
-				(value) => (value || '').length === 0,
-			]
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
 		},
-		isNotDelete: {
+		city: {
 			text: 'The value is in the wrong format.',
-			check: [ utilsCheckBool ]
+			check: [ utilsCheckStrExists ],
+			isRequired: true,
 		},
 	});
 

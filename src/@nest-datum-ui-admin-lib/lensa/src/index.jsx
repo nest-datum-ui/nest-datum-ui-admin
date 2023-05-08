@@ -10,8 +10,6 @@ import {
 import Layout from './layouts';
 import RouteReportList from './routes/Report/List';
 import RouteReportForm from './routes/Report/Form';
-import RouteReportStatusList from './routes/Report/Status/List';
-import RouteReportStatusForm from './routes/Report/Status/Form';
 import RouteAccessList from './routes/Access/List';
 import RouteAccessForm from './routes/Access/Form';
 import RouteAccessOptionList from './routes/Access/Option/List';
@@ -30,7 +28,6 @@ let Lensa = () => {
 			lensaAccessStatus,
 			lensaSetting,
 			lensaReport,
-			lensaReportStatus,
 		}, 
 	} = React.useContext(ContextProps);
 
@@ -49,11 +46,11 @@ let Lensa = () => {
 					path={`${lensaReport.pageUrl}/:entityId`}
 					element={<RouteReportForm />} />
 				<Route
-					path={lensaReportStatus.pageUrl}
-					element={<RouteReportStatusList />} />
+					path={lensaReport.pageUrl}
+					element={<RouteReportList />} />
 				<Route
-					path={`${lensaReportStatus.pageUrl}/:entityId`}
-					element={<RouteReportStatusForm />} />
+					path={`${lensaReport.pageUrl}/:entityId`}
+					element={<RouteReportForm />} />
 				<Route
 					path={lensaAccess.pageUrl}
 					element={<RouteAccessList />} />

@@ -16,7 +16,13 @@ import Row from './Row';
 let Report = (props) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 	const data = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data' ]));
 
 	return <Table BottomComponent={<React.Fragment>
@@ -29,10 +35,18 @@ let Report = (props) => {
 			&& data.map((item, index) => <Row
 				key={item.id}
 				id={item.id}
-				userId={item.userId}
+				lensaId={item.lensaId}
+				targetId={item.targetId}
+				source={item.source}
+				candidateSource={item.candidateSource}
+				customerCategory={item.customerCategory}
 				fileId={item.fileId}
-				sourceId={item.sourceId}
-				reportStatusId={item.reportStatusId}
+				language={item.language}
+				jobTitle={item.jobTitle}
+				firstName={item.firstName}
+				email={item.email}
+				state={item.state}
+				city={item.city}
 				isDeleted={item.isDeleted}
 				createdAt={item.createdAt}
 				updatedAt={item.updatedAt} />)}

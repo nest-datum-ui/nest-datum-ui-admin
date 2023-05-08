@@ -4,16 +4,24 @@ import {
 	ContextProps,
 	ContextRoute, 
 } from '@nest-datum-ui/Context';
+import Typography from '@mui/material/Typography';
 import TypographyTable from 'components/Typography/Table';
-import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Row = ({
 	id,
-	userId,
+	lensaId,
+	targetId,
+	source,
+	candidateSource,
+	customerCategory,
 	fileId,
-	sourceId,
-	reportStatusId,
+	language,
+	jobTitle,
+	firstName,
+	email,
+	state,
+	city,
 	isDeleted,
 	createdAt,
 	updatedAt,
@@ -26,27 +34,18 @@ let Row = ({
 				parentName,
 			}, 
 		},
-		sso: {
-			ssoUserList: {
-				apiFullUrl: ssoUserListApiUrl,
-			},
-		},
-		lensa: {
-			lensaReportStatusList: {
-				apiFullUrl: lensaReportStatusListApiUrl,
-			},
-		},
-		// files: {
-		// 	filesManagerList: {
-		// 		filesApiUrl: filesManagerListApiUrl,
-		// 	},
-		// },
 	} = React.useContext(ContextProps);
-	const { [serviceName]: { [parentName]: { pageFullUrl } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[parentName]: { 
+				pageFullUrl, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 
 	return <StyledWrapper 
 		id={id} 
-		isDeleted={isDeleted}  
+		isDeleted={isDeleted} 
 		createdAt={createdAt} 
 		updatedAt={updatedAt}>
 		{([{ 
@@ -57,22 +56,35 @@ let Row = ({
 				{id}
 			</TypographyTable>, 
 		}, { 
-			children: <TypographyTable key={1}>
-				{fileId}
-			</TypographyTable>, 
+			children: <Typography 
+				key={1} 
+				component="div">
+				<div>{lensaId}</div>
+				<div>{targetId}</div>
+			</Typography>, 
 		}, { 
-			children: <TypographyFetch 
+			children: <Typography 
 				key={2} 
-				apiUrl={lensaReportStatusListApiUrl}>
-				{reportStatusId}
-			</TypographyFetch>, 
+				component="div">
+				<div>{source}</div>
+				<div>{candidateSource}</div>
+			</Typography>,
 		}, { 
-			children: <TypographyFetch 
-				key={3}
-				apiUrl={ssoUserListApiUrl} 
-				label="login">
-				{userId}
-			</TypographyFetch>, 
+			children: <Typography 
+				key={3} 
+				component="div">
+				<div>{customerCategory}</div>
+				<div>{jobTitle}</div>
+			</Typography>,
+		}, { 
+			children: <Typography 
+				key={4} 
+				component="div">
+				<div>{firstName}</div>
+				<div>{email}</div>
+				<div>{state}</div>
+				<div>{city}</div>
+			</Typography>,
 		}])}
 	</StyledWrapper>;
 };
