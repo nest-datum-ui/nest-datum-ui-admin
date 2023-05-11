@@ -18,6 +18,7 @@ import objHttpNotFound from './src/obj/httpNotFound.js';
 import objDateRange from './src/obj/dateRange.js';
 import str from './src/str';
 import strArr from './src/str/arr';
+import strObj from './src/str/obj';
 import strBool from './src/str/bool.js';
 import strDataTypeBool from './src/str/dataTypeBool.js';
 import strDate from './src/str/date.js';
@@ -65,6 +66,7 @@ export {
 	objDateRange,
 	str,
 	strArr,
+	strObj,
 	strBool,
 	strDataTypeBool,
 	strDate,

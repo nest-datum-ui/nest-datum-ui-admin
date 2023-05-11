@@ -5,6 +5,8 @@ import {
 	strUrl as utilsCheckStrUrl,
 	strFilled as utilsCheckStrFilled,
 	obj as utilsCheckObj,
+	objFilled as utilsCheckObjFilled,
+	arrFilled as utilsCheckArrFilled,
 	func as utilsCheckFunc,
 } from '@nest-datum-utils/check';
 import { 
@@ -55,6 +57,14 @@ export const fireFormCreate = (storeName, options = {}) => async (callback = () 
 					callback,
 				},
 			});
+		}
+		if (utilsCheckObjFilled(data['value'])
+			|| utilsCheckArrFilled(data['value'])) {
+			data['value'] = JSON.stringify(data['value']);
+		}
+		if (utilsCheckObjFilled(data['content'])
+			|| utilsCheckArrFilled(data['content'])) {
+			data['content'] = JSON.stringify(data['content']);
 		}
 		const request = await axios.post(utilsFormatUrlApiStr(options.apiUrl), data);
 				

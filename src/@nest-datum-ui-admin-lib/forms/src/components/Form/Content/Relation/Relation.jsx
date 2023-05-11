@@ -111,7 +111,7 @@ let Relation = ({ children, fieldContentId, ...props }) => {
 				entityId, 
 				fields: [{
 					name: 'fieldId',
-					required: true,
+					isRequired: true,
 					check: [ utilsCheckStrIdExists ],
 				}, {
 					name: 'value',

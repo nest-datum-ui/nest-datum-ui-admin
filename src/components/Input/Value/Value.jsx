@@ -10,9 +10,17 @@ import Store, {
 	selectorMainExtract,
 	actionApiFormProp, 
 } from '@nest-datum-ui/Store';
+import { strObj as utilsCheckStrObj } from '@nest-datum-utils/check';
+import { strToObj as utilsFormatStrToObj } from '@nest-datum-utils/format';
 import InputMixed from '@nest-datum-ui/Input/Mixed';
 
-let Value = ({ storeName: propStoreName, name, value, onChange, ...props }) => {
+let Value = ({ 
+	storeName: propStoreName, 
+	name, 
+	value, 
+	onChange, 
+	...props 
+}) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
 	const { 
@@ -57,6 +65,9 @@ let Value = ({ storeName: propStoreName, name, value, onChange, ...props }) => {
 				const newValue = (value || '');
 
 				if (newValue !== currentState) {
+					if (dataTypeId === 'happ-data-type-date-range' && utilsCheckStrObj(newValue)) {
+						return utilsFormatStrToObj(newValue);
+					}
 					return newValue;
 				}
 				return currentState;
