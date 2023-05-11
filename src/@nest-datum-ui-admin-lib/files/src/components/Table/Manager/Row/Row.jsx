@@ -17,6 +17,8 @@ import { func as utilsCheckFunc } from '@nest-datum-utils/check';
 import TypographyTable from 'components/Typography/Table';
 import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
 import StyledWrapper from './Styled/Wrapper.jsx';
+import FolderIcon from '@mui/icons-material/Folder';
+import FilesPaperPreview from '@nest-datum-ui-admin-lib/files/src/components/Paper/Preview'
 
 let Row = ({
 	querySource,
@@ -113,6 +115,7 @@ let Row = ({
 		name,
 	]);
 
+	let ifImg = { id, src: path }
 	return <StyledWrapper 
 		id={id} 
 		isDeleted={isDeleted} 
@@ -147,7 +150,7 @@ let Row = ({
 							: {}) }
 					isDeleted={isDeleted} 
 					variant="h6">
-					{name}
+					{(type === 'folder') ? <FolderIcon /> : <FilesPaperPreview value={ifImg} />} {name}
 				</TypographyTable>
 				<div />
 				<TypographyTable 

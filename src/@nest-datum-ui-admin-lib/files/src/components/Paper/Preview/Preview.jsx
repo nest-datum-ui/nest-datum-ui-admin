@@ -56,7 +56,10 @@ let Preview = ({ value, isDeleted, ...props }) => {
 	}, [
 		id,
 	]);
-
+	console.log("isImage",src)
+	console.log("isImage",value['src'])
+	console.log("isImage",path)
+	console.log("isImage",isImage)
 	return <StyledWrapper url={src ?? value['src']} isimage={Number(isImage)}>
 		{(() => {
 			switch (true) {
@@ -74,6 +77,16 @@ let Preview = ({ value, isDeleted, ...props }) => {
 						style={{
 							width: '100%',
 							height: '100%',
+						}}
+						color={isDeleted
+							? 'disabled'
+							: 'primary'} />;
+				case isImage:
+					return <span
+						style={{
+							width: '100px',
+							height: '70px',
+							paddingRight: '15px'
 						}}
 						color={isDeleted
 							? 'disabled'
