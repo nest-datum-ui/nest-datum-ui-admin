@@ -64,16 +64,20 @@ const reportList = {
 		id: 'main',
 		order: 1,
 	}, {
-		name: 'Status',
-		id: 'status',
+		name: 'Source',
+		id: 'source',
 		order: 2,
+	}, {
+		name: 'Job',
+		id: 'job',
+		order: 3,
 	}, {
 		name: 'User',
 		id: 'user',
-		order: 3,
+		order: 4,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

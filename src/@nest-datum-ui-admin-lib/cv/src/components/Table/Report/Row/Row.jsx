@@ -11,8 +11,7 @@ import StyledWrapper from './Styled/Wrapper.jsx';
 let Row = ({
 	id,
 	userId,
-	fileId,
-	sourceId,
+	contentId,
 	reportStatusId,
 	isDeleted,
 	createdAt,
@@ -26,27 +25,33 @@ let Row = ({
 				parentName,
 			}, 
 		},
-		sso: {
-			ssoUserList: {
-				apiFullUrl: ssoUserListApiUrl,
-			},
-		},
 		cv: {
 			cvReportStatusList: {
 				apiFullUrl: cvReportStatusListApiUrl,
 			},
 		},
-		// files: {
-		// 	filesManagerList: {
-		// 		filesApiUrl: filesManagerListApiUrl,
-		// 	},
-		// },
+		sso: {
+			ssoUserList: {
+				apiFullUrl: ssoUserListApiUrl,
+			},
+		},
+		forms: {
+			formsContentList: {
+				apiFullUrl: formsContentListApiUrl,
+			}
+		},
 	} = React.useContext(ContextProps);
-	const { [serviceName]: { [parentName]: { pageFullUrl } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[parentName]: { 
+				pageFullUrl, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 
 	return <StyledWrapper 
 		id={id} 
-		isDeleted={isDeleted}  
+		isDeleted={isDeleted} 
 		createdAt={createdAt} 
 		updatedAt={updatedAt}>
 		{([{ 
@@ -57,18 +62,20 @@ let Row = ({
 				{id}
 			</TypographyTable>, 
 		}, { 
-			children: <TypographyTable key={1}>
-				{fileId}
-			</TypographyTable>, 
-		}, { 
 			children: <TypographyFetch 
 				key={2} 
+				apiUrl={formsContentListApiUrl}>
+				{contentId}
+			</TypographyFetch>, 
+		}, { 
+			children: <TypographyFetch 
+				key={3} 
 				apiUrl={cvReportStatusListApiUrl}>
 				{reportStatusId}
 			</TypographyFetch>, 
 		}, { 
 			children: <TypographyFetch 
-				key={3}
+				key={4}
 				apiUrl={ssoUserListApiUrl} 
 				label="login">
 				{userId}

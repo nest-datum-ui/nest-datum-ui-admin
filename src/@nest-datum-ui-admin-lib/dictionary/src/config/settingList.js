@@ -4,7 +4,7 @@ import {
 } from '@nest-datum-ui/Store';
 
 const settingList = {
-	parentName: 'dictionaryetting',
+	parentName: 'dictionarySetting',
 	
 	id: 'dictionary-settings-list',
 	storeName: 'dictionary-settings-list',
@@ -65,7 +65,7 @@ const settingList = {
 		order: 1,
 	}, {
 		name: 'Data type',
-		id: 'dataType',
+		id: 'dictionary',
 		order: 2,
 	}, {
 		name: 'Value',
@@ -73,7 +73,7 @@ const settingList = {
 		order: 3,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 4,
 	}],

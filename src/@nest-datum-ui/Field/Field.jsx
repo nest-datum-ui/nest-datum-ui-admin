@@ -27,7 +27,13 @@ let FieldMemo = ({
 }) => {
 	const serviceName = React.useContext(ContextService);
 	const routeName = React.useContext(ContextRoute);
-	const { [serviceName]: { [routeName]: { storeName: contextStoreName } = {} } = {} } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[routeName]: { 
+				storeName: contextStoreName, 
+			} = {}, 
+		} = {}, 
+	} = React.useContext(ContextProps);
 	const storeName = formId ?? contextStoreName;
 	const [ valueMemo, setValueMemo ] = React.useState(() => propValue ?? propDefaultValue);
 	const loader = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'loader' ]));

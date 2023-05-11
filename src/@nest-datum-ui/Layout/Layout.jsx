@@ -29,7 +29,6 @@ let Layout = (props) => {
 	if (!getSnackbarHook('snackbar')) {
 		setSnackbarHook('snackbar', enqueueSnackbarMemo);
 	}
-
 	return <Outlet { ...props } />;
 };
 

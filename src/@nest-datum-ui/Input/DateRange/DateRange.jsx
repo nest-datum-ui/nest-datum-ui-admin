@@ -8,6 +8,7 @@ import Input from '../Input.jsx';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let DateRange = ({ 
+	componentName,
 	storeName, 
 	onChange, 
 	value, 
@@ -99,7 +100,10 @@ DateRange.defaultProps = {
 DateRange.propTypes = {
 	onChange: PropTypes.func,
 	value: PropTypes.object,
-	defaultValue: PropTypes.object,
+	defaultValue: PropTypes.oneOfType([
+		PropTypes.object,
+		PropTypes.string,
+	]),
 	startInputProps: PropTypes.object,
 	endInputProps: PropTypes.object,
 };

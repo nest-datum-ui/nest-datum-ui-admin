@@ -4,8 +4,8 @@ import {
 } from '@nest-datum-ui/Store';
 
 const postOptionRelationList = {
-	title: 'Posts',
-	subtitle: 'List of countries that own the current setting.',
+	title: 'Jobs',
+	subtitle: 'List of jobs that own the current setting.',
 	formName: 'jobsPostOptionRelationForm',
 
 	id: 'jobs-post-option-relations-list',
@@ -63,7 +63,7 @@ const postOptionRelationList = {
 		order: 1,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		order: 2,
 	}],
 };

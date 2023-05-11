@@ -17,12 +17,15 @@ import {
 } from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import TypographyFetch from '@nest-datum-ui/Typography/Fetch';
 import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
 import FormOptionValue from 'components/Form/Option/Value';
+import ListRelation from 'components/List/Relation';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
 import InputEnvKey from 'components/Input/EnvKey';
@@ -41,6 +44,7 @@ let Form = () => {
 		[serviceName]: { 
 			[routeName]: {
 				statusListName,
+				relationListName,
 				optionName,
 				optionFormName,
 				optionListName,
@@ -78,6 +82,9 @@ let Form = () => {
 	} = React.useContext(ContextProps);
 	const { 
 		[serviceName]: {
+			formsFieldList: {
+				apiFullUrl: relationApiUrl,
+			},
 			[optionRelationListFormName]: {
 				post: {
 					apiFullUrl: optionRelationListApiUrl,
@@ -113,6 +120,9 @@ let Form = () => {
 		optionRelationListEntityOptionRelation,
 		apiUrl,
 		optionRelationListApiUrl,
+	]);
+	const initialFilter = React.useMemo(() => ({ formId: entityId }), [
+		entityId,
 	]);
 
 	return <StyledWrapper
@@ -195,6 +205,23 @@ let Form = () => {
 						</ButtonPrimary>
 					</Grid>}
 			</Grid>
+			{utilsCheckStrIdExists(entityId) 
+				&& <ContextRoute.Provider value={relationListName}>
+					<Box py={2}>
+						<Divider />
+					</Box>
+					<ListRelation 
+						initialFilter={initialFilter}
+						Component={({ 
+							id, 
+							fieldId, 
+							isDeleted, 
+						}) => <TypographyFetch 
+							key={id ?? fieldId} 
+							apiUrl={relationApiUrl}>
+								{fieldId}
+							</TypographyFetch>} />
+				</ContextRoute.Provider>}
 		</Box>
 		<DialogDrop redirect />
 		<DialogDisable />

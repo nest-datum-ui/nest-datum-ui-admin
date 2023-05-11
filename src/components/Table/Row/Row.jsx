@@ -101,13 +101,13 @@ let Row = ({
 		onMenu,
 	]);
 	const averageWidth = 100 / rowColumns.length;
-	const firstCellWith = bulkDeletion
+	const defaultCellWith = bulkDeletion
 		? (rowColumns[0].width || averageWidth) - 1
 		: (rowColumns[0].width || averageWidth);
 	const lastCellWith = bulkDeletion
 		? (rowColumns[rowColumns.length - 1].width || averageWidth) - 1
 		: (rowColumns[rowColumns.length - 1].width || averageWidth);
-	const displayRowStory = rowColumns.findIndex((item) => (item['id'] === 'story')) >= 0;
+	const displayRowStory = rowColumns.findIndex((item) => (item['id'] === 'story' || item['id'] === 'createdAt')) >= 0;
 
 	return <StyledWrapper { ...props }>
 		{bulkDeletion 
@@ -123,7 +123,7 @@ let Row = ({
 				? item
 				: <TableCell 
 					key={index} 
-					sx={{ minWidth: `${firstCellWith}%` }} 
+					sx={{ minWidth: `${rowColumns[index]['width'] ?? defaultCellWith}%` }} 
 					{ ...(item.props || {}) }>
 					{item.children}
 				</TableCell>)

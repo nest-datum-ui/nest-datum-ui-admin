@@ -82,7 +82,7 @@ const userOptionList = {
 		order: 3,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

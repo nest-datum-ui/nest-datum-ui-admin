@@ -18,27 +18,27 @@ let Header = (props) => {
 	]);
 
 	return <StyledWrapper { ...props }>
-		<MenuItem>
+		<MenuItem disabled>
 			<ListItemText>
 				Account
 			</ListItemText>
 		</MenuItem>
-		<MenuItem>
+		<MenuItem disabled>
 			<ListItemText>
 				Language
 			</ListItemText>
 		</MenuItem>
-		<MenuItem>
+		<MenuItem disabled>
 			<ListItemText>
 				Clear cache
 			</ListItemText>
 		</MenuItem>
-		<MenuItem>
+		<MenuItem disabled>
 			<ListItemText>
 				Reload all services
 			</ListItemText>
 		</MenuItem>
-		<MenuItem>
+		<MenuItem disabled>
 			<ListItemText>
 				Rebuild frontend
 			</ListItemText>

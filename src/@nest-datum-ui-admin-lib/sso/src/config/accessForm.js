@@ -73,7 +73,7 @@ const accessForm = {
 				order: 1,
 			}, {
 				name: 'Story',
-				id: 'story',
+				id: 'createdAt',
 				order: 2,
 			}],
 

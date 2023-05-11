@@ -102,12 +102,25 @@ let SignUp = ({
 						Component={InputPassword}
 						form={id}
 						name="repeatedPassword"
+						label="Confirm password"
 						visibility
 						required />
 				</Box>
 				<ButtonPrimary type="submit" form={id} startIcon={<PersonIcon />}>
 					<b>Send</b>
 				</ButtonPrimary>
+				<Box pt={2}>
+					<ButtonLink to={process.env.ROUTE_SiGN_IN}>
+						<Typography component="div">
+							Sign in
+						</Typography>
+					</ButtonLink>
+					<ButtonLink to={process.env.ROUTE_RECOVERY}>
+						<Typography component="div">
+							Recovery
+						</Typography>
+					</ButtonLink>
+				</Box>
 			</React.Fragment>}
 	</StyledWrapper>;
 };

@@ -30,7 +30,7 @@ let Authed = ({ storeName, children }) => {
 
 	React.useEffect(() => {
 		if (autoLoginFlag === false) {
-			actionSsoRedirectToLogin(authFlag, pageFullUrl);
+			actionSsoRedirectToLogin(authFlag, pageFullUrl ?? process.env.ROUTE_SiGN_IN);
 		}
 	}, [
 		autoLoginFlag,

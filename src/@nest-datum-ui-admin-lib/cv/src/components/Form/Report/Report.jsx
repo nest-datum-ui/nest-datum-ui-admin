@@ -19,6 +19,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
+import FilesInputManager from '@nest-datum-ui-admin-lib/files/src/components/Input/Manager';
 import Select from 'components/Select';
 import InputId from 'components/Input/Id';
 import DialogDrop from 'components/Dialog/Drop';
@@ -37,9 +38,11 @@ let Report = () => {
 				storeName, 
 				apiFullUrl: apiUrl,  
 			},
-			cvReportList: {
-				storeName: reportStoreName, 
-				apiFullUrl: reportApiUrl,
+		},
+		forms: {
+			formsFormList: {
+				storeName: formsFormListStoreName, 
+				apiFullUrl: formsFormListApiUrl,
 			},
 		},
 	} = React.useContext(ContextProps);
@@ -68,6 +71,14 @@ let Report = () => {
 		apiUrl,
 		entityId,
 	]);
+	const systemInitialFilter = React.useMemo(() => ({
+		id: [ 
+			'$In', 
+			'files-system-cv', 
+			'files-system-cv-lensa', 
+		],
+	}), [
+	]);
 
 	return <StyledWrapper
 		storeName={storeName} 
@@ -85,8 +96,8 @@ let Report = () => {
 			<Field
 				Component={React.memo((props) => <Select 
 					{ ...props }
-					storeName={reportStoreName}
-					apiUrl={reportApiUrl} />)}
+					storeName={formsFormListStoreName}
+					apiUrl={formsFormListApiUrl} />)}
 				form={id}
 				itemKey="name"
 				name="formId"
@@ -103,6 +114,17 @@ let Report = () => {
 				itemKey="name"
 				name="reportStatusId"
 				label="Status"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={(props) => <FilesInputManager 
+					{ ...props } 
+					systemInitialFilter={systemInitialFilter}
+					allowSelectSystem={true} />}
+				form={id}
+				name="fileId"
+				label="Cv file"
 				required />
 		</Box>
 		<Box pb={2}>

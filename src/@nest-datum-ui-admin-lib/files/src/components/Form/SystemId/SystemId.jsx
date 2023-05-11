@@ -13,7 +13,7 @@ import {
 import Field from '@nest-datum-ui/Field';
 import Select from 'components/Select';
 
-let SystemId = ({ querySource }) => {
+let SystemId = ({ querySource, initialFilter }) => {
 	const { 
 		files: { 
 			filesManagerList: {
@@ -51,12 +51,16 @@ let SystemId = ({ querySource }) => {
 		listStoreName,
 		querySource,
 	]);
+	const initialFilterMemo = React.useMemo(() => initialFilter, [
+		initialFilter,
+	]);
 
 	return <Field
 		Component={React.memo((props) => <Select 
 			{ ...props }
 			storeName={storeName}
-			apiUrl={apiUrl} />)}
+			apiUrl={apiUrl}
+			filter={initialFilterMemo} />)}
 		form={storeName}
 		onChange={onChange}
 		itemKey="name"

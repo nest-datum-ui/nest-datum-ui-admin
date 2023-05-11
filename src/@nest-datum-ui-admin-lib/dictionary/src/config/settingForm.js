@@ -1,6 +1,6 @@
 
 const settingForm = {
-	parentName: 'dictionaryetting',
+	parentName: 'dictionarySetting',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Item',

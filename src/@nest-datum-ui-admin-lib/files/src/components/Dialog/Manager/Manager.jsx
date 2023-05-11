@@ -10,6 +10,7 @@ import ListManager from '../../../components/List/Manager';
 let Manager = ({ 
 	id, 
 	allowSelectSystem,
+	systemInitialFilter,
 	systemId,
 	parentId,
 	onCheck,
@@ -26,6 +27,7 @@ let Manager = ({
 					bulkDeletion={false}
 					querySource="store"
 					allowSelectSystem={allowSelectSystem}
+					systemInitialFilter={systemInitialFilter}
 					systemId={systemId}
 					parentId={parentId}
 					onCheck={onCheck}

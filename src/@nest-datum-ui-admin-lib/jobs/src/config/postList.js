@@ -3,7 +3,7 @@ import {
 	actionApiFormRestore, 
 } from '@nest-datum-ui/Store';
 
-const jobList = {
+const postList = {
 	parentName: 'jobsPost',
 	orderInHeaderTabMenu: 2,
 	id: 'jobs-post-list',
@@ -68,10 +68,10 @@ const jobList = {
 		order: 2,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],
 };
 
-export default jobList;
+export default postList;

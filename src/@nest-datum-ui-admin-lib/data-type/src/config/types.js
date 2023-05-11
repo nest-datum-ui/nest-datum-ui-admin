@@ -83,7 +83,7 @@ const config = {
 			order: 3,
 		}, {
 			name: 'Story',
-			id: 'story',
+			id: 'createdAt',
 			sortable: true,
 			order: 5,
 		}],
@@ -196,7 +196,7 @@ const config = {
 				order: 3,
 			}, {
 				name: 'Story',
-				id: 'story',
+				id: 'createdAt',
 				sortable: true,
 				order: 5,
 			}],
@@ -283,7 +283,7 @@ const config = {
 						order: 1,
 					}, {
 						name: 'Story',
-						id: 'story',
+						id: 'createdAt',
 						order: 2,
 					}],
 
@@ -386,7 +386,7 @@ const config = {
 				order: 2,
 			}, {
 				name: 'Story',
-				id: 'story',
+				id: 'createdAt',
 				sortable: true,
 				order: 5,
 			}],

@@ -1,10 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ContextProps } from '@nest-datum-ui/Context';
-import { 
-	hookUrlNavigate,
-	selectorMainExtract, 
-} from '@nest-datum-ui/Store';
+import { selectorMainExtract } from '@nest-datum-ui/Store';
 import { actionSsoVerify } from '../../Store';
 import Typography from '@mui/material/Typography';
 import Progress from '@nest-datum-ui/Progress';
@@ -29,7 +26,7 @@ let Verify = (props) => {
 	React.useEffect(() => {
 		(async () => {
 			if (await actionSsoVerify(storeName, apiFullUrl, process.env.ROUTE_SiGN_IN)) {
-				setTimeout(() => hookUrlNavigate(pageFullUrl), 2000);
+				setTimeout(() => (window.location.href = pageFullUrl), 2000);
 			}
 		})();
 	}, [

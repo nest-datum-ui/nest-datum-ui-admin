@@ -69,7 +69,7 @@ const reportStatusList = {
 		order: 2,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

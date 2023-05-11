@@ -19,8 +19,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Field from '@nest-datum-ui/Field';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
-import Select from 'components/Select';
+import InputText from '@nest-datum-ui/Input/Text';
+import InputEmail from '@nest-datum-ui/Input/Email';
 import InputId from 'components/Input/Id';
+import InputName from 'components/Input/Name';
 import DialogDrop from 'components/Dialog/Drop';
 import DialogDisable from 'components/Dialog/Disable';
 import StyledWrapper from './Styled/Wrapper.jsx';
@@ -32,27 +34,13 @@ let Report = () => {
 	const { 
 		[serviceName]: {
 			[routeName]: { 
-				statusListName,
 				id, 
 				storeName, 
 				apiFullUrl: apiUrl,  
 			},
-			lensaReportList: {
-				storeName: reportStoreName, 
-				apiFullUrl: reportApiUrl,
-			},
 		},
 	} = React.useContext(ContextProps);
-	const { 
-		[serviceName]: { 
-			[statusListName]: { 
-				storeName: statusStoreName, 
-				apiFullUrl: statusApiUrl,
-			}, 
-		}, 
-	} = React.useContext(ContextProps);
 	const { entityId } = useParams();
-	const isNotDelete = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'isNotDelete' ]));
 	const isDeleted = useSelector(selectorMainExtract([ 'api', 'form', storeName, 'isDeleted' ]));
 	const onSubmitWrapper = React.useCallback((e) => handlerSubmit(e, storeName, apiUrl, entityId), [
 		storeName,
@@ -83,26 +71,90 @@ let Report = () => {
 		</Box>
 		<Box py={1}>
 			<Field
-				Component={React.memo((props) => <Select 
-					{ ...props }
-					storeName={reportStoreName}
-					apiUrl={reportApiUrl} />)}
+				Component={InputId}
 				form={id}
-				itemKey="name"
-				name="formId"
-				label="Form"
+				name="lensaId"
+				label="Lensa id"
 				required />
 		</Box>
 		<Box py={1}>
 			<Field
-				Component={React.memo((props) => <Select 
-					{ ...props }
-					storeName={statusStoreName}
-					apiUrl={statusApiUrl} />)}
+				Component={InputId}
 				form={id}
-				itemKey="name"
-				name="reportStatusId"
-				label="Status"
+				name="targetId"
+				label="Target id"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="source"
+				label="Source"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="candidateSource"
+				label="Candidate source"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="customerCategory"
+				label="Customer category"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="language"
+				label="Language"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="jobTitle"
+				label="Job title"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputName}
+				form={id}
+				name="firstName"
+				label="First name"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputEmail}
+				form={id}
+				name="email"
+				label="Email"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="state"
+				label="State"
+				required />
+		</Box>
+		<Box py={1}>
+			<Field
+				Component={InputText}
+				form={id}
+				name="city"
+				label="City"
 				required />
 		</Box>
 		<Box pb={2}>
@@ -114,7 +166,7 @@ let Report = () => {
 						Save
 					</ButtonPrimary>
 				</Grid>
-				{!isNotDelete && isDeleted
+				{isDeleted
 					&& <Grid
 						item
 						xs={false}>
@@ -122,7 +174,7 @@ let Report = () => {
 							Restore
 						</ButtonPrimary>
 					</Grid>}
-				{!isNotDelete && utilsCheckStrId(entityId)
+				{utilsCheckStrId(entityId)
 					&& <Grid
 						item
 						xs={false}>

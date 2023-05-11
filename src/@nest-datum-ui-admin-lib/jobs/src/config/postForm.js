@@ -1,12 +1,13 @@
 
-const jobForm = {
+const postForm = {
 	parentName: 'jobsPost',
 	optionName: 'jobsPostOption',
 	optionListName: 'jobsPostOptionList',
 	optionFormName: 'jobsPostOptionForm',
 	statusName: 'jobsPostStatus',
 	statusListName: 'jobsPostStatusList',
-	relationListName: 'jobsPostFormRelationList',
+	relationListName: 'jobsPostOptionRelationList',
+	relationContentListName: 'jobsPostContentRelationList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Posts',
@@ -36,4 +37,4 @@ const jobForm = {
 	},
 };
 
-export default jobForm;
+export default postForm;

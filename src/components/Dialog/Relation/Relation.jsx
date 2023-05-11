@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Dialog from '@nest-datum-ui/Dialog';
 import FormRelation from 'components/Form/Relation';
 
-
 let Relation = (props) => {
 	return <Dialog { ...props }>
 		<FormRelation />

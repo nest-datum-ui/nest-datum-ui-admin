@@ -4,15 +4,15 @@ import {
 } from '@nest-datum-ui/Store';
 
 const formRelationList = {
-	title: 'Related data',
+	title: 'Fields',
 	subtitle: 'Intermediate data between the main model and current option.',
-	formName: 'formsFieldOptionRelationForm',
+	formName: 'formsFieldFormRelationForm',
 	orderInHeaderTabMenu: 2,
-	id: 'forms-field-option-relations-list',
-	storeName: 'forms-field-option-relations-list',
+	id: 'forms-field-form-relations-list',
+	storeName: 'forms-field-form-relations-list',
 	columnName: 'fieldId',
 	apiMainModelUrl: `${process.env.URL_API_FORMS}/field`,
-	apiUrl: 'field/option',
+	apiUrl: 'form/field',
 	initialPage: 1,
 	initialLimit: 20,
 	bulkDeletion: true,
@@ -59,12 +59,12 @@ const formRelationList = {
 		id: 'id',
 		order: 0,
 	}, {
-		name: 'field',
+		name: 'Field',
 		id: 'fieldId',
 		order: 1,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		order: 2,
 	}],
 };

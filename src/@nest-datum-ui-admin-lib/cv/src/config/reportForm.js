@@ -1,6 +1,8 @@
 
 const reportForm = {
 	parentName: 'cvReport',
+	statusName: 'cvReportStatus',
+	statusListName: 'cvReportStatusList',
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'report',

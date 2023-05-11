@@ -43,7 +43,7 @@ const typeStatusList = {
 		},
 		create: {
 			text: 'Create',
-			to: 'countries/statuses/0',
+			to: 'types/statuses/0',
 			order: 3,
 			variant: 'contained',
 			color: 'secondary',
@@ -69,7 +69,7 @@ const typeStatusList = {
 		order: 2,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

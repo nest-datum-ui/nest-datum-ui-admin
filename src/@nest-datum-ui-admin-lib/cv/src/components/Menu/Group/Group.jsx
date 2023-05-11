@@ -20,43 +20,50 @@ let Group = (props) => {
 
 	return (pathname.indexOf(cvSetting.pageFullUrl) === -1)
 		&& <StyledWrapper { ...props }>
-			{isAccessesGroup
-				? ([{
-					text: 'Data',
-					check: [{
-						flag: (pathname.length > cvAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: cvAccess.pageFullUrl + search,
-					}],
-				}, {
-					text: 'Options',
-					check: [{
-						flag: !isAccessesGroupOptions,
-						to: `${cvAccess.pageFullUrl}/options${search}`,
-					}],
-				}, {
-					text: 'Statuses',
-					check: [{
-						flag: !isAccessesGroupStatuses,
-						to: `${cvAccess.pageFullUrl}/statuses${search}`,
-					}],
-				}])
-				: ([{
-					text: 'Data',
-					check: isReportGroup
+			{([{
+				text: 'Data',
+				check: isReportGroup
+					? [{
+						flag: (pathname.length > cvReport.pageFullUrl.length && isReportGroupStatuses),
+						to: cvReport.pageFullUrl + search,
+					}]
+					: (isAccessesGroup
 						? [{
-							flag: (pathname.length > cvReport.pageFullUrl.length),
-							to: cvReport.pageFullUrl + search,
+							flag: (pathname.length > cvAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
+							to: cvAccess.pageFullUrl + search,
 						}]
-						: [],
-				}, {
-					text: 'Statuses',
-					check: isReportGroup
+						: []),
+			}, 
+			...isReportGroup
+				? []
+				: [{
+					text: 'Options',
+					check: (isAccessesGroup
 						? [{
+							flag: !isAccessesGroupOptions,
+							to: `${cvAccess.pageFullUrl}/options${search}`,
+						}]
+						: []),
+				}], 
+			{
+				text: 'Statuses',
+				check: isReportGroup
+					? [{
+						flag: !isReportGroupStatuses,
+						to: `${cvReport.pageFullUrl}/statuses`,
+					}]
+					: (isAccessesGroup
+						? [{
+<<<<<<< HEAD
 							flag: !isReportGroupStatuses,
 							to: `${cvReport.pageFullUrl}/statuses${search}`,
+=======
+							flag: !isAccessesGroupStatuses,
+							to: `${cvAccess.pageFullUrl}/statuses`,
+>>>>>>> 55dc49e07228eb7b65aaa6caded572c8a22c731b
 						}]
-						: [],
-				}])}
+						: []),
+			}])}
 		</StyledWrapper>;
 };
 

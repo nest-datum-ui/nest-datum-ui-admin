@@ -34,8 +34,8 @@ let Table = ({ children, querySource, ...props }) => {
 	const dataLength = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'data', 'length' ]));
 	const page = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'page' ]));
 	const limit = useSelector(selectorMainExtract([ 'api', 'list', storeName, 'limit' ]));
-	const onChangePage = React.useCallback((e, newPage) => actionApiListProp(storeName, 'loader', true)(() => (newPage !== page)
-		&& (querySource === 'url')
+	const onChangePage = React.useCallback((e, newPage) => (newPage !== page)
+		&& actionApiListProp(storeName, 'loader', true)(() => (querySource === 'url')
 			? actionUrlUpdate('page', newPage)
 			: actionApiListProp(storeName, 'page', newPage)()), [
 		storeName,

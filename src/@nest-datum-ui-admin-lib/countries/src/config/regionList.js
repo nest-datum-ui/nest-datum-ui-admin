@@ -43,7 +43,7 @@ const regionList = {
 		},
 		create: {
 			text: 'Create',
-			to: 'countries/0',
+			to: 'regions/0',
 			order: 3,
 			variant: 'contained',
 			color: 'secondary',
@@ -68,7 +68,7 @@ const regionList = {
 		order: 2,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

@@ -73,7 +73,7 @@ const userList = {
 		order: 3,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 4,
 	}],

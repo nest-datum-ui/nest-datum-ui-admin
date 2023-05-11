@@ -17,9 +17,6 @@ import lensaAccessStatusList from './accessStatusList.js';
 import lensaReport from './report.js';
 import lensaReportList from './reportList.js';
 import lensaReportForm from './reportForm.js';
-import lensaReportStatus from './reportStatus.js';
-import lensaReportStatusForm from './reportStatusForm.js';
-import lensaReportStatusList from './reportStatusList.js';
 
 const config = {
 	name: 'lensa',
@@ -28,7 +25,7 @@ const config = {
 	pageBaseUrl: 'lensa',
 	pageInitialUrl: 'reports',
 	apiBaseUrl: process.env.URL_API_LENSA,
-	title: 'lensa',
+	title: 'Lensa',
 	
 	lensaSetting,
 	lensaSettingForm,
@@ -49,9 +46,6 @@ const config = {
 	lensaReport,
 	lensaReportList,
 	lensaReportForm,
-	lensaReportStatus,
-	lensaReportStatusForm,
-	lensaReportStatusList,
 };
 
 export default config;

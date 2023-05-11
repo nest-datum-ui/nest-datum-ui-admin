@@ -52,7 +52,7 @@ let TablePagination = ({
 									{headRowCells.map((item) => item.sortable
 										? <TableCellSort 
 											key={item.id}
-											name={item.name}
+											name={item.id}
 											onChange={item.onSort}>
 											{item.name}
 										</TableCellSort>

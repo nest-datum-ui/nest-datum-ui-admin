@@ -75,7 +75,7 @@ const managerList = {
 		order: 3,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		order: 5,
 	}],
 };

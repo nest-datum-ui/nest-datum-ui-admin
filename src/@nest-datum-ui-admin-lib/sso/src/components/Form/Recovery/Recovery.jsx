@@ -10,6 +10,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Field from '@nest-datum-ui/Field';
 import InputEmail from '@nest-datum-ui/Input/Email';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
+import ButtonLink from '@nest-datum-ui/Button/Link';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Recovery = ({
@@ -47,6 +48,18 @@ let Recovery = ({
 				<ButtonPrimary type="submit" form={id} startIcon={<SendIcon />}>
 					<b>Send</b>
 				</ButtonPrimary>
+				<Box pt={2}>
+					<ButtonLink to={process.env.ROUTE_SiGN_IN}>
+						<Typography component="div">
+							Sign in
+						</Typography>
+					</ButtonLink>
+					<ButtonLink to={process.env.ROUTE_SiGN_UP}>
+						<Typography component="div">
+							Sign up
+						</Typography>
+					</ButtonLink>
+				</Box>
 			</React.Fragment>}
 	</StyledWrapper>;
 };

@@ -124,34 +124,35 @@ let User = () => {
 	React.useEffect(() => {
 		if (utilsCheckStrIdExists(entityId) && ready === undefined) {
 			setTimeout(() => {
-				actionApiListGet(ssoUserListStoreName, {
-					apiUrl: ssoUserListApiUrl,
+				actionApiListGet(optionListStoreName, {
+					apiUrl: optionListApiUrl,
 					filter: {
-						userUserOptions: {
-							userId: entityId,
-						},
+						isDeleted: false,
 					},
-				})(({ data: contentData = [] }) => {
-					if (contentData.length > 0) {
-						actionApiListGet(optionListStoreName, {
-							apiUrl: optionListApiUrl,
-							filter: {
-								isDeleted: false,
+				})(({ data: optionsData = [] }) => {
+					actionApiListGet(ssoUserListStoreName, {
+						apiUrl: ssoUserListApiUrl,
+						filter: {
+							userUserOptions: {
+								userId: entityId,
 							},
-						})(({ data: optionsData = [] }) => {
+						},
+					})(({ data: contentData = [] }) => {
+						if (contentData.length > 0) {
 							let i = 0;
 
 							while (i < optionsData.length) {
 								const optionsDataItem = optionsData[i];
 								const id = optionsDataItem['id'];
 
-								if (!contentData[0]['userUserOptions'].find((item) => item['userOptionId'] === optionsDataItem['id'])) {
+								if (!([ ...contentData[0]['userUserOptions'] ]).find((item) => item['userOptionId'] === optionsDataItem['id'])) {
 									contentData[0]['userUserOptions'] = contentData[0]['userUserOptions'] ?? [];
 									contentData[0]['userUserOptions'].push({
 										id: uuidv4(),
 										userId: optionsDataItem['userId'],
 										userOptionId: optionsDataItem['id'],
 										content: '',
+										parentId: '',
 									});
 								}
 								optionsData[i]['userUserOptions'] = [{
@@ -175,8 +176,8 @@ let User = () => {
 									ready: true,
 								})();
 							}
-						});
-					}
+						}
+					});
 				});
 			}, 1000);
 		}

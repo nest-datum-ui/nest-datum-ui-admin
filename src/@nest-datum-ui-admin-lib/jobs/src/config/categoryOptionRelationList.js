@@ -4,8 +4,8 @@ import {
 } from '@nest-datum-ui/Store';
 
 const categoryOptionRelationList = {
-	title: 'Categories',
-	subtitle: 'List of categories that own the current setting.',
+	title: 'Jobs',
+	subtitle: 'List of jobs that own the current setting.',
 	formName: 'jobsCategoryOptionRelationForm',
 
 	id: 'jobs-category-option-relations-list',
@@ -63,7 +63,7 @@ const categoryOptionRelationList = {
 		order: 1,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		order: 2,
 	}],
 };

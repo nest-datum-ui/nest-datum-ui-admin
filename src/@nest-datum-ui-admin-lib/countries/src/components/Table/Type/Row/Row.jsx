@@ -33,7 +33,13 @@ let Row = ({
 			},
 		},
 	} = React.useContext(ContextProps);
-	const { [serviceName]: { [parentName]: { pageFullUrl } } } = React.useContext(ContextProps);
+	const { 
+		[serviceName]: { 
+			[parentName]: { 
+				pageFullUrl, 
+			}, 
+		}, 
+	} = React.useContext(ContextProps);
 
 	return <StyledWrapper 
 		id={id} 
@@ -66,9 +72,9 @@ let Row = ({
 			</React.Fragment>, 
 		}, { 
 			children: <TypographyFetch 
-				key={2} 
-				apiUrl
-				typeId={countriesTypeStatusListApiUrl}>
+				key={2}
+				apiUrl={countriesTypeStatusListApiUrl} 
+				label="name">
 				{typeStatusId}
 			</TypographyFetch>, 
 		}])}

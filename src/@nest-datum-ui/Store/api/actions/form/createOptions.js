@@ -7,6 +7,7 @@ import {
 	obj as utilsCheckObj,
 	arr as utilsCheckArr,
 	arrFilled as utilsCheckArrFilled,
+	objFilled as utilsCheckObjFilled,
 } from '@nest-datum-utils/check';
 import { httpErrorMessage as utilsFormatHttpErrorMessage } from '@nest-datum-utils/format';
 import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
@@ -108,6 +109,10 @@ export const fireFormCreateOptions = (storeName, options = {}) => async (callbac
 							}
 							dataItemValue['content'] = ((form[entityOptionId] || {})[dataItemValue.id] ?? dataItemValue['content']) || (form[options.formStoreName] || {})[dataItemValue.id];
 
+							if (utilsCheckObjFilled(dataItemValue['content'])
+								|| utilsCheckArrFilled(dataItemValue['content'])) {
+								dataItemValue['content'] = JSON.stringify(dataItemValue['content']);
+							}
 							collector.push({
 								entityOptionId,
 								entityId,

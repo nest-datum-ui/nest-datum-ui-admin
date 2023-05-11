@@ -10,20 +10,20 @@ let Group = (props) => {
 			jobsSetting,
 			jobsPost,
 			jobsCategory,
-			jobsTag,
+			jobsCompany,
 		}, 
 	} = React.useContext(ContextProps);
 
 	const { pathname, search } = useLocation();
-	const isJobGroup = pathname.indexOf(jobsPost.pageFullUrl) === 0;
-	const isJobGroupOptions = pathname.indexOf(`${jobsPost.pageFullUrl}/options`) === 0;
-	const isJobGroupStatuses = pathname.indexOf(`${jobsPost.pageFullUrl}/statuses`) === 0;
+	const isPostGroup = pathname.indexOf(jobsPost.pageFullUrl) === 0;
+	const isPostGroupOptions = pathname.indexOf(`${jobsPost.pageFullUrl}/options`) === 0;
+	const isPostGroupStatuses = pathname.indexOf(`${jobsPost.pageFullUrl}/statuses`) === 0;
 	const isCategoryGroup = pathname.indexOf(jobsCategory.pageFullUrl) === 0;
 	const isCategoryGroupOptions = pathname.indexOf(`${jobsCategory.pageFullUrl}/options`) === 0;
 	const isCategoryGroupStatuses = pathname.indexOf(`${jobsCategory.pageFullUrl}/statuses`) === 0;
-	const isTagGroup = pathname.indexOf(jobsTag.pageFullUrl) === 0;
-	const isTagGroupOptions = pathname.indexOf(`${jobsTag.pageFullUrl}/options`) === 0;
-	const isTagGroupStatuses = pathname.indexOf(`${jobsTag.pageFullUrl}/statuses`) === 0;
+	const isCompanyGroup = pathname.indexOf(jobsCompany.pageFullUrl) === 0;
+	const isCompanyGroupOptions = pathname.indexOf(`${jobsCompany.pageFullUrl}/options`) === 0;
+	const isCompanyGroupStatuses = pathname.indexOf(`${jobsCompany.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(jobsAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${jobsAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${jobsAccess.pageFullUrl}/statuses`) === 0;
@@ -32,20 +32,20 @@ let Group = (props) => {
 		&& <StyledWrapper { ...props }>
 			{([{
 				text: 'Data',
-				check: isJobGroup
+				check: isPostGroup
 					? [{
-						flag: (pathname.length > jobsPost.pageFullUrl.length && (isJobGroupOptions || isJobGroupStatuses)),
+						flag: (pathname.length > jobsPost.pageFullUrl.length && (isPostGroupOptions || isPostGroupStatuses)),
 						to: jobsPost.pageFullUrl + search,
 					}]
 					: (isCategoryGroup
 						? [{
-							flag: (pathname.length > jobsPost.pageFullUrl.length && (isCategoryGroupOptions || isCategoryGroupStatuses)),
+							flag: (pathname.length > jobsCategory.pageFullUrl.length && (isCategoryGroupOptions || isCategoryGroupStatuses)),
 							to: jobsCategory.pageFullUrl + search,
 						}]
-						: (isTagGroup
+						: (isCompanyGroup
 							? [{
-								flag: (pathname.length > jobsPost.pageFullUrl.length && (isTagGroupOptions || isTagGroupStatuses)),
-								to: jobsTag.pageFullUrl,
+								flag: (pathname.length > jobsCompany.pageFullUrl.length && (isCompanyGroupOptions || isCompanyGroupStatuses)),
+								to: jobsCompany.pageFullUrl,
 							}]
 							: (isAccessesGroup
 								? [{
@@ -55,9 +55,9 @@ let Group = (props) => {
 								: []))),
 			}, {
 				text: 'Options',
-				check: isJobGroup
+				check: isPostGroup
 					? [{
-						flag: !isJobGroupOptions,
+						flag: !isPostGroupOptions,
 						to: `${jobsPost.pageFullUrl}/options${search}`,
 					}]
 					: (isCategoryGroup
@@ -65,10 +65,10 @@ let Group = (props) => {
 							flag: !isCategoryGroupOptions,
 							to: `${jobsCategory.pageFullUrl}/options${search}`,
 						}]
-						: (isTagGroup
+						: (isCompanyGroup
 							? [{
-								flag: !isTagGroupOptions,
-								to: `${jobsTag.pageFullUrl}/options`,
+								flag: !isCompanyGroupOptions,
+								to: `${jobsCompany.pageFullUrl}/options`,
 							}]
 							: (isAccessesGroup
 								? [{
@@ -78,9 +78,9 @@ let Group = (props) => {
 								: []))),
 			}, {
 				text: 'Statuses',
-				check: isJobGroup
+				check: isPostGroup
 					? [{
-						flag: !isJobGroupStatuses,
+						flag: !isPostGroupStatuses,
 						to: `${jobsPost.pageFullUrl}/statuses${search}`,
 					}]
 					: (isCategoryGroup
@@ -88,10 +88,10 @@ let Group = (props) => {
 							flag: !isCategoryGroupStatuses,
 							to: `${jobsCategory.pageFullUrl}/statuses${search}`,
 						}]
-						: (isTagGroup
+						: (isCompanyGroup
 							? [{
-								flag: !isTagGroupStatuses,
-								to: `${jobsTag.pageFullUrl}/statuses`,
+								flag: !isCompanyGroupStatuses,
+								to: `${jobsCompany.pageFullUrl}/statuses`,
 							}]
 							: (isAccessesGroup
 								? [{
@@ -105,8 +105,6 @@ let Group = (props) => {
 
 Group = React.memo(Group);
 Group.defaultProps = {
-};
-Group.propTypes = {
 };
 
 export default Group;

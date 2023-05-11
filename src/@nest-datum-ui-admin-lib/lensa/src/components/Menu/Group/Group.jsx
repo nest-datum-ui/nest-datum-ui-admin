@@ -13,50 +13,41 @@ let Group = (props) => {
 	} = React.useContext(ContextProps);
 	const { pathname, search } = useLocation();
 	const isReportGroup = pathname.indexOf(lensaReport.pageFullUrl) === 0;
-	const isReportGroupStatuses = pathname.indexOf(`${lensaReport.pageFullUrl}/statuses`) === 0;
 	const isAccessesGroup = pathname.indexOf(lensaAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${lensaAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${lensaAccess.pageFullUrl}/statuses`) === 0;
 
 	return (pathname.indexOf(lensaSetting.pageFullUrl) === -1)
 		&& <StyledWrapper { ...props }>
-			{isAccessesGroup
-				? ([{
-					text: 'Data',
-					check: [{
-						flag: (pathname.length > lensaAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: lensaAccess.pageFullUrl + search,
-					}],
-				}, {
-					text: 'Options',
-					check: [{
-						flag: !isAccessesGroupOptions,
-						to: `${lensaAccess.pageFullUrl}/options${search}`,
-					}],
-				}, {
-					text: 'Statuses',
-					check: [{
-						flag: !isAccessesGroupStatuses,
-						to: `${lensaAccess.pageFullUrl}/statuses${search}`,
-					}],
-				}])
-				: ([{
-					text: 'Data',
-					check: isReportGroup
-						? [{
-							flag: (pathname.length > lensaReport.pageFullUrl.length),
-							to: lensaReport.pageFullUrl + search,
-						}]
-						: [],
-				}, {
-					text: 'Statuses',
-					check: isReportGroup
-						? [{
-							flag: !isReportGroupStatuses,
-							to: `${lensaReport.pageFullUrl}/statuses${search}`,
-						}]
-						: [],
-				}])}
+			{([
+				...isReportGroup
+					? []
+					: [{
+						text: 'Data',
+						check: isAccessesGroup
+							? [{
+								flag: (pathname.length > lensaAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
+								to: lensaAccess.pageFullUrl + search,
+							}]
+							: [],
+					}, {
+						text: 'Options',
+						check: (isAccessesGroup
+							? [{
+								flag: !isAccessesGroupOptions,
+								to: `${lensaAccess.pageFullUrl}/options${search}`,
+							}]
+							: []),
+					}, {
+						text: 'Statuses',
+						check: isAccessesGroup
+							? [{
+								flag: !isAccessesGroupStatuses,
+								to: `${lensaAccess.pageFullUrl}/statuses${search}`,
+							}]
+							: [],
+					}], 
+			])}
 		</StyledWrapper>;
 };
 

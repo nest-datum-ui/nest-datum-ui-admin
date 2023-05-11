@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
 	strPassword as utilsCheckStrPassword,
 	strUserName as utilsCheckStrUserName,
+	strUserLogin as utilsCheckStrUserLogin,
 	strEmail as utilsCheckStrEmail,
 } from '@nest-datum-utils/check';
 import { httpErrorMessage as utilsFormatHttpErrorMessage } from '@nest-datum-utils/format';
@@ -11,14 +12,14 @@ import {
 	actionApiFormProp,
 } from '@nest-datum-ui/Store';
 
-export const fireRegister = async (storeName, apiUrl) => {
+export const fireRegister = (storeName, apiUrl) => async (callback = () => {}) => {
 	try {
 		actionApiFormProp(storeName, 'loader', true)();
 
 		const validatedData = await utilsValidateStore(storeName, {
 			login: {
 				text: 'Login is not valid.',
-				check: [ utilsCheckStrUserName ],
+				check: [ utilsCheckStrUserLogin ],
 				isRequired: true,
 			},
 			email: {
@@ -45,7 +46,9 @@ export const fireRegister = async (storeName, apiUrl) => {
 				text: 'Passwords do not match.',
 				check: [
 					utilsCheckStrPassword,
-					(value, name, data) => value === data['password'],
+					(value, name, data) => {
+						return value === data['password'];
+					},
 				],
 				isRequired: true,
 			},

@@ -30,6 +30,7 @@ import FormSystemId from '../../Form/SystemId';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Manager = ({
+	systemInitialFilter,
 	systemId,
 	parentId,
 	allowSelectSystem,
@@ -206,7 +207,7 @@ let Manager = ({
 	return <React.Fragment>
 		{allowSelectSystem
 			&& <Box maxWidth="180px">
-				<FormSystemId querySource={querySource} />
+				<FormSystemId querySource={querySource} initialFilter={systemInitialFilter} />
 			</Box>}
 		{(systemId && parentId)
 			? <StyledWrapper 
@@ -243,6 +244,7 @@ let Manager = ({
 
 let Store = ({ 
 	systemId: propsSystemId, 
+	allowSelectSystem,
 	...props 
 }) => {
 	const serviceName = React.useContext(ContextService);
@@ -258,13 +260,17 @@ let Store = ({
 
 	return <Manager
 		{ ...props }
-		systemId={propsSystemId ?? systemId}
+		allowSelectSystem={allowSelectSystem}
+		systemId={allowSelectSystem
+			? (systemId ?? propsSystemId)
+			: (propsSystemId ?? systemId)}
 		parentId={parentId}
 		querySource="store" />;
 };
 
 let Url = ({ 
 	systemId: propsSystemId, 
+	allowSelectSystem,
 	...props 
 }) => {
 	const { search } = useLocation();
@@ -282,7 +288,10 @@ let Url = ({
 
 	return <Manager
 		{ ...props }
-		systemId={propsSystemId ?? systemId}
+		allowSelectSystem={allowSelectSystem}
+		systemId={allowSelectSystem
+			? (systemId ?? propsSystemId)
+			: (propsSystemId ?? systemId)}
 		parentId={parentId}
 		filterWrapper={filterWrapper}
 		querySource="url" />;

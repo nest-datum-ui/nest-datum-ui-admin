@@ -1,4 +1,5 @@
 import strToObj from './src/strToObj.js';
+import strPlaceholder from './src/strPlaceholder.js';
 import entityNameByRelation from './src/entityNameByRelation.js';
 import formData from './src/formData.js';
 import formDataNode from './src/formDataNode.js';
@@ -9,6 +10,7 @@ import objMergeRec from './src/objMergeRec.js';
 
 export {
 	strToObj,
+	strPlaceholder,
 	entityNameByRelation,
 	formData,
 	formDataNode,

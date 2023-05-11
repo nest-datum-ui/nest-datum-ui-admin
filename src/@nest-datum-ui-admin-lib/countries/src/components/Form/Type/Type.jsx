@@ -78,7 +78,7 @@ let Type = () => {
 	const { 
 		[serviceName]: {
 			[optionRelationListFormName]: {
-				type: {
+				post: {
 					apiFullUrl: optionRelationListApiUrl,
 				},
 			},

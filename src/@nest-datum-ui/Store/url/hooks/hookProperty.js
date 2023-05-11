@@ -22,7 +22,7 @@ const hookProperty = (propertyKey, search, parseJson = false) => {
 		}
 		return output;
 	}
-	return undefined;
+	return {};
 };
 
 export default hookProperty;

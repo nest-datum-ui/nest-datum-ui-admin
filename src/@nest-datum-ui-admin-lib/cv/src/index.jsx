@@ -49,6 +49,12 @@ let Cv = () => {
 					path={`${cvReport.pageUrl}/:entityId`}
 					element={<RouteReportForm />} />
 				<Route
+					path={cvReport.pageUrl}
+					element={<RouteReportList />} />
+				<Route
+					path={`${cvReport.pageUrl}/:entityId`}
+					element={<RouteReportForm />} />
+				<Route
 					path={cvReportStatus.pageUrl}
 					element={<RouteReportStatusList />} />
 				<Route

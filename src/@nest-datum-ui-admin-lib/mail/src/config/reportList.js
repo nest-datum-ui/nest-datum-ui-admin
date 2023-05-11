@@ -33,23 +33,23 @@ const reportList = {
 		id: 'id',
 		sortable: true,
 		order: 0,
+		width: 25,
 	}, {
 		name: 'Main',
 		id: 'main',
 		order: 1,
+		width: 41,
 	}, {
 		name: 'Status',
 		id: 'status',
 		order: 2,
-	}, {
-		name: 'User',
-		id: 'user',
-		order: 3,
+		width: 16,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
-		order: 5,
+		order: 3,
+		width: 16,
 	}],
 };
 

@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { ContextProps } from '@nest-datum-ui/Context';
 import { actionSsoLogin } from '../../Store';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import LoginIcon from '@mui/icons-material/Login';
 import Field from '@nest-datum-ui/Field';
 import InputText from '@nest-datum-ui/Input/Text';
 import InputPassword from '@nest-datum-ui/Input/Password';
 import ButtonPrimary from '@nest-datum-ui/Button/Primary';
+import ButtonLink from '@nest-datum-ui/Button/Link';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let SignIn = ({
@@ -54,6 +56,18 @@ let SignIn = ({
 		<ButtonPrimary type="submit" form={id} startIcon={<LoginIcon />}>
 			<b>Login</b>
 		</ButtonPrimary>
+		<Box pt={2}>
+			<ButtonLink to={process.env.ROUTE_SiGN_UP}>
+				<Typography component="div">
+					Sign up
+				</Typography>
+			</ButtonLink>
+			<ButtonLink to={process.env.ROUTE_RECOVERY}>
+				<Typography component="div">
+					Recovery
+				</Typography>
+			</ButtonLink>
+		</Box>
 	</StyledWrapper>;
 };
 

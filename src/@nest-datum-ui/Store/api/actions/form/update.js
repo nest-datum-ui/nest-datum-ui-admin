@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
 	strUrl as utilsCheckStrUrl,
 	arr as utilsCheckArr,
+	arrFilled as utilsCheckArrFilled,
+	objFilled as utilsCheckObjFilled,
 } from '@nest-datum-utils/check';
 import { 
 	urlApiStr as utilsFormatUrlApiStr,
@@ -40,6 +42,14 @@ export const fireFormUpdate = (storeName, options = {}) => async (callback = () 
 
 		if (!utilsCheckStrUrl(processedUrl)) {
 			throw new Error(`Can't update api store form. Property apiUrl "${processedUrl}" is not valid.`);
+		}
+		if (utilsCheckObjFilled(data['value'])
+			|| utilsCheckArrFilled(data['value'])) {
+			data['value'] = JSON.stringify(data['value']);
+		}
+		if (utilsCheckObjFilled(data['content'])
+			|| utilsCheckArrFilled(data['content'])) {
+			data['content'] = JSON.stringify(data['content']);
 		}
 		await axios.patch(utilsFormatUrlApiStr(processedUrl), data);
 

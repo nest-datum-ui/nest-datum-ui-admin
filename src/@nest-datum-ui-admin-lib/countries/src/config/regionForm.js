@@ -6,10 +6,11 @@ const regionForm = {
 	optionFormName: 'countriesRegionOptionForm',
 	statusName: 'countriesRegionStatus',
 	statusListName: 'countriesRegionStatusList',
-	relationListName: 'countriesRegionFormRelationList',
+	relationListName: 'countriesRegionOptionRelationList',
+	relationContentListName: 'countriesRegionContentRelationList',
 
 	displayInBreadcrumbsMenu: true,
-	breadcrumbsMenuTitle: 'Countries',
+	breadcrumbsMenuTitle: 'Regions',
 	orderInHeaderTabMenu: 2,
 	pageUrl: 'regions/:id',
 	pageTitle: 'Region',

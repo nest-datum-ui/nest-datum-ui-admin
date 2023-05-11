@@ -6,6 +6,7 @@ import {
 } from '@nest-datum-ui/Store';
 import { 
 	obj as utilsCheckObj,
+	objFilled as utilsCheckObjFilled,
 	strUrl as utilsCheckStrUrl,
 	strIdExists as utilsCheckStrIdExists, 
 	exists as utilsCheckExists,
@@ -16,6 +17,7 @@ import FilesDialogManager from '@nest-datum-ui-admin-lib/files/src/components/Di
 import FilesPaperPreview from '../../Paper/Preview';
 
 let Manager = ({ 
+	systemInitialFilter,
 	allowSelectSystem,
 	systemId,
 	parentId,
@@ -65,7 +67,9 @@ let Manager = ({
 					? valueState
 					: valueState)} />
 				{(utilsCheckObj(valueState)
-					? <FilesPaperPreview value={valueState} />
+					? (utilsCheckObjFilled(valueState)
+						? <FilesPaperPreview value={valueState} />
+						: <React.Fragment />)
 					: (<FilesPaperPreview value={utilsCheckStrUrl(valueState)
 						? { src: valueState }
 						: { id: valueState }} />))}
@@ -76,6 +80,7 @@ let Manager = ({
 		<FilesDialogManager
 			onFile={onFileWrapper}
 			allowSelectSystem={allowSelectSystem}
+			systemInitialFilter={systemInitialFilter}
 			systemId={systemId}
 			parentId={parentId} />
 	</React.Fragment>;
@@ -89,7 +94,6 @@ Manager.defaultProps = {
 	onChange: (() => {}),
 	onOpen: (() => {}),
 	onFile: (() => {}),
-	systemId: 'files-system-default',
 	parentId: '',
 	allowSelectSystem: false,
 };
@@ -99,6 +103,8 @@ Manager.propTypes = {
 	onOpen: PropTypes.func,
 	onFile: PropTypes.func,
 	allowSelectSystem: PropTypes.bool,
+	systemId: PropTypes.string,
+	parentId: PropTypes.string,
 };
 
 export default Manager;

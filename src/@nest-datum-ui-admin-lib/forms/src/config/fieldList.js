@@ -76,7 +76,7 @@ const fieldList = {
 		order: 4,
 	}, {
 		name: 'Story',
-		id: 'story',
+		id: 'createdAt',
 		sortable: true,
 		order: 5,
 	}],

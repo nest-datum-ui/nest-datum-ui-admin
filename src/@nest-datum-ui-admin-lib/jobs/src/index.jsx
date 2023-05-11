@@ -20,12 +20,12 @@ import RouteCategoryOptionList from './routes/Category/Option/List';
 import RouteCategoryOptionForm from './routes/Category/Option/Form';
 import RouteCategoryStatusList from './routes/Category/Status/List';
 import RouteCategoryStatusForm from './routes/Category/Status/Form';
-import RouteTagList from './routes/Tag/List';
-import RouteTagForm from './routes/Tag/Form';
-import RouteTagOptionList from './routes/Tag/Option/List';
-import RouteTagOptionForm from './routes/Tag/Option/Form';
-import RouteTagStatusList from './routes/Tag/Status/List';
-import RouteTagStatusForm from './routes/Tag/Status/Form';
+import RouteCompanyList from './routes/Company/List';
+import RouteCompanyForm from './routes/Company/Form';
+import RouteCompanyOptionList from './routes/Company/Option/List';
+import RouteCompanyOptionForm from './routes/Company/Option/Form';
+import RouteCompanyStatusList from './routes/Company/Status/List';
+import RouteCompanyStatusForm from './routes/Company/Status/Form';
 import RouteAccessList from './routes/Access/List';
 import RouteAccessForm from './routes/Access/Form';
 import RouteAccessOptionList from './routes/Access/Option/List';
@@ -49,9 +49,9 @@ let Jobs = () => {
 			jobsCategory,
 			jobsCategoryOption,
 			jobsCategoryStatus,
-			jobsTag,
-			jobsTagOption,
-			jobsTagStatus,
+			jobsCompany,
+			jobsCompanyOption,
+			jobsCompanyStatus,
 		}, 
 	} = React.useContext(ContextProps);
 
@@ -100,23 +100,23 @@ let Jobs = () => {
 					path={`${jobsCategoryStatus.pageUrl}/:entityId`}
 					element={<RouteCategoryStatusForm />} />
 				<Route
-					path={jobsTag.pageUrl}
-					element={<RouteTagList />} />
+					path={jobsCompany.pageUrl}
+					element={<RouteCompanyList />} />
 				<Route
-					path={`${jobsTag.pageUrl}/:entityId`}
-					element={<RouteTagForm />} />
+					path={`${jobsCompany.pageUrl}/:entityId`}
+					element={<RouteCompanyForm />} />
 				<Route
-					path={jobsTagOption.pageUrl}
-					element={<RouteTagOptionList />} />
+					path={jobsCompanyOption.pageUrl}
+					element={<RouteCompanyOptionList />} />
 				<Route
-					path={`${jobsTagOption.pageUrl}/:entityId`}
-					element={<RouteTagOptionForm />} />
+					path={`${jobsCompanyOption.pageUrl}/:entityId`}
+					element={<RouteCompanyOptionForm />} />
 				<Route
-					path={jobsTagStatus.pageUrl}
-					element={<RouteTagStatusList />} />
+					path={jobsCompanyStatus.pageUrl}
+					element={<RouteCompanyStatusList />} />
 				<Route
-					path={`${jobsTagStatus.pageUrl}/:entityId`}
-					element={<RouteTagStatusForm />} />
+					path={`${jobsCompanyStatus.pageUrl}/:entityId`}
+					element={<RouteCompanyStatusForm />} />
 				<Route
 					path={jobsAccess.pageUrl}
 					element={<RouteAccessList />} />
@@ -149,7 +149,7 @@ let Jobs = () => {
 Jobs = React.memo(Jobs);
 Jobs.defaultProps = {
 };
-Jobs.propTypes = {
+Jobs.propCategorys = {
 };
 
 export default Jobs;

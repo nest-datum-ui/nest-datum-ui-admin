@@ -6,6 +6,7 @@ import func from './src/func';
 import numeric from './src/numeric';
 import numericInt from './src/numeric/int.js';
 import obj from './src/obj';
+import objDate from './src/obj/date.js';
 import objFilled from './src/obj/filled.js';
 import objFileList from './src/obj/fileList.js';
 import objFileModel from './src/obj/fileModel.js';
@@ -17,6 +18,7 @@ import objHttpNotFound from './src/obj/httpNotFound.js';
 import objDateRange from './src/obj/dateRange.js';
 import str from './src/str';
 import strArr from './src/str/arr';
+import strObj from './src/str/obj';
 import strBool from './src/str/bool.js';
 import strDataTypeBool from './src/str/dataTypeBool.js';
 import strDate from './src/str/date.js';
@@ -39,6 +41,7 @@ import strPath from './src/str/path.js';
 import strQueue from './src/str/queue.js';
 import strHost from './src/str/host.js';
 import strUserName from './src/str/userName.js';
+import strUserLogin from './src/str/userLogin.js';
 import strFilled from './src/str/filled.js';
 import strEnvKey from './src/str/envKey.js';
 
@@ -51,6 +54,7 @@ export {
 	numeric,
 	numericInt,
 	obj,
+	objDate,
 	objFilled,
 	objFileList,
 	objFileModel,
@@ -62,6 +66,7 @@ export {
 	objDateRange,
 	str,
 	strArr,
+	strObj,
 	strBool,
 	strDataTypeBool,
 	strDate,
@@ -84,6 +89,7 @@ export {
 	strQueue,
 	strHost,
 	strUserName,
+	strUserLogin,
 	strFilled,
 	strEnvKey,
 };

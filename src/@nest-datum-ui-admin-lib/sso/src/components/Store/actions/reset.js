@@ -23,10 +23,7 @@ export const fireReset = async (storeName, apiUrl) => {
 
 			return actionApiFormProp(storeName, 'loader', false)();
 		}
-		const {
-			password,
-			repeatedPassword,
-		} = await utilsValidateStore(storeName, {
+		const validatedData = await utilsValidateStore(storeName, {
 			password: {
 				text: 'Password not specified.',
 				check: [
@@ -42,7 +39,10 @@ export const fireReset = async (storeName, apiUrl) => {
 			},
 		});
 
-		if (password && repeatedPassword) {
+		if (validatedData) {
+			const password = validatedData['password'];
+			const repeatedPassword = validatedData['repeatedPassword'];
+			
 			await axios.post(apiUrl, { password, repeatedPassword, verifyKey });
 
 			actionApiFormClear(storeName, { successfulPasswordChangeFlag: true })();
