@@ -54,13 +54,8 @@ let Group = (props) => {
 					}]
 					: (isAccessesGroup
 						? [{
-<<<<<<< HEAD
-							flag: !isReportGroupStatuses,
-							to: `${cvReport.pageFullUrl}/statuses${search}`,
-=======
 							flag: !isAccessesGroupStatuses,
-							to: `${cvAccess.pageFullUrl}/statuses`,
->>>>>>> 55dc49e07228eb7b65aaa6caded572c8a22c731b
+							to: `${cvAccess.pageFullUrl}/statuses${search}`,
 						}]
 						: []),
 			}])}
