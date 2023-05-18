@@ -31,6 +31,7 @@ import Lensa from '@nest-datum-ui-admin-lib/lensa/src';
 import Dictionary from '@nest-datum-ui-admin-lib/dictionary/src';
 import Countries from '@nest-datum-ui-admin-lib/countries/src';
 import Jobs from '@nest-datum-ui-admin-lib/jobs/src';
+import JohnConnor from '@nest-datum-ui-admin-lib/john-connor/src';
 import GlobalStyles from './globalStyles.js';
 import importSchema from './importSchema.js';
 
@@ -80,6 +81,7 @@ root.render(<ContextProps.Provider value={importSchema}>
 										<Dictionary />
 										<Countries />
 										<Jobs />
+										<JohnConnor />
 									</LayoutApp>}>
 									<Route
 										index

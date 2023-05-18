@@ -1,11 +1,21 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import StyledWrapper from './Styled/Wrapper.jsx';
+import Grid from '@mui/material/Grid';
+import ListNeuron from '../components/List/Neuron';
+import ListInteract from '../components/List/Interact';
 
-let Layout = ({ children, ...props }) => {
-	return <StyledWrapper { ...props }>
-		<Outlet />
-	</StyledWrapper>;
+let Layout = ({ children }) => {
+	return <Grid container>
+		<Grid
+			item
+			xs={true}>
+			<ListNeuron />
+		</Grid>
+		<Grid
+			item
+			xs={2}>
+			<ListInteract />
+		</Grid>
+	</Grid>;
 };
 
 Layout = React.memo(Layout);

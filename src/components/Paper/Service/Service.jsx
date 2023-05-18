@@ -8,6 +8,8 @@ let Service = ({ children, ...props }) => {
 	const pathnameSplit = window.location.pathname.split('/').slice(1);
 	const { pageInitialFullUrl, title } = data[pathnameSplit[1]];
 
+	console.log('???????', window.location.pathname, (window.location.pathname === `/${process.env.ROUTE_AUTHED}`), pageInitialFullUrl);
+
 	React.useEffect(() => {
 		actionBreadcrumbsSet('breadcrumbs-header', [
 			...(window.location.pathname === `/${process.env.ROUTE_AUTHED}`)

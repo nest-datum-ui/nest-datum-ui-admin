@@ -11,6 +11,7 @@ import lensa from '@nest-datum-ui-admin-lib/lensa/src/config';
 import dictionary from '@nest-datum-ui-admin-lib/dictionary/src/config';
 import countries from '@nest-datum-ui-admin-lib/countries/src/config';
 import jobs from '@nest-datum-ui-admin-lib/jobs/src/config';
+import johnConnor from '@nest-datum-ui-admin-lib/john-connor/src/config';
 
 const importSchema = {
 	'data-type': createAppContext(dataType),
@@ -25,6 +26,7 @@ const importSchema = {
 	'dictionary': createAppContext(dictionary),
 	'cv': createAppContext(cv),
 	'lensa': createAppContext(lensa),
+	'john-connor': createAppContext(johnConnor),
 };
 
 export default importSchema;
