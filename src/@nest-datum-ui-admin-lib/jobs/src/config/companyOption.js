@@ -8,6 +8,7 @@ const companyOption = {
 
 	fieldsBlock: true,
 	fieldsBlockTitle: 'Options:',
+	orderInHeaderTabMenu: 2,
 };
 
 export default companyOption;

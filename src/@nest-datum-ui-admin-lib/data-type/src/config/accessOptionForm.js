@@ -13,7 +13,7 @@ const accessOptionForm = {
 	storeName: 'data-type-accesses-options-form',
 	apiUrl: 'access-option',
 	apiRelationUrl: 'access/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'accessId', 
 	entityRelation: 'accessOptionId',
 	entityOptionRelation: 'accessAccessOptionId',

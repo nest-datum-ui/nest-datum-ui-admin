@@ -5,7 +5,7 @@ const fieldOptionForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'fields/options/:id',
 	pageTitle: 'Option',
 

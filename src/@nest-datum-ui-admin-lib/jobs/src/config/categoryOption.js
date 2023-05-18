@@ -8,6 +8,7 @@ const categoryOption = {
 
 	fieldsBlock: true,
 	fieldsBlockTitle: 'Options:',
+	orderInHeaderTabMenu: 2,
 };
 
 export default categoryOption;

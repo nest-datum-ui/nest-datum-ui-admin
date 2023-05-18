@@ -7,7 +7,7 @@ const fieldOptionRelationList = {
 	title: 'Fields',
 	subtitle: 'List of fields that own the current setting.',
 	formName: 'formsFieldOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-option-relations-list',
 	storeName: 'forms-field-option-relations-list',
 	columnName: 'fieldId',

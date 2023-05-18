@@ -11,7 +11,7 @@ const accessStatusForm = {
 	id: 'cv-accesses-statuses-form',
 	storeName: 'cv-accesses-statuses-form',
 	apiUrl: 'access-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

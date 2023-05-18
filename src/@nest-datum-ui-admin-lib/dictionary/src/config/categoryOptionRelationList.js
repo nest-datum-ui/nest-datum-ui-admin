@@ -7,7 +7,7 @@ const categoryOptionRelationList = {
 	title: 'Dictionary',
 	subtitle: 'List of dictionary items that own the current setting.',
 	formName: 'dictionaryCategoryOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-category-option-relations-list',
 	storeName: 'dictionary-category-option-relations-list',
 	columnName: 'categoryId',

@@ -7,7 +7,7 @@ const companyOptionRelationList = {
 	title: 'Companies',
 	subtitle: 'List of jobs that own the current setting.',
 	formName: 'jobsCompanyOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-company-option-relations-list',
 	storeName: 'jobs-company-option-relations-list',
 	columnName: 'companyId',

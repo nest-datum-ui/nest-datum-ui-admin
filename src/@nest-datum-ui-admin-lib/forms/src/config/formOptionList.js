@@ -5,7 +5,7 @@ import {
 
 const formOptionList = {
 	parentName: 'formsFormOption',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-form-options-list',
 	storeName: 'forms-form-options-list',
 	apiUrl: 'form-option',

@@ -78,6 +78,16 @@ let Preview = ({ value, isDeleted, ...props }) => {
 						color={isDeleted
 							? 'disabled'
 							: 'primary'} />;
+				case isImage:
+					return <span
+						style={{
+							width: '100px',
+							height: '70px',
+							paddingRight: '15px'
+						}}
+						color={isDeleted
+							? 'disabled'
+							: 'primary'} />;
 				case (!isImage && !isEjs && !isPdf):
 					return <InsertDriveFileIcon
 						style={{

@@ -13,7 +13,7 @@ let Group = (props) => {
 			mailReport,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isLetterGroup = pathname.indexOf(mailLetter.pageFullUrl) === 0;
 	const isLetterGroupOptions = pathname.indexOf(`${mailLetter.pageFullUrl}/options`) === 0;
 	const isLetterGroupStatuses = pathname.indexOf(`${mailLetter.pageFullUrl}/statuses`) === 0;
@@ -33,22 +33,22 @@ let Group = (props) => {
 				check: isLetterGroup
 					? [{
 						flag: (pathname.length > mailLetter.pageFullUrl.length && (isLetterGroupOptions || isLetterGroupStatuses)),
-						to: mailLetter.pageFullUrl,
+						to: mailLetter.pageFullUrl + search,
 					}]
 					: (isTemplateGroup
 						? [{
 							flag: (pathname.length > mailTemplate.pageFullUrl.length && (isTemplateGroupOptions || isTemplateGroupStatuses)),
-							to: mailTemplate.pageFullUrl,
+							to: mailTemplate.pageFullUrl + search,
 						}]
 						: (isReportGroup
 							? [{
 								flag: (pathname.length > mailReport.pageFullUrl.length && isReportGroupStatuses),
-								to: mailReport.pageFullUrl,
+								to: mailReport.pageFullUrl + search,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: (pathname.length > mailAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-									to: mailAccess.pageFullUrl,
+									to: mailAccess.pageFullUrl + search,
 								}]
 								: []))),
 			}, 
@@ -59,17 +59,17 @@ let Group = (props) => {
 					check: isLetterGroup
 						? [{
 							flag: !isLetterGroupOptions,
-							to: `${mailLetter.pageFullUrl}/options`,
+							to: `${mailLetter.pageFullUrl}/options${search}`,
 						}]
 						: (isTemplateGroup
 							? [{
 								flag: !isTemplateGroupOptions,
-								to: `${mailTemplate.pageFullUrl}/options`,
+								to: `${mailTemplate.pageFullUrl}/options${search}`,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: !isAccessesGroupOptions,
-									to: `${mailAccess.pageFullUrl}/options`,
+									to: `${mailAccess.pageFullUrl}/options${search}`,
 								}]
 								: [])),
 				}], 
@@ -78,22 +78,22 @@ let Group = (props) => {
 				check: isLetterGroup
 					? [{
 						flag: !isLetterGroupStatuses,
-						to: `${mailLetter.pageFullUrl}/statuses`,
+						to: `${mailLetter.pageFullUrl}/statuses${search}`,
 					}]
 					: (isTemplateGroup
 						? [{
 							flag: !isTemplateGroupStatuses,
-							to: `${mailTemplate.pageFullUrl}/statuses`,
+							to: `${mailTemplate.pageFullUrl}/statuses${search}`,
 						}]
 						: (isReportGroup
 							? [{
 								flag: !isReportGroupStatuses,
-								to: `${mailReport.pageFullUrl}/statuses`,
+								to: `${mailReport.pageFullUrl}/statuses${search}`,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: !isAccessesGroupStatuses,
-									to: `${mailAccess.pageFullUrl}/statuses`,
+									to: `${mailAccess.pageFullUrl}/statuses${search}`,
 								}]
 								: []))),
 			}])}

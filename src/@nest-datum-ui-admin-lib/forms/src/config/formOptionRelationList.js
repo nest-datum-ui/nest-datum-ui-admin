@@ -7,7 +7,7 @@ const formOptionRelationList = {
 	title: 'Forms',
 	subtitle: 'List of forms that own the current setting.',
 	formName: 'formsFormOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-form-option-relations-list',
 	storeName: 'forms-form-option-relations-list',
 	columnName: 'formId',

@@ -7,7 +7,7 @@ const dataTypeAccessStatusForm = {
 
 	pageUrl: 'accesses/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-accesses-statuses-form',
 	storeName: 'data-type-accesses-statuses-form',
 	apiUrl: 'access-status',

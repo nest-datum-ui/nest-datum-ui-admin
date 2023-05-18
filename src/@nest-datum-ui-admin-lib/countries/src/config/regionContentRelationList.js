@@ -10,7 +10,7 @@ const regionContentRelationList = {
 	title: 'Values',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'countriesRegionContentRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-region-content-relations-list',
 	storeName: 'countries-region-content-relations-list',
 	columnName: 'typeOptionId',

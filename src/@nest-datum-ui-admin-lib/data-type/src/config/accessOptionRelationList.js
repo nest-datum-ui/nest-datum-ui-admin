@@ -7,7 +7,7 @@ const accessOptionRelationList = {
 	title: 'Accesses',
 	subtitle: 'List of accesses that own the current setting.',
 	formName: 'dataTypeAccessOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-accesses-option-relations-list',
 	storeName: 'data-type-accesses-option-relations-list',
 	columnName: 'accessId',

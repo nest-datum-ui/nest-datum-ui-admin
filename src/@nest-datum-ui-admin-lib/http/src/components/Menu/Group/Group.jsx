@@ -10,7 +10,7 @@ let Group = (props) => {
 			httpSetting,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isAccessesGroup = pathname.indexOf(httpAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${httpAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${httpAccess.pageFullUrl}/statuses`) === 0;
@@ -22,7 +22,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: (pathname.length > httpAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-						to: httpAccess.pageFullUrl,
+						to: httpAccess.pageFullUrl + search,
 					}]
 					: []),
 			}, {
@@ -30,7 +30,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: !isAccessesGroupOptions,
-						to: `${httpAccess.pageFullUrl}/options`,
+						to: `${httpAccess.pageFullUrl}/options${search}`,
 					}]
 					: []),
 			}, {
@@ -38,7 +38,7 @@ let Group = (props) => {
 				check: (isAccessesGroup
 					? [{
 						flag: !isAccessesGroupStatuses,
-						to: `${httpAccess.pageFullUrl}/statuses`,
+						to: `${httpAccess.pageFullUrl}/statuses${search}`,
 					}]
 					: []),
 			}])}

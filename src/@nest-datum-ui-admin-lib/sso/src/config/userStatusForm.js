@@ -11,7 +11,7 @@ const userStatusForm = {
 	id: 'sso-user-statuses-form',
 	storeName: 'sso-user-statuses-form',
 	apiUrl: 'user-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

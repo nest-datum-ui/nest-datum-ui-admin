@@ -7,7 +7,7 @@ const formRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'mailLetterOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-option-relations-list',
 	storeName: 'mail-letter-option-relations-list',
 	columnName: 'letterId',

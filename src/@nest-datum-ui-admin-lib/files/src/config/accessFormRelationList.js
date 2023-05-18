@@ -12,7 +12,7 @@ const accessFormRelationList = {
 	initialPage: 1,
 	initialLimit: 9999,
 	withForceDropMenu: true,
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		dropPermanently: {
 			text: (index, selected, selectedForDrop, selectedForDropPermanently) => `Delete checked (${selected.length})`,

@@ -10,7 +10,7 @@ const postContentRelationList = {
 	title: 'Values',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'dictionaryPostContentRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-post-content-relations-list',
 	storeName: 'dictionary-post-content-relations-list',
 	columnName: 'postOptionId',

@@ -15,7 +15,7 @@ const letterOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'letterId', 
 	entityRelation: 'letterOptionId',
 	entityOptionRelation: 'letterLetterOptionId',

@@ -13,7 +13,7 @@ let Group = (props) => {
 			formsContent,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isFormGroup = pathname.indexOf(formsForm.pageFullUrl) === 0;
 	const isFormGroupOptions = pathname.indexOf(`${formsForm.pageFullUrl}/options`) === 0;
 	const isFormGroupStatuses = pathname.indexOf(`${formsForm.pageFullUrl}/statuses`) === 0;
@@ -33,22 +33,22 @@ let Group = (props) => {
 				check: isFormGroup
 					? [{
 						flag: (pathname.length > formsForm.pageFullUrl.length && (isFormGroupOptions || isFormGroupStatuses)),
-						to: formsForm.pageFullUrl,
+						to: formsForm.pageFullUrl + search,
 					}]
 					: (isFieldGroup
 						? [{
 							flag: (pathname.length > formsField.pageFullUrl.length && (isFieldGroupOptions || isFieldGroupStatuses)),
-							to: formsField.pageFullUrl,
+							to: formsField.pageFullUrl + search,
 						}]
 						: (isContentGroup
 							? [{
 								flag: (pathname.length > formsContent.pageFullUrl.length && isContentGroupStatuses),
-								to: formsContent.pageFullUrl,
+								to: formsContent.pageFullUrl + search,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: (pathname.length > formsAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-									to: formsAccess.pageFullUrl,
+									to: formsAccess.pageFullUrl + search,
 								}]
 								: []))),
 			}, 
@@ -59,12 +59,12 @@ let Group = (props) => {
 					check: isFormGroup
 						? [{
 							flag: !isFormGroupOptions,
-							to: `${formsForm.pageFullUrl}/options`,
+							to: `${formsForm.pageFullUrl}/options${search}`,
 						}]
 						: (isFieldGroup
 							? [{
 								flag: !isFieldGroupOptions,
-								to: `${formsField.pageFullUrl}/options`,
+								to: `${formsField.pageFullUrl}/options${search}`,
 							}]
 							: (isAccessesGroup
 								? [{
@@ -78,22 +78,22 @@ let Group = (props) => {
 				check: isFormGroup
 					? [{
 						flag: !isFormGroupStatuses,
-						to: `${formsForm.pageFullUrl}/statuses`,
+						to: `${formsForm.pageFullUrl}/statuses${search}`,
 					}]
 					: (isFieldGroup
 						? [{
 							flag: !isFieldGroupStatuses,
-							to: `${formsField.pageFullUrl}/statuses`,
+							to: `${formsField.pageFullUrl}/statuses${search}`,
 						}]
 						: (isContentGroup
 							? [{
 								flag: !isContentGroupStatuses,
-								to: `${formsContent.pageFullUrl}/statuses`,
+								to: `${formsContent.pageFullUrl}/statuses${search}`,
 							}]
 							: (isAccessesGroup
 								? [{
 									flag: !isAccessesGroupStatuses,
-									to: `${formsAccess.pageFullUrl}/statuses`,
+									to: `${formsAccess.pageFullUrl}/statuses${search}`,
 								}]
 								: []))),
 			}])}

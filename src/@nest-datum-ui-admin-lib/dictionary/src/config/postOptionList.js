@@ -5,7 +5,7 @@ import {
 
 const postOptionList = {
 	parentName: 'dictionaryPostOption',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-post-options-list',
 	storeName: 'dictionary-post-options-list',
 	apiUrl: 'post-option',

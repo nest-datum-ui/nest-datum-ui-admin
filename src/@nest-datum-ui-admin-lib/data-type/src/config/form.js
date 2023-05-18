@@ -7,7 +7,7 @@ const form = {
 	statusName: 'dataTypeStatus',
 	statusListName: 'dataTypeStatusList',
 	relationListName: 'dataTypeFormRelationList',
-
+	orderInHeaderTabMenu: 1,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Type',
 

@@ -7,7 +7,7 @@ const formRelationList = {
 	title: 'Fields',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'formsFieldFormRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-form-relations-list',
 	storeName: 'forms-field-form-relations-list',
 	columnName: 'fieldId',

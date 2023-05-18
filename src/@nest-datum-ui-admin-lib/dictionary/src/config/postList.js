@@ -5,7 +5,7 @@ import {
 
 const postList = {
 	parentName: 'dictionaryPost',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-post-list',
 	storeName: 'dictionary-post-list',
 	apiUrl: 'post',

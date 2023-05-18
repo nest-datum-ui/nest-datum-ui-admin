@@ -5,7 +5,7 @@ const accessOptionForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'accesses/options/:id',
 	pageTitle: 'Option',
 

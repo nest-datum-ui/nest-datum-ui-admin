@@ -5,7 +5,7 @@ import {
 
 const fieldList = {
 	parentName: 'formsField',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-list',
 	storeName: 'forms-field-list',
 	apiUrl: 'field',

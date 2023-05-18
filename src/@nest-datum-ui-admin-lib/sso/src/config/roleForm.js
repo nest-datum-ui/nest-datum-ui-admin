@@ -10,7 +10,7 @@ const roleForm = {
 
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Role',
-
+	orderInHeaderTabMenu: 2,
 	pageUrl: 'roles/:id',
 	pageTitle: 'Role',
 

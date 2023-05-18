@@ -13,7 +13,7 @@ const roleOptionForm = {
 	storeName: 'sso-role-options-form',
 	apiUrl: 'role-option',
 	apiRelationUrl: 'role/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'roleId', 
 	entityRelation: 'roleOptionId',
 	entityOptionRelation: 'roleRoleOptionId',

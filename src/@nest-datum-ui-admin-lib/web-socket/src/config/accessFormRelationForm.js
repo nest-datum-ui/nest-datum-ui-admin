@@ -6,6 +6,7 @@ const accessFormRelationForm = {
 	storeName: 'web-socket-role-access-option-relations-form',
 	apiUrl: 'access/:id/role',
 	title: 'Role',
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'access/:id/roles',
 	},

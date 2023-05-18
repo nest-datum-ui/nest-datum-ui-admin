@@ -7,7 +7,7 @@ const accessStatusForm = {
 
 	pageUrl: 'accesses/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'web-socket-accesses-statuses-form',
 	storeName: 'web-socket-accesses-statuses-form',
 	apiUrl: 'access-status',

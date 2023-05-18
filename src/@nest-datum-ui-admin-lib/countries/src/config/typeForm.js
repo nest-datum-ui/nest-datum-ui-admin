@@ -13,7 +13,7 @@ const typeForm = {
 
 	pageUrl: 'types/:id',
 	pageTitle: 'Type',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-type-form',
 	storeName: 'countries-type-form',
 	apiUrl: 'type',

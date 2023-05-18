@@ -7,7 +7,7 @@ const postOptionRelationList = {
 	title: 'Dictionary',
 	subtitle: 'List of dictionary items that own the current setting.',
 	formName: 'dictionaryPostOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-post-option-relations-list',
 	storeName: 'dictionary-post-option-relations-list',
 	columnName: 'postId',

@@ -8,7 +8,7 @@ const postOptionForm = {
 
 	pageUrl: 'posts/options/:id',
 	pageTitle: 'Option',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-post-options-form',
 	storeName: 'jobs-post-options-form',
 	apiUrl: 'post-option',

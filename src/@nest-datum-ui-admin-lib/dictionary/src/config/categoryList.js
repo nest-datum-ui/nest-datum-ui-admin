@@ -5,7 +5,7 @@ import {
 
 const categoryList = {
 	parentName: 'dictionaryCategory',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'dictionary-category-list',
 	storeName: 'dictionary-category-list',
 	apiUrl: 'category',

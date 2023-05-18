@@ -15,6 +15,7 @@ const companyOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
+	orderInHeaderTabMenu: 2,
 
 	entity: 'companyId', 
 	entityRelation: 'companyOptionId',

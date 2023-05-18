@@ -5,7 +5,7 @@ import {
 
 const settingList = {
 	parentName: 'dataTypeSetting',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-settings-list',
 	storeName: 'data-type-settings-list',
 	apiUrl: 'setting',

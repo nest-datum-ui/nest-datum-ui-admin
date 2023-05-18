@@ -10,7 +10,7 @@ const accessForm = {
 	statusName: 'ssoAccessStatus',
 	statusListName: 'ssoAccessStatusList',
 	relationListName: 'ssoAccessFormRelationList',
-
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

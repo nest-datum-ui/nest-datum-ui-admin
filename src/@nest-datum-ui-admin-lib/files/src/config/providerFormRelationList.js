@@ -7,7 +7,7 @@ const formRelationList = {
 	title: 'Related data',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'filesProviderOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'files-provider-option-relations-list',
 	storeName: 'files-provider-option-relations-list',
 	columnName: 'typeId',

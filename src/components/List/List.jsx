@@ -92,6 +92,8 @@ let List = ({
 		storeName,
 	]);
 
+	console.log('sortWrapper', sort, sortWrapper());
+
 	return <StyledWrapper { ...props }>
 		{withFilter && <PaperFilter 
 			querySource={querySource} 

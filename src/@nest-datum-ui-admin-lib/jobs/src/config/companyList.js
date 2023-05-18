@@ -15,7 +15,7 @@ const companyList = {
 	search: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		drop: {
 			text: (index, selected, selectedForDrop, selectedForDropPermanently) => `Disable checked (${selectedForDrop.length})`,

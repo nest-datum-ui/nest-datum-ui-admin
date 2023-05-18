@@ -5,7 +5,7 @@ import {
 
 const systemList = {
 	parentName: 'filesSystem',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'files-systems-list',
 	storeName: 'files-systems-list',
 	apiUrl: 'system',

@@ -7,7 +7,7 @@ const systemOptionRelationList = {
 	title: 'Systems',
 	subtitle: 'List of systems that own the current setting.',
 	formName: 'filesSystemOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'files-option-relations-list',
 	storeName: 'files-option-relations-list',
 	columnName: 'systemId',

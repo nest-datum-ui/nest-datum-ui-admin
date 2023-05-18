@@ -5,7 +5,7 @@ const providerOptionRelationForm = {
 	id: 'files-option-relations-form',
 	storeName: 'files-option-relations-form',
 	apiUrl: 'provider/:id/option',
-
+	orderInHeaderTabMenu: 2,
 	title: 'Provider',
 
 	post: {

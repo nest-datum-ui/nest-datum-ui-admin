@@ -12,6 +12,7 @@ const accessFormRelationList = {
 	initialPage: 1,
 	initialLimit: 9999,
 	withForceDropMenu: true,
+	orderInHeaderTabMenu: 2,
 
 	manage: {
 		dropPermanently: {

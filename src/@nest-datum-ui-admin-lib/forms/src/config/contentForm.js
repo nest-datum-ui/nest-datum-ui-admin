@@ -10,7 +10,7 @@ const contentForm = {
 
 	pageUrl: 'contents/:id',
 	pageTitle: 'Content',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-content-form',
 	storeName: 'forms-content-form',
 	apiUrl: 'content',

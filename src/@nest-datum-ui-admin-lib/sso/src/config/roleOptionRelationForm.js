@@ -7,7 +7,7 @@ const roleOptionRelationForm = {
 	apiUrl: 'role/:id/option',
 
 	title: 'Role',
-
+	orderInHeaderTabMenu: 2,
 	post: {
 		apiUrl: 'role/:id/options',
 	},

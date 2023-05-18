@@ -1,5 +1,6 @@
 
 const categoryForm = {
+	orderInHeaderTabMenu: 2,
 	parentName: 'jobsCategory',
 	optionName: 'jobsCategoryOption',
 	optionListName: 'jobsCategoryOptionList',

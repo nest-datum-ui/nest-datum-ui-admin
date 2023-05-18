@@ -15,7 +15,7 @@ const regionOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'regionId', 
 	entityRelation: 'regionOptionId',
 	entityOptionRelation: 'regionRegionOptionId',

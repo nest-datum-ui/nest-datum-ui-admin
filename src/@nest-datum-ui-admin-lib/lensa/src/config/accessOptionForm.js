@@ -8,6 +8,7 @@ const accessOptionForm = {
 
 	pageUrl: 'accesses/options/:id',
 	pageTitle: 'Option',
+	orderInHeaderTabMenu: 2,
 
 	id: 'lensa-accesses-options-form',
 	storeName: 'lensa-accesses-options-form',

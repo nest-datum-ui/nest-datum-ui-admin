@@ -5,7 +5,7 @@ import {
 
 const accessOptionList = {
 	parentName: 'httpAccessOption',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'http-accesses-options-list',
 	storeName: 'http-accesses-options-list',
 	apiUrl: 'access-option',

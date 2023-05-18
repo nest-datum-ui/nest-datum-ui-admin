@@ -11,7 +11,7 @@ const accessStatusForm = {
 	id: 'countries-accesses-statuses-form',
 	storeName: 'countries-accesses-statuses-form',
 	apiUrl: 'access-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

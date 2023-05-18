@@ -7,7 +7,7 @@ const roleStatusForm = {
 
 	pageUrl: 'roles/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'sso-role-statuses-form',
 	storeName: 'sso-role-statuses-form',
 	apiUrl: 'role-status',

@@ -4,7 +4,7 @@ const config = {
 	breadcrumbsMenuTitle: 'Users',
 
 	displayInHeaderTabMenu: true,
-	orderInHeaderTabMenu: 0,
+	orderInHeaderTabMenu: 1,
 	headerTabMenuTitle: 'Users',
 
 	pageUrl: 'users',

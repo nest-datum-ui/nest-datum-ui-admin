@@ -5,6 +5,7 @@ const categoryStatus = {
 
 	pageUrl: 'categories/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default categoryStatus;

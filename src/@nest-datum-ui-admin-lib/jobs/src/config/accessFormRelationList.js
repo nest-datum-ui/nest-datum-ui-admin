@@ -4,7 +4,7 @@ const accessFormRelationList = {
 	title: 'Roles',
 	subtitle: 'List of roles that own the current setting.',
 	formName: 'jobsAccessFormRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-role-access-option-relations-list',
 	storeName: 'jobs-role-access-option-relations-list',
 	columnName: 'accessId',

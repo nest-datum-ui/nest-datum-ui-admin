@@ -7,7 +7,7 @@ const optionRelationList = {
 	title: 'Types',
 	subtitle: 'List of types that own the current setting.',
 	formName: 'dataTypeOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'data-type-option-relations-list',
 	storeName: 'data-type-option-relations-list',
 	columnName: 'typeId',

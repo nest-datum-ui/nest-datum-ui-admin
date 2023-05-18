@@ -10,7 +10,7 @@ const fieldContentRelationList = {
 	title: 'Fields',
 	subtitle: 'Intermediate data between the main model and current option.',
 	formName: 'formsFieldContentRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-content-relations-list',
 	storeName: 'forms-field-content-relations-list',
 	columnName: 'fieldId',

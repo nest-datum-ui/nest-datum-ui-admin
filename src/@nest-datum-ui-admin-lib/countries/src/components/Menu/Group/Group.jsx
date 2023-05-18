@@ -12,13 +12,15 @@ let Group = (props) => {
 			countriesType,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+
+	const { pathname, search } = useLocation();
 	const isRegionGroup = pathname.indexOf(countriesRegion.pageFullUrl) === 0;
 	const isRegionGroupOptions = pathname.indexOf(`${countriesRegion.pageFullUrl}/options`) === 0;
 	const isRegionGroupStatuses = pathname.indexOf(`${countriesRegion.pageFullUrl}/statuses`) === 0;
 	const isTypeGroup = pathname.indexOf(countriesType.pageFullUrl) === 0;
 	const isTypeGroupOptions = pathname.indexOf(`${countriesType.pageFullUrl}/options`) === 0;
 	const isTypeGroupStatuses = pathname.indexOf(`${countriesType.pageFullUrl}/statuses`) === 0;
+
 	const isAccessesGroup = pathname.indexOf(countriesAccess.pageFullUrl) === 0;
 	const isAccessesGroupOptions = pathname.indexOf(`${countriesAccess.pageFullUrl}/options`) === 0;
 	const isAccessesGroupStatuses = pathname.indexOf(`${countriesAccess.pageFullUrl}/statuses`) === 0;
@@ -30,12 +32,12 @@ let Group = (props) => {
 				check: isRegionGroup
 					? [{
 						flag: (pathname.length > countriesRegion.pageFullUrl.length && (isRegionGroupOptions || isRegionGroupStatuses)),
-						to: countriesRegion.pageFullUrl,
+						to: countriesRegion.pageFullUrl + search,
 					}]
 					: (isTypeGroup
 						? [{
 							flag: (pathname.length > countriesType.pageFullUrl.length && (isTypeGroupOptions || isTypeGroupStatuses)),
-							to: countriesType.pageFullUrl,
+							to: countriesType.pageFullUrl + search,
 						}]
 						: (isAccessesGroup
 							? [{
@@ -48,12 +50,12 @@ let Group = (props) => {
 				check: isRegionGroup
 					? [{
 						flag: !isRegionGroupOptions,
-						to: `${countriesRegion.pageFullUrl}/options`,
+						to: `${countriesRegion.pageFullUrl}/options${search}`,
 					}]
 					: (isTypeGroup
 						? [{
 							flag: !isTypeGroupOptions,
-							to: `${countriesType.pageFullUrl}/options`,
+							to: `${countriesType.pageFullUrl}/options${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
@@ -66,12 +68,12 @@ let Group = (props) => {
 				check: isRegionGroup
 					? [{
 						flag: !isRegionGroupStatuses,
-						to: `${countriesRegion.pageFullUrl}/statuses`,
+						to: `${countriesRegion.pageFullUrl}/statuses${search}`,
 					}]
 					: (isTypeGroup
 						? [{
 							flag: !isTypeGroupStatuses,
-							to: `${countriesType.pageFullUrl}/statuses`,
+							to: `${countriesType.pageFullUrl}/statuses${search}`,
 						}]
 						: (isAccessesGroup
 							? [{

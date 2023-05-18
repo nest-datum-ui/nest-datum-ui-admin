@@ -7,7 +7,7 @@ const letterStatusForm = {
 
 	pageUrl: 'letters/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'mail-letter-statuses-form',
 	storeName: 'mail-letter-statuses-form',
 	apiUrl: 'letter-status',

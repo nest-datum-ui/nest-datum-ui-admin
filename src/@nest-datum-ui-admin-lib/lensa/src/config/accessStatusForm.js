@@ -7,6 +7,7 @@ const accessStatusForm = {
 
 	pageUrl: 'accesses/statuses/:id',
 	pageTitle: 'Status',
+	orderInHeaderTabMenu: 2,
 
 	id: 'lensa-accesses-statuses-form',
 	storeName: 'lensa-accesses-statuses-form',

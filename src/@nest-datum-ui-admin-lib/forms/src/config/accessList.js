@@ -5,7 +5,7 @@ import {
 
 const accessList = {
 	parentName: 'formsAccess',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-accesses-list',
 	storeName: 'forms-accesses-list',
 	apiUrl: 'access',

@@ -11,7 +11,7 @@ const regionStatusForm = {
 	id: 'countries-region-statuses-form',
 	storeName: 'countries-region-statuses-form',
 	apiUrl: 'region-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

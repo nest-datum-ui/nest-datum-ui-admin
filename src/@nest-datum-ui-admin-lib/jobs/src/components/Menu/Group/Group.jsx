@@ -13,7 +13,8 @@ let Group = (props) => {
 			jobsCompany,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+
+	const { pathname, search } = useLocation();
 	const isPostGroup = pathname.indexOf(jobsPost.pageFullUrl) === 0;
 	const isPostGroupOptions = pathname.indexOf(`${jobsPost.pageFullUrl}/options`) === 0;
 	const isPostGroupStatuses = pathname.indexOf(`${jobsPost.pageFullUrl}/statuses`) === 0;
@@ -34,12 +35,12 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: (pathname.length > jobsPost.pageFullUrl.length && (isPostGroupOptions || isPostGroupStatuses)),
-						to: jobsPost.pageFullUrl,
+						to: jobsPost.pageFullUrl + search,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: (pathname.length > jobsCategory.pageFullUrl.length && (isCategoryGroupOptions || isCategoryGroupStatuses)),
-							to: jobsCategory.pageFullUrl,
+							to: jobsCategory.pageFullUrl + search,
 						}]
 						: (isCompanyGroup
 							? [{
@@ -57,12 +58,12 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: !isPostGroupOptions,
-						to: `${jobsPost.pageFullUrl}/options`,
+						to: `${jobsPost.pageFullUrl}/options${search}`,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: !isCategoryGroupOptions,
-							to: `${jobsCategory.pageFullUrl}/options`,
+							to: `${jobsCategory.pageFullUrl}/options${search}`,
 						}]
 						: (isCompanyGroup
 							? [{
@@ -80,12 +81,12 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: !isPostGroupStatuses,
-						to: `${jobsPost.pageFullUrl}/statuses`,
+						to: `${jobsPost.pageFullUrl}/statuses${search}`,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: !isCategoryGroupStatuses,
-							to: `${jobsCategory.pageFullUrl}/statuses`,
+							to: `${jobsCategory.pageFullUrl}/statuses${search}`,
 						}]
 						: (isCompanyGroup
 							? [{

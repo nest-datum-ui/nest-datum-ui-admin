@@ -7,7 +7,7 @@ const typeOptionRelationList = {
 	title: 'Countries',
 	subtitle: 'List of countries that own the current setting.',
 	formName: 'countriesTypeOptionRelationForm',
-
+	orderInHeaderTabMenu: 2,
 	id: 'countries-type-option-relations-list',
 	storeName: 'countries-type-option-relations-list',
 	columnName: 'typeId',

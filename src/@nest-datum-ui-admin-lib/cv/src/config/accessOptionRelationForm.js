@@ -11,7 +11,7 @@ const accessOptionRelationForm = {
 	post: {
 		apiUrl: 'access/:id/options',
 	},
-
+	orderInHeaderTabMenu: 2,
 	fields: [{
 		Component: Select,
 		storeName: 'cv-accesses-option-relations-form',

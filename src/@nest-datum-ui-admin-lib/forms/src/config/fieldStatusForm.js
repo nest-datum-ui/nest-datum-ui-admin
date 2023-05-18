@@ -7,7 +7,7 @@ const fieldStatusForm = {
 
 	pageUrl: 'fields/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'forms-field-statuses-form',
 	storeName: 'forms-field-statuses-form',
 	apiUrl: 'field-status',

@@ -11,7 +11,7 @@ let Group = (props) => {
 			dataType,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isTypesGroup = pathname.indexOf(dataType.pageFullUrl) === 0;
 	const isTypesGroupOptions = pathname.indexOf(`${dataType.pageFullUrl}/options`) === 0;
 	const isTypesGroupStatuses = pathname.indexOf(`${dataType.pageFullUrl}/statuses`) === 0;
@@ -26,12 +26,12 @@ let Group = (props) => {
 				check: isTypesGroup
 					? [{
 						flag: (pathname.length > dataType.pageFullUrl.length && (isTypesGroupOptions || isTypesGroupStatuses)),
-						to: dataType.pageFullUrl,
+						to: dataType.pageFullUrl + search,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: (pathname.length > dataTypeAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-							to: dataTypeAccess.pageFullUrl,
+							to: dataTypeAccess.pageFullUrl + search,
 						}]
 						: []),
 			}, {
@@ -39,12 +39,12 @@ let Group = (props) => {
 				check: isTypesGroup
 					? [{
 						flag: !isTypesGroupOptions,
-						to: `${dataType.pageFullUrl}/options`,
+						to: `${dataType.pageFullUrl}/options${search}`,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: !isAccessesGroupOptions,
-							to: `${dataTypeAccess.pageFullUrl}/options`,
+							to: `${dataTypeAccess.pageFullUrl}/options${search}`,
 						}]
 						: []),
 			}, {
@@ -52,12 +52,12 @@ let Group = (props) => {
 				check: isTypesGroup
 					? [{
 						flag: !isTypesGroupStatuses,
-						to: `${dataType.pageFullUrl}/statuses`,
+						to: `${dataType.pageFullUrl}/statuses${search}`,
 					}]
 					: (isAccessesGroup
 						? [{
 							flag: !isAccessesGroupStatuses,
-							to: `${dataTypeAccess.pageFullUrl}/statuses`,
+							to: `${dataTypeAccess.pageFullUrl}/statuses${search}`,
 						}]
 						: []),
 			}])}

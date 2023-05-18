@@ -7,7 +7,7 @@ const accessForm = {
 	statusName: 'webSocketAccessStatus',
 	statusListName: 'webSocketAccessStatusList',
 	relationListName: 'webSocketAccessFormRelationList',
-	
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

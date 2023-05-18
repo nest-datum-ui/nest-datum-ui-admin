@@ -9,6 +9,7 @@ const accessFormRelationForm = {
 	post: {
 		apiUrl: 'access/:id/roles',
 	},
+	orderInHeaderTabMenu: 2,
 	fields: [{
 		Component: Select,
 		storeName: 'dictionary-role-access-option-relations-form',

@@ -4,11 +4,11 @@ const config = {
 	breadcrumbsMenuTitle: 'Providers',
 
 	displayInHeaderTabMenu: true,
-	orderInHeaderTabMenu: 2,
 	headerTabMenuTitle: 'Providers',
 
 	pageUrl: 'providers',
 	pageTitle: 'Providers',
+	orderInHeaderTabMenu: 1,
 };
 
 export default config;

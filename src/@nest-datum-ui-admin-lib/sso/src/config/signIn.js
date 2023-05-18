@@ -6,6 +6,7 @@ const SignIn = {
 	id: 'sso-sign-in',
 	storeName: 'sso-sign-in',
 	apiUrl: 'user/login',
+	orderInHeaderTabMenu: 1,
 };
 
 export default SignIn;

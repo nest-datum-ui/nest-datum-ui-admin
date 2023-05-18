@@ -9,6 +9,7 @@ const accessFormRelationForm = {
 	post: {
 		apiUrl: 'access/:id/roles',
 	},
+	orderInHeaderTabMenu: 2,
 	fields: [{
 		Component: Select,
 		storeName: 'cv-role-access-option-relations-form',

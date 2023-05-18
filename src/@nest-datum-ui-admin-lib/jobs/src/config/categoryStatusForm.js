@@ -11,7 +11,7 @@ const categoryStatusForm = {
 	id: 'jobs-category-statuses-form',
 	storeName: 'jobs-category-statuses-form',
 	apiUrl: 'category-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

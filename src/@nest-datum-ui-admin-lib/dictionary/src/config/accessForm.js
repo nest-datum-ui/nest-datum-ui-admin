@@ -7,7 +7,7 @@ const accessForm = {
 	statusName: 'dictionaryAccessStatus',
 	statusListName: 'dictionaryAccessStatusList',
 	relationListName: 'dictionaryAccessFormRelationList',
-	
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Access',
 

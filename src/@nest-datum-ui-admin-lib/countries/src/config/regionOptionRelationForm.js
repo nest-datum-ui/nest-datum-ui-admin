@@ -11,7 +11,7 @@ const regionOptionRelationForm = {
 	post: {
 		apiUrl: 'region/:id/options',
 	},
-
+	orderInHeaderTabMenu: 2,
 	fields: [{
 		Component: Select,
 		storeName: 'countries-region-option-relations-form',

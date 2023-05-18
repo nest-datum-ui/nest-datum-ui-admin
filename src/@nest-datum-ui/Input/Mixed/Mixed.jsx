@@ -14,6 +14,9 @@ const DataTypes = {
 	'happ-data-type-file-select': () => React.lazy(() => import('@nest-datum-ui-admin-lib/files/src/components/Input/Manager')),
 	'happ-data-type-select-avatar': () => React.lazy(() => import('@nest-datum-ui-admin-lib/sso/src/components/Input/Avatar')),
 	'happ-data-type-file-email-view': () => React.lazy(() => import('@nest-datum-ui-admin-lib/mail/src/components/Input/View')),
+	'happ-data-type-enum': () => React.lazy(() => import('@nest-datum-ui/Input/Enum')),
+	'happ-data-type-enum-workplace': () => React.lazy(() => import('@nest-datum-ui/Input/Enum')),
+	'happ-data-type-enum-worktype': () => React.lazy(() => import('@nest-datum-ui/Input/Enum')),
 	// 'happ-data-type-file-cv': () => React.lazy(() => import('@nest-datum-ui-admin-lib/cv/src/components/Input/File')),
 	// 'happ-data-type-file-cv-lensa': () => React.lazy(() => import('@nest-datum-ui-admin-lib/cv-lensa/src/components/Input/File')),
 };

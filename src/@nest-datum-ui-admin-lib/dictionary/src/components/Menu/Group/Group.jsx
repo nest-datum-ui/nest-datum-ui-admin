@@ -12,7 +12,7 @@ let Group = (props) => {
 			dictionaryCategory,
 		}, 
 	} = React.useContext(ContextProps);
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	const isPostGroup = pathname.indexOf(dictionaryPost.pageFullUrl) === 0;
 	const isPostGroupOptions = pathname.indexOf(`${dictionaryPost.pageFullUrl}/options`) === 0;
 	const isPostGroupStatuses = pathname.indexOf(`${dictionaryPost.pageFullUrl}/statuses`) === 0;
@@ -30,17 +30,17 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: (pathname.length > dictionaryPost.pageFullUrl.length && (isPostGroupOptions || isPostGroupStatuses)),
-						to: dictionaryPost.pageFullUrl,
+						to: dictionaryPost.pageFullUrl + search,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: (pathname.length > dictionaryCategory.pageFullUrl.length && (isCategoryGroupOptions || isCategoryGroupStatuses)),
-							to: dictionaryCategory.pageFullUrl,
+							to: dictionaryCategory.pageFullUrl + search,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: (pathname.length > dictionaryAccess.pageFullUrl.length && (isAccessesGroupOptions || isAccessesGroupStatuses)),
-								to: dictionaryAccess.pageFullUrl,
+								to: dictionaryAccess.pageFullUrl + search,
 							}]
 							: [])),
 			}, {
@@ -48,17 +48,17 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: !isPostGroupOptions,
-						to: `${dictionaryPost.pageFullUrl}/options`,
+						to: `${dictionaryPost.pageFullUrl}/options${search}`,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: !isCategoryGroupOptions,
-							to: `${dictionaryCategory.pageFullUrl}/options`,
+							to: `${dictionaryCategory.pageFullUrl}/options${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupOptions,
-								to: `${dictionaryAccess.pageFullUrl}/options`,
+								to: `${dictionaryAccess.pageFullUrl}/options${search}`,
 							}]
 							: [])),
 			}, {
@@ -66,17 +66,17 @@ let Group = (props) => {
 				check: isPostGroup
 					? [{
 						flag: !isPostGroupStatuses,
-						to: `${dictionaryPost.pageFullUrl}/statuses`,
+						to: `${dictionaryPost.pageFullUrl}/statuses${search}`,
 					}]
 					: (isCategoryGroup
 						? [{
 							flag: !isCategoryGroupStatuses,
-							to: `${dictionaryCategory.pageFullUrl}/statuses`,
+							to: `${dictionaryCategory.pageFullUrl}/statuses${search}`,
 						}]
 						: (isAccessesGroup
 							? [{
 								flag: !isAccessesGroupStatuses,
-								to: `${dictionaryAccess.pageFullUrl}/statuses`,
+								to: `${dictionaryAccess.pageFullUrl}/statuses${search}`,
 							}]
 							: [])),
 			}])}

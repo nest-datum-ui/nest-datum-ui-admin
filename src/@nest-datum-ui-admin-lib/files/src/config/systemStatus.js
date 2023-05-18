@@ -5,6 +5,7 @@ const systemStatus = {
 
 	pageUrl: 'systems/statuses',
 	pageTitle: 'Statuses',
+	orderInHeaderTabMenu: 2,
 };
 
 export default systemStatus;

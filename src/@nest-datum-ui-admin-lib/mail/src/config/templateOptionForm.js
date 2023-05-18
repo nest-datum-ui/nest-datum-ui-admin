@@ -13,7 +13,7 @@ const templateOptionForm = {
 	storeName: 'mail-template-options-form',
 	apiUrl: 'template-option',
 	apiRelationUrl: 'template/option/:id',
-
+	orderInHeaderTabMenu: 2,
 	entity: 'templateId', 
 	entityRelation: 'templateOptionId',
 	entityOptionRelation: 'templateTemplateOptionId',

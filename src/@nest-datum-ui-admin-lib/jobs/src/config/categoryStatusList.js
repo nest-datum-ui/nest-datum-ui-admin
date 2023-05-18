@@ -5,7 +5,7 @@ import {
 
 const categoryStatusList = {
 	parentName: 'jobsCategoryStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'jobs-category-statuses-list',
 	storeName: 'jobs-category-statuses-list',
 	apiUrl: 'category-status',

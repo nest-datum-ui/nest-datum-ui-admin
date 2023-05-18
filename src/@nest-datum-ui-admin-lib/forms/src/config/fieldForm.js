@@ -7,7 +7,7 @@ const fieldForm = {
 	statusName: 'formsFieldStatus',
 	statusListName: 'formsFieldStatusList',
 	relationListName: 'formsFieldFormRelationList',
-
+	orderInHeaderTabMenu: 2,
 	displayInBreadcrumbsMenu: true,
 	breadcrumbsMenuTitle: 'Field',
 

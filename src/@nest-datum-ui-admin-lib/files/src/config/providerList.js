@@ -5,7 +5,7 @@ import {
 
 const providerList = {
 	parentName: 'filesProvider',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'files-providers-list',
 	storeName: 'files-providers-list',
 	apiUrl: 'provider',

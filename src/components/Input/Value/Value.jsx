@@ -5,6 +5,7 @@ import {
 	ContextProps,
 	ContextRoute, 
 	ContextService,
+	ContextOptions,
 } from '@nest-datum-ui/Context';
 import Store, { 
 	selectorMainExtract,
@@ -80,12 +81,14 @@ let Value = ({
 		setState,
 	]);
 
-	return <InputMixed
-		dataTypeId={dataTypeId}
-		defaultValue={state}
-		onChange={onState}
-		name={name}
-		{ ...props } />;
+	return <ContextOptions.Provider value={{ dataTypeId, storeName }}>
+		<InputMixed
+			dataTypeId={dataTypeId}
+			defaultValue={state}
+			onChange={onState}
+			name={name}
+			{ ...props } />
+	</ContextOptions.Provider>;
 };
 
 Value = React.memo(Value);

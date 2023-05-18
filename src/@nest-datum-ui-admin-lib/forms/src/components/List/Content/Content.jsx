@@ -3,7 +3,10 @@ import TableContent from '../../Table/Content';
 import StyledWrapper from './Styled/Wrapper.jsx';
 
 let Content = (props) => {
-	return <StyledWrapper>
+	const sortWrapper = React.useCallback((value) => value ?? `{"createdAt":"DESC"}`, [
+	]);
+
+	return <StyledWrapper sortWrapper={sortWrapper}>
 		<TableContent />
 	</StyledWrapper>;
 };

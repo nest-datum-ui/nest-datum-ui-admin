@@ -15,7 +15,7 @@ const accessOptionList = {
 	bulkDeletion: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
 	entity: 'accessId', 
 	entityRelation: 'accessOptionId',
 	entityOptionRelation: 'accessAccessOptionId',

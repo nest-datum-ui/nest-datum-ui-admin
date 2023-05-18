@@ -7,7 +7,7 @@ const settingForm = {
 
 	pageUrl: 'settings/:id',
 	pageTitle: 'Setting',
-
+	orderInHeaderTabMenu: 2,
 	id: 'setting-form',
 	storeName: 'setting-form',
 	apiUrl: 'setting',

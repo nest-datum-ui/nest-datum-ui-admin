@@ -8,6 +8,7 @@ const systemOption = {
 
 	fieldsBlock: true,
 	fieldsBlockTitle: 'Options:',
+	orderInHeaderTabMenu: 2,
 };
 
 export default systemOption;

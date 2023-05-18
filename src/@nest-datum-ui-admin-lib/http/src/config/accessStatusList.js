@@ -5,7 +5,7 @@ import {
 
 const accessStatusList = {
 	parentName: 'httpAccessStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'http-accesses-statuses-list',
 	storeName: 'http-accesses-statuses-list',
 	apiUrl: 'access-status',

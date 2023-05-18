@@ -7,7 +7,7 @@ const systemStatusForm = {
 
 	pageUrl: 'systems/statuses/:id',
 	pageTitle: 'Status',
-
+	orderInHeaderTabMenu: 2,
 	id: 'files-system-statuses-form',
 	storeName: 'files-system-statuses-form',
 	apiUrl: 'system-status',

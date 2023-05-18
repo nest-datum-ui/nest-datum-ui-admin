@@ -11,7 +11,7 @@ const accessStatusForm = {
 	id: 'dictionary-accesses-statuses-form',
 	storeName: 'dictionary-accesses-statuses-form',
 	apiUrl: 'access-status',
-
+	orderInHeaderTabMenu: 2,
 	manage: {
 		create: {
 			text: 'Save',

@@ -5,7 +5,7 @@ import {
 
 const systemStatusList = {
 	parentName: 'filesSystemStatus',
-	
+	orderInHeaderTabMenu: 2,
 	id: 'files-system-statuses-list',
 	storeName: 'files-system-statuses-list',
 	apiUrl: 'system-status',
