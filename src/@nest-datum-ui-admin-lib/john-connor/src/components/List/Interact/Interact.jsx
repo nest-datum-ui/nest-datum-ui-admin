@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -20,7 +21,7 @@ let Interact = () => {
 	const currentStateId = state[state.length - 1]['stateId'];
 	const currentValue = state[state.length - 1]['value'];
 	const onYes = React.useCallback(async () => {
-		const request = await axios(`${process.env.URL_API_JOHN_CONNOR}/neuron/step?id=${currentStateId}&value=${currentValue}`);
+		const request = await axios(utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron/step?id=${currentStateId}&value=${currentValue}`));
 
 		if (((request || {}).data || {}).stateId > 0) {
 			setState((data) => ([

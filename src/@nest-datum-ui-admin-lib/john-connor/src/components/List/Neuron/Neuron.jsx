@@ -5,6 +5,7 @@ import {
 	selectorMainExtract,
 	actionApiListGet,
 } from '@nest-datum-ui/Store';
+import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
 import { arrFilled as utilsCheckArrFilled } from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
@@ -19,7 +20,7 @@ let Neuron = () => {
 
 	React.useEffect(() => {
 		actionApiListGet('neuronList', {
-			apiUrl: `${process.env.URL_API_JOHN_CONNOR}/neuron`,
+			apiUrl: utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron`),
 			page: 1,
 			limit: 9999,
 		})();
@@ -29,7 +30,7 @@ let Neuron = () => {
 	React.useEffect(() => {
 		if (neuronDataListExists) {
 			actionApiListGet('chainList', {
-				apiUrl: `${process.env.URL_API_JOHN_CONNOR}/chain`,
+				apiUrl: utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/chain`),
 				page: 1,
 				limit: 9999,
 			})(() => {
