@@ -7,7 +7,7 @@ const Item = styled(Box)`
 	height: 8px;
 	border: 2px solid black;
 	border-radius: 50%;
-	background-color: red;
+	background-color: grey;
 `;
 
 export default Item;

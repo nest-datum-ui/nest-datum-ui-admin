@@ -12,23 +12,26 @@ import Tooltip from '@mui/material/Tooltip';
 import StyledWrapper from './Styled/Wrapper.jsx';
 import StyledItem from './Styled/Item.jsx';
 
-let Neuron = () => {
+let Neuron = ({ length }) => {
 	const neuronDataList = useSelector(selectorMainExtract([ 'api', 'list', 'neuronList', 'data' ]));
-	const neuronDataListExists = (neuronDataList || []).length > 0;
+	const neuronDataListLength = (neuronDataList || []).length ?? 0;
 	const neuronChainList = useSelector(selectorMainExtract([ 'api', 'list', 'chainList', 'data' ]));
 	const areaWrapperRef = React.useRef();
 
 	React.useEffect(() => {
-		actionApiListGet('neuronList', {
-			apiUrl: utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron`),
-			page: 1,
-			limit: 9999,
-		})();
+		if (length >= 0) {
+			actionApiListGet('neuronList', {
+				apiUrl: utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron`),
+				page: 1,
+				limit: 9999,
+			})();
+		}
 	}, [
+		length,
 	]);
 
 	React.useEffect(() => {
-		if (neuronDataListExists) {
+		if (neuronDataListLength > 0) {
 			actionApiListGet('chainList', {
 				apiUrl: utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/chain`),
 				page: 1,
@@ -38,7 +41,7 @@ let Neuron = () => {
 			});
 		}
 	}, [
-		neuronDataListExists,
+		neuronDataListLength,
 	]);
 
 	return <StyledWrapper>
@@ -63,12 +66,12 @@ let Neuron = () => {
 						start={String(item.parentId)}
 						end={String(item.neuronId)}
 						path="straight"
-						lineColor={item.isFortified
-							? '#2B2487'
-							: 'green'}
-						headColor={item.isFortified
-							? '#2B2487'
-							: 'green'}
+						lineColor={item.isTrue
+							? 'green'
+							: 'red'}
+						headColor={item.isTrue
+							? 'green'
+							: 'red'}
 						strokeWidth={2}
 						headSize={4} />)}
 			</Box>

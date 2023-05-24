@@ -4,6 +4,11 @@ import ListNeuron from '../components/List/Neuron';
 import ListInteract from '../components/List/Interact';
 
 let Layout = ({ children }) => {
+	const [ length, setLength ] = React.useState(() => 0);
+	const onUpdate = React.useCallback((state) => setLength(state.length), [
+		setLength,
+	]);
+
 	return <Grid 
 		container
 		sx={{
@@ -18,7 +23,7 @@ let Layout = ({ children }) => {
 			sx={{
 				height: '100%',
 			}}>
-			<ListNeuron />
+			<ListNeuron length={length} />
 		</Grid>
 		<Grid
 			item
@@ -26,7 +31,7 @@ let Layout = ({ children }) => {
 			sx={{
 				height: '100%',
 			}}>
-			<ListInteract />
+			<ListInteract onUpdate={onUpdate} />
 		</Grid>
 	</Grid>;
 };

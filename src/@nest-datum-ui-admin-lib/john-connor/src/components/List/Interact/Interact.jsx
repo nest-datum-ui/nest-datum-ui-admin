@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { urlApiStr as utilsFormatUrlApiStr } from '@nest-datum-utils/format';
+import { arrFilled as utilsCheckArrFilled } from '@nest-datum-utils/check';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -10,33 +11,37 @@ import StyledWrapper from './Styled/Wrapper.jsx';
 import StyledList from './Styled/List.jsx';
 import StyledManager from './Styled/Manager.jsx';
 
-let Interact = () => {
+let Interact = ({ onUpdate }) => {
 	const [ isCorrect, setIsCorrect ] = React.useState(() => false);
 	const [ state, setState ] = React.useState(() => ([{
-		readChain: [ 1 ],
-		executeChain: [ 2 ],
-		stateId: 1,
-		value: '',
+		chain: [ 1 ],
+		value: 'pwd',
 	}]));
-	const currentStateId = state[state.length - 1]['stateId'];
-	const currentValue = state[state.length - 1]['value'];
+	const currentState = state[state.length - 1];
+	const currentId = currentState['chain'][currentState['chain'].length - 1];
+	const currentValue = currentState['value'];
 	const onYes = React.useCallback(async () => {
-		const request = await axios(utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron/step?id=${currentStateId}&value=${currentValue}`));
+		const request = await axios(utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron/step?id=${currentId}&value=${currentValue}`));
 
-		if (((request || {}).data || {}).stateId > 0) {
-			setState((data) => ([
-				...data,
-				{
-					executeChain: request.data.executeChain,
-					readChain: request.data.readChain,
-					stateId: request.data.stateId,
-					value: request.data.value,
-				},
-			]));
+		if (utilsCheckArrFilled(((request || {}).data || {}).chain)) {
+			setState((data) => {
+				const newState = [
+					...data,
+					{
+						chain: request.data.chain,
+						value: request.data.value,
+					},
+				];
+
+				setTimeout(() => onUpdate(newState), 0);
+
+				return newState;
+			});
 		}
 	}, [
-		currentStateId,
 		currentValue,
+		currentId,
+		onUpdate,
 	]);
 	const onNo = React.useCallback(() => setIsCorrect(true), [
 		setIsCorrect,
@@ -50,17 +55,7 @@ let Interact = () => {
 				<Typography
 					component="div"
 					variant="body2">
-					<b>readChain:</b> {item.readChain.join('-')}
-				</Typography>
-				<Typography
-					component="div"
-					variant="body2">
-					<b>executeChain:</b> {item.executeChain.join('-')}
-				</Typography>
-				<Typography
-					component="div"
-					variant="body2">
-					<b>stateId:</b> {item.stateId}
+					<b>chain:</b> {item.chain.join('-')}
 				</Typography>
 				<Typography
 					component="div"
