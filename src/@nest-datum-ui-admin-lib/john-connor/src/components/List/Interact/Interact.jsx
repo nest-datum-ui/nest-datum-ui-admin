@@ -21,7 +21,10 @@ let Interact = ({ onUpdate }) => {
 	const currentId = currentState['chain'][currentState['chain'].length - 1];
 	const currentValue = currentState['value'];
 	const onYes = React.useCallback(async () => {
-		const request = await axios(utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron/step?id=${currentId}&value=${currentValue}`));
+		const request = await axios.post(utilsFormatUrlApiStr(`${process.env.URL_API_JOHN_CONNOR}/neuron/step`), {
+			id: currentId,
+			value: currentValue,
+		});
 
 		if (utilsCheckArrFilled(((request || {}).data || {}).chain)) {
 			setState((data) => {
