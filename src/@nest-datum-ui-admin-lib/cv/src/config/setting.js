@@ -8,7 +8,7 @@ const config = {
 	breadcrumbsMenuTitle: 'Settings',
 
 	displayInHeaderTabMenu: true,
-	orderInHeaderTabMenu: 9999,
+	orderInHeaderTabMenu: 1,
 	headerTabMenuTitle: 'Settings',
 	
 	pageUrl: 'settings',

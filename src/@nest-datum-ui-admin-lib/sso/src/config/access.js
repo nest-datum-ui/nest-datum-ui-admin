@@ -4,7 +4,7 @@ const config = {
 	breadcrumbsMenuTitle: 'Accesses',
 
 	displayInHeaderTabMenu: true,
-	orderInHeaderTabMenu: 9990,
+	orderInHeaderTabMenu: 1,
 	headerTabMenuTitle: 'Accesses',
 
 	pageUrl: 'accesses',
