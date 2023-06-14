@@ -12,7 +12,7 @@ let _saved = {
 };
 
 setTimeout(() => {
-	console.log('_saved', _saved);
+	console.log('_saved', _saved[(Object.keys(_saved).find((key) => key.includes('|store')))].getState());
 }, 5000);
 
 export class Entity {

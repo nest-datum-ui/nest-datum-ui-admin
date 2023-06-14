@@ -6,27 +6,42 @@ import { ReduxModelEntity } from './redux-model.entity.jsx';
 export const Context = React.createContext();
 
 let ReduxModel = ({
+	ContextCurrent,
 	entityInstance,
 	controllerInstance,
 	columnsInstance,
 	children,
 	...props 
 }) => {
+	const parent = React.useContext(ContextCurrent);
 	const entity = React.useMemo(() => entityInstance(), [
 		entityInstance,
 	]);
-	const controller = React.useMemo(() => controllerInstance(), [
-		controllerInstance,
+	const parentControllerInstance = React.useMemo(() => parent.controllerInstance(), [
+		parent,
 	]);
-	const setReducer = React.useCallback(() => (entity && entity.store)
-		&& controller.update({
-			...entity.reducers,
-			[entity.id]: entity.reducers.default,
+	const parentEntityInstance = React.useMemo(() => parent.entityInstance(), [
+		parent,
+	]);
+	const parentEntityInstanceReducers = React.useMemo(() => parentEntityInstance.reducers, [
+		parentEntityInstance,
+	]);
+	const controllerUpdate = React.useCallback((...properties) => (parentControllerInstance.update.bind(parentControllerInstance))(...properties), [
+		parentControllerInstance,
+	]);
+	const setReducer = React.useCallback(() => (parentEntityInstance && parentEntityInstance.store)
+		&& controllerUpdate({
+			...parentEntityInstanceReducers,
+			[entity.id]: parentEntityInstanceReducers[parentEntityInstance.id],
 			id: entity.id,
 		}), [
 		entity,
-		controller,
+		parentEntityInstance,
+		parentEntityInstanceReducers,
+		controllerUpdate,
 	]);
+
+	console.log('parent', parent);
 
 	React.useMemo(() => {
 		setReducer();
@@ -34,17 +49,7 @@ let ReduxModel = ({
 		setReducer,
 	]);
 
-	React.useMemo(() => {
-		if (entity && entity.store) {
-			setTimeout(() => {
-				console.log('entity.store.getState()', entity.store.getState());
-			}, 10000);
-		}
-	}, [
-		entity,
-	]);
-
-	return <Context.Provider value={{}}>
+	return <Context.Provider value={{ entityInstance, controllerInstance, columnsInstance }}>
 		{children}
 	</Context.Provider>;
 };

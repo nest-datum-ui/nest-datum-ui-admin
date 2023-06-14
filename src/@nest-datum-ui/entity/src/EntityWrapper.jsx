@@ -8,10 +8,10 @@ let EntityWrapper = ({
 	controllerInstance,
 	children,
 }) => {
-	// const contextCurrent = React.useContext(ContextCurrent);
-	// const contextParent = React.useContext(ContextParent ?? {});
+	const contextParent = React.useContext(ContextParent ?? ContextCurrent);
+	const contextParentProcessed = contextParent ?? { entityInstance, serviceInstance, controllerInstance };
 
-	return <ContextCurrent.Provider value={{}}>
+	return <ContextCurrent.Provider value={contextParentProcessed}>
 		{children}
 	</ContextCurrent.Provider>;
 };

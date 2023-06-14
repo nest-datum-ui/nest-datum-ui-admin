@@ -43,7 +43,7 @@ export class ReduxEntity extends Entity {
 			...payloadData, 
 			reducers: { 
 				...((payloadData || {}).reducers || {}),  
-				default: this.defaultReducer.bind(this),
+				[this.id]: (...properties) => (this.defaultReducer.bind(this))(...properties),
 			}, 
 		};
 		let i = 0,
@@ -67,38 +67,35 @@ export class ReduxEntity extends Entity {
 			index = (payload || {}).index,
 			data = (payload || {}).data;
 
-		// state[this.id] = this.columnsInstance();
-
+		if ((utilsCheckObjFilled(value) 
+			&& utilsCheckFunc(value['@@observable']))) {
+			value = undefined;
+		}
+		if (type.indexOf('@@redux/') === 0
+			|| (utilsCheckArrFilled(path)
+				&& (path[path.length - 1].includes('|store')
+					|| path[path.length - 1].includes('|reducers')))) {
+			return { ...state };
+		}
 		if (!utilsCheckObjFilled(state[this.id])) {
 			state[this.id] = {
 				id: this.id,
 			};
 		}
-		if ((utilsCheckObjFilled(value) 
-			&& utilsCheckFunc(value['@@observable']))) {
-			value = undefined;
-		}
-		if (utilsCheckArrFilled(path)
-			&& (path[path.length - 1].includes('|store')
-				|| path[path.length - 1].includes('|reducers'))) {
-			return state;
-		}
 		return utilsCheckFunc(this[`${type}Reducer`])
 			? this[`${type}Reducer`](state, path, value, index, data)
-			: state;
+			: ({ ...state });
 	}
 
 	getReducer(state = {}, path, value, index, data) {
-		return state;
+		return { ...state };
 	}
 
 	delReducer(state = {}, path, value, index, data) {
-		return state;
+		return { ...state };
 	}
 
 	setReducer(state = {}, path, value, index, data) {
-		console.log('state', state, path, value, index, data);
-
-		return state;
+		return { ...state };
 	}
 }

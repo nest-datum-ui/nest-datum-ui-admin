@@ -14,8 +14,12 @@ export class ReduxController extends EntityController {
 	}
 
 	async update(propertiesData) {
+		const id = propertiesData['id'];
+
+		delete propertiesData['id'];
+
 		this.entityService.repository.store.replaceReducer(combineReducers({ ...propertiesData }));
 
-		return propertiesData;
+		return { ...propertiesData, id };
 	}
 }
