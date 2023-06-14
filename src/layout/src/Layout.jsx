@@ -11,11 +11,10 @@ import RouteHome from 'Route/Home';
 import RouteSystemNotFound from 'Route/System/NotFound';
 
 let Layout = ({
-	entityInstance,
 	children,
 	...props 
 }) => {
-	console.log('entityInstance111', entityInstance().store.getState());
+	console.log('entityInstance111', props);
 
 	return <BrowserRouter>
 		<Routes>

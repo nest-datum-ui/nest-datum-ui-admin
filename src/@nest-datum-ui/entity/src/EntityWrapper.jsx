@@ -8,8 +8,8 @@ let EntityWrapper = ({
 	controllerInstance,
 	children,
 }) => {
-	const contextCurrent = React.useContext(ContextCurrent);
-	const contextParent = React.useContext(ContextParent ?? {});
+	// const contextCurrent = React.useContext(ContextCurrent);
+	// const contextParent = React.useContext(ContextParent ?? {});
 
 	return <ContextCurrent.Provider value={{}}>
 		{children}

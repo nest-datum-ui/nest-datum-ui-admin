@@ -17,6 +17,8 @@ setTimeout(() => {
 
 export class Entity {
 	_index = 0;
+	_service = undefined;
+	_controller = undefined;
 	id = uuidv4();
 
 	instance() {
@@ -84,20 +86,30 @@ export class Entity {
 	}
 
 	serviceInstance() {
+		return this._service;
 	}
 
 	controllerInstance() {
+		return this._controller;
 	}
 
-	async getData(path = [], index = 0, data = _saved) {
+	provideServiceInstance(service) {
+		return (this._service = service);
+	}
+
+	provideControllerInstance(controller) {
+		return (this._controller = controller);
+	}
+
+	getData(path = [], index = 0, data = _saved) {
 		return (path.length === 0)
 			? data
 			: ((index === path.length - 1)
 				? data[path[index]]
-				: await this.getData(path, index + 1, data[path[index]]));
+				: this.getData(path, index + 1, data[path[index]]));
 	}
 
-	async setData(path = [], value = '', index = 0, data = _saved) {
+	setData(path = [], value = '', index = 0, data = _saved) {
 		return (path.length === 0)
 			? (utilsCheckArr(data[path[index]])
 				? data.push(value)
@@ -106,10 +118,10 @@ export class Entity {
 				? (utilsCheckArr(data[path[index]])
 					? data[path[index]].push(value)
 					: data[path[index]] = value)
-				: await this.setData(path, index + 1, data[path[index]]);
+				: this.setData(path, index + 1, data[path[index]]);
 	}
 
-	async delData(path = [], index = 0, data = _saved) {
+	delData(path = [], index = 0, data = _saved) {
 		if (path.length === 0) {
 			return false;
 		}
@@ -118,7 +130,7 @@ export class Entity {
 		}
 		(index === path.length - 1)
 			? delete data[path[index]]
-			: await this.delData(path, index + 1, data[path[index]]);
+			: this.delData(path, index + 1, data[path[index]]);
 
 		return true;
 	}
@@ -147,7 +159,7 @@ export class Entity {
 		const where = this.columnsForSave(Object(queryData['where'] || {}));
 		const whereKeys = Object.keys(where);
 		const idsKeys = Object
-			.keys(await this.getData())
+			.keys(this.getData())
 			.filter((key) => key.includes('|id'));
 		let i = 0,
 			rows = [];
@@ -173,14 +185,14 @@ export class Entity {
 					checkFlag = true;
 
 				while (iii < processors.length) {
-					checkFlag = await processors[iii](await this.getData([ `${id}|${whereKey}`, index ]), whereValueProcessed);
+					checkFlag = await processors[iii](this.getData([ `${id}|${whereKey}`, index ]), whereValueProcessed);
 					iii++;
 				}
-				if (processors.length === 0 && await this.getData([ `${id}|${whereKey}`, index ]) !== whereValueProcessed) {
+				if (processors.length === 0 && this.getData([ `${id}|${whereKey}`, index ]) !== whereValueProcessed) {
 					checkFlag = false;
 				}
 				if (checkFlag) {
-					prepareRows[whereKey] = await this.getData([ `${id}|${whereKey}`, index ]);
+					prepareRows[whereKey] = this.getData([ `${id}|${whereKey}`, index ]);
 				}
 				ii++;
 			}
@@ -217,7 +229,7 @@ export class Entity {
 		let i = 0;
 
 		while (i < payloadDataKeys.length) {
-			this._index = await this.setData([ `${this.id}|${payloadDataKeys[i]}` ], (output[payloadDataKeys[i]] = this[payloadDataKeys[i]] = (payloadData[payloadDataKeys[i]] ?? [])));
+			this._index = this.setData([ `${this.id}|${payloadDataKeys[i]}` ], (output[payloadDataKeys[i]] = this[payloadDataKeys[i]] = (payloadData[payloadDataKeys[i]] ?? [])));
 			i++;
 		}
 		return output;
@@ -236,7 +248,7 @@ export class Entity {
 		const payloadDataProcessed = this.columnsForSave(payloadData, [ 'newId' ]);
 
 		if (utilsCheckStrIdExists(payloadDataProcessed['newId'])) {
-			await this.setData([ `${this.id}|id`, this._index ], (this.id = output['id'] = payloadDataProcessed['newId']));
+			this.setData([ `${this.id}|id`, this._index ], (this.id = output['id'] = payloadDataProcessed['newId']));
 		}
 		delete payloadDataProcessed['newId'];
 		delete payloadDataProcessed['id'];
@@ -247,7 +259,7 @@ export class Entity {
 		while (i < payloadDataProcessedKeys.length) {
 			const key = payloadDataProcessedKeys[i];
 
-			await this.setData([ `${this.id}|${key}`, this._index ], (this[key] = output[key] = payloadData[key]));
+			this.setData([ `${this.id}|${key}`, this._index ], (this[key] = output[key] = payloadData[key]));
 			i++;
 		}
 		return output;

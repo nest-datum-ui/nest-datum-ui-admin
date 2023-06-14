@@ -158,6 +158,8 @@ export class EntityService {
 	}
 
 	async updateProcess(properties = {}) {
+		console.log('properties', properties);
+
 		return await this.process(properties, await this.repository.update({ id: properties['id'] }, properties));
 	}
 
