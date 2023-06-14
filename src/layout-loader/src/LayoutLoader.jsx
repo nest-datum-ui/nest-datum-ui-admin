@@ -12,7 +12,7 @@ let LayoutLoader = ({
 	children,
 	...props
 }) => {
-	console.log('entityInstance222', entityInstance());
+	console.log('entityInstance222', props);
 
 	return <ReduxModel>
 		<StyledWrapper 

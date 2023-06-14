@@ -32,4 +32,20 @@ export class Entity extends EntityDefault {
 			</EntityComponent>
 		</EntityWrapper>);
 	}
+
+	columnsInstance() {
+		const columns = super.columnsInstance();
+		const columnsKeys = Object.keys(columns);
+		const output = {};
+		let i = 0;
+
+		while (i < columnsKeys.length) {
+			if (columnsKeys[i] !== 'EntityComponent'
+				&& columnsKeys[i] !== 'EntityComponentWrapper') {
+				output[columnsKeys[i]] = columns[columnsKeys[i]];
+			}
+			i++;
+		}
+		return output;
+	}
 }

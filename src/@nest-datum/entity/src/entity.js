@@ -75,7 +75,10 @@ export class Entity {
 		let i = 0;
 
 		while (i < columns.length) {
-			output[columns[i]] = this[columns[i]];
+			if (columns[i] !== '_controller'
+				&& columns[i] !== '_service') {
+				output[columns[i]] = this[columns[i]];
+			}
 			i++;
 		}
 		return output;

@@ -15,11 +15,27 @@ export class ReduxEntity extends Entity {
 	store = undefined;
 	reducers = undefined;
 
+	columnsInstance() {
+		const columns = super.columnsInstance();
+		const columnsKeys = Object.keys(columns);
+		const output = {};
+		let i = 0;
+
+		while (i < columnsKeys.length) {
+			if (columnsKeys[i] !== 'reducers'
+				&& columnsKeys[i] !== 'store') {
+				output[columnsKeys[i]] = columns[columnsKeys[i]];
+			}
+			i++;
+		}
+		return output;
+	}
+
 	middleware(store) {
 		return (next) => (action) => next(action);
 	}
 
-	async dispatch(path, value, index, data) {
+	async dispatch({ path, value, index, data }) {
 		if (!this.store) {
 			await (new Promise((resolve) => setTimeout(() => resolve(), 1000)));
 
@@ -59,7 +75,7 @@ export class ReduxEntity extends Entity {
 		return await super.save({ ...payloadData, store: (this.store = store), reducers: reducersProcessed });
 	}
 
-	defaultReducer (state = {}, action) {
+	defaultReducer (state = { id: this.id, ...this.columnsInstance() }, action) {
 		let type = (action || {}).type,
 			payload = (action || {}).payload || {},
 			path = (payload || {}).path,
@@ -92,6 +108,8 @@ export class ReduxEntity extends Entity {
 	}
 
 	delReducer(state = {}, path, value, index, data) {
+		delete state[this.id];
+
 		return { ...state };
 	}
 

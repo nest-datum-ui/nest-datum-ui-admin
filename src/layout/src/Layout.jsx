@@ -14,8 +14,6 @@ let Layout = ({
 	children,
 	...props 
 }) => {
-	console.log('entityInstance111', props);
-
 	return <BrowserRouter>
 		<Routes>
 			<Route

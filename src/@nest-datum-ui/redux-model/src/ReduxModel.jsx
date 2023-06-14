@@ -41,8 +41,6 @@ let ReduxModel = ({
 		controllerUpdate,
 	]);
 
-	console.log('parent', parent);
-
 	React.useMemo(() => {
 		setReducer();
 	}, [

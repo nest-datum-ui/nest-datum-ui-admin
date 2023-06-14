@@ -2,16 +2,30 @@ import { ReduxEntity } from '@nest-datum-ui/redux';
 
 export class ReduxModelEntity extends ReduxEntity {
 	setData(path = [], value, index, data) {
-		this.dispatch([ 'set', ...path ], value, index, data);
-
+		this.dispatch({
+			path: [ 'set', ...path ], 
+			value, 
+			index, 
+			data,
+		});
 		return data;
 	}
 
 	delData(path = [], index, data) {
+		this.dispatch({
+			path: [ 'del', ...path ], 
+			index, 
+			data,
+		});
 		return {};
 	}
 
 	getData(path = [], index, data) {
+		this.dispatch({
+			path: [ 'del', ...path ], 
+			index, 
+			data,
+		});
 		return {};
 	}
 
