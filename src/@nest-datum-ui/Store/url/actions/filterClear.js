@@ -9,12 +9,11 @@ export const fireFilterClear = async (columnName) => await (new Promise(async (r
 	let query = hookProperty('query', window.location.search) || '',
 		sort = hookProperty('sort', window.location.search, true),
 		url = '';
-
 	if (utilsCheckStr(columnName)) {
 		let filter = hookProperty('filter', window.location.search, true) || {};
-
+		
 		delete filter[columnName];
-
+		
 		if (utilsCheckObjFilled(filter)) {
 			url += `?filter=${JSON.stringify(filter)}`;
 		}

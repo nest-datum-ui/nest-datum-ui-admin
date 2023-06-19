@@ -5,7 +5,7 @@ import {
 
 const systemList = {
 	parentName: 'filesSystem',
-	orderInHeaderTabMenu: 2,
+	
 	id: 'files-systems-list',
 	storeName: 'files-systems-list',
 	apiUrl: 'system',
@@ -15,7 +15,8 @@ const systemList = {
 	search: true,
 	withContextMenu: true,
 	withFilter: true,
-
+	orderInHeaderTabMenu: 2,
+	
 	manage: {
 		drop: {
 			text: (index, selected, selectedForDrop, selectedForDropPermanently) => `Disable checked (${selectedForDrop.length})`,
@@ -74,7 +75,7 @@ const systemList = {
 		name: 'Story',
 		id: 'createdAt',
 		sortable: true,
-		order: 5,
+		order: 4,
 	}],
 };
 

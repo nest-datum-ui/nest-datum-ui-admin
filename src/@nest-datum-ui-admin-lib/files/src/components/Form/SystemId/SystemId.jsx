@@ -33,11 +33,10 @@ let SystemId = ({ querySource, initialFilter }) => {
 		: valueStore;
 	const onChange = React.useCallback((e) => {
 		const systemId = e.target.value;
-
-		actionApiListProp(listStoreName, 'loader', true)(() => {
+		actionApiListProp(listStoreName, 'loader', true)(async () => {
 			if (querySource === 'url') {
-				actionUrlFilterClear('parentId');
-				actionUrlFilter('systemId', systemId);
+				await actionUrlFilterClear('parentId');
+				await actionUrlFilter('systemId', systemId);
 			}
 			else {
 				actionApiListMerge(storeName, {

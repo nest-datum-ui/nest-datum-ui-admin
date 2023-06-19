@@ -64,7 +64,7 @@ let File = ({ entityId }) => {
 		systemId,
 		parentId,
 	]);
-
+	
 	React.useEffect(() => () => {
 		actionApiFormPurge(storeName)();
 	}, [

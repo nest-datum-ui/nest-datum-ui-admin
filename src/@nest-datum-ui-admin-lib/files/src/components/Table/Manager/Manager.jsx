@@ -32,11 +32,10 @@ let Manager = ({
 	const onCheckWrapper = React.useCallback((item) => (e) => onCheck(e, item), [
 		onCheck,
 	]);
-
+	
 	return <Table 
 		{ ...props }
 		querySource={querySource}
-		bulkDeletion={bulkDeletion}
 		BottomComponent={<React.Fragment>
 			<FilesDialogDisable />
 			<FilesDialogDisableMany />
