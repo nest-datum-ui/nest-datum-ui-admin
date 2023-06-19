@@ -9,6 +9,8 @@ import {
 import { 
 	selectorMainExtract,
 	actionApiFormDrop, 
+	actionApiListProp,
+	actionDialogClose
 } from '@nest-datum-ui/Store';
 import Box from '@mui/material/Box';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -34,7 +36,15 @@ let Many = ({
 		}, 
 	} = React.useContext(ContextProps);
 	const ids = useSelector(selectorMainExtract([ 'dialog', id, 'ids' ]));
-	const onSubmit = React.useCallback(() => actionApiFormDrop(storeName, { apiUrl: systemApiUrl, ids })(), [
+	const onSubmit = React.useCallback(() => actionApiFormDrop(storeName, { 
+		sliceInList: true,
+		type: 'list',
+		apiUrl: systemApiUrl, 
+		ids
+	})(() => {
+		actionDialogClose()();
+		actionApiListProp(storeName, 'updatedIndex', Date.now())();
+	}), [
 		storeName,
 		systemApiUrl,
 		ids,
