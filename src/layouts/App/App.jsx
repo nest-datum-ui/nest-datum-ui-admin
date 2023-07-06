@@ -20,11 +20,11 @@ let App = ({ children }) => {
 	}, [
 	]);
 
-	return <StyledWrapper container spacing={3}>
+	return <StyledWrapper container spacing={3} sx={{ flexWrap: "nowrap" }}>
 		<SsoLayoutAuthed>
 			<Grid
 				item
-				sm={12}
+				sm={2}
 				md={2}
 				sx={{ zIndex: 2, backgroundColor: '#FFF' }}>
 				<MenuAside />
