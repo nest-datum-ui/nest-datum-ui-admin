@@ -19,7 +19,7 @@ const accessFormRelationForm = {
 		label: 'Select',
 		required: true,
 		filter: (index, storeName, entityId, relationsData) => ((relationsData || []).data || []).length > 0
-			? ({ id: [ '$Not', ...(relationsData || []).data.map((item) => item.roleId) ] })
+			? ({ id: [ '$Not', '$In', ...(relationsData || []).data.map((item) => item.roleId) ] })
 			: ({}),
 		check: [ utilsCheckStrId ]
 	}],
