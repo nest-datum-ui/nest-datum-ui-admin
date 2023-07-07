@@ -38,12 +38,12 @@ export const fireRegister = (storeName, apiUrl) => async (callback = () => {}) =
 				isRequired: true,
 			},
 			password: {
-				text: 'Password not specified.',
+				text: 'Password is not valid.',
 				check: [ utilsCheckStrPassword ],
 				isRequired: true,
 			},
 			repeatedPassword: {
-				text: 'Passwords do not match.',
+				text: 'Password is not valid or does not match.',
 				check: [
 					utilsCheckStrPassword,
 					(value, name, data) => {
