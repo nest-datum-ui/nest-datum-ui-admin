@@ -9,6 +9,7 @@ Id = React.memo(Id);
 Id.defaultProps = {
 	label: 'Unique identificator',
 	placeholder: 'For example: test-entity-id',
+	disabled: true
 };
 Id.propTypes = {
 };
