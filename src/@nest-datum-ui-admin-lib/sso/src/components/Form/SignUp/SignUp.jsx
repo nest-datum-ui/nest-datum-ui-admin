@@ -115,11 +115,6 @@ let SignUp = ({
 							Sign in
 						</Typography>
 					</ButtonLink>
-					<ButtonLink to={process.env.ROUTE_RECOVERY}>
-						<Typography component="div">
-							Recovery
-						</Typography>
-					</ButtonLink>
 				</Box>
 			</React.Fragment>}
 	</StyledWrapper>;
