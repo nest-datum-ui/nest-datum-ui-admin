@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
-const Wrapper = styled(Grid)`
+const Wrapper = styled(Box)`
 `;
 
 export default Wrapper;

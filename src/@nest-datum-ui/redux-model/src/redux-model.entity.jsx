@@ -1,43 +1,33 @@
+import { combineReducers } from 'redux';
 import { ReduxEntity } from '@nest-datum-ui/redux';
 
 export class ReduxModelEntity extends ReduxEntity {
-	setData(path = [], value, index, data) {
-		this.dispatch({
-			path: [ 'set', ...path ], 
-			value, 
-			index, 
-			data,
-		});
-		return data;
+	setData(path = [], value) {
+		return value;
 	}
 
-	delData(path = [], index, data) {
-		this.dispatch({
-			path: [ 'del', ...path ], 
-			index, 
-			data,
-		});
-		return {};
-	}
-
-	getData(path = [], index, data) {
-		this.dispatch({
-			path: [ 'del', ...path ], 
-			index, 
-			data,
-		});
+	delData(path = [], data, index) {
 		return {};
 	}
 
 	async save(payloadData = {}) {
-		const output = {};
-		const payloadDataKeys = Object.keys(payloadData = this.columnsForSave(payloadData));
-		let i = 0;
+		const reduxEntity = (await this.find({ 
+			select: {
+				store: true,
+			}, 
+			where: { 
+				name: 'ReduxEntity',
+			}, 
+		}))[0];
+		const store = reduxEntity.store;
+		const reducers = store.reducers;
 
-		while (i < payloadDataKeys.length) {
-			this._index = this.setData([ `${this.id}|${payloadDataKeys[i]}` ], (output[payloadDataKeys[i]] = this[payloadDataKeys[i]] = (payloadData[payloadDataKeys[i]] ?? [])));
-			i++;
-		}
-		return output;
+		store.reducers = {
+			...reducers,
+			[this.id]: this.defaultReducer.bind(this),
+		};
+		store.replaceReducer(combineReducers(store.reducers));
+
+		return this.setData([ this.id ], this.columnsForSave(payloadData));
 	}
 }

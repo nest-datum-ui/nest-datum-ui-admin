@@ -2,9 +2,9 @@ import { EntityService } from '@nest-datum/entity';
 import { ReduxEntity } from './redux.entity.js';
 
 export class ReduxService extends EntityService {
-	constructor(repository = new ReduxEntity(), payloadData = {}) {
-		super(repository, payloadData);
+	constructor(repository, payloadData = {}) {
+		super(repository ?? new ReduxEntity(), payloadData);
 
-		repository.provideServiceInstance(this);
+		(async () => await repository.save({ ...repository.columnsInstance(), ...payloadData }))();
 	}
 }

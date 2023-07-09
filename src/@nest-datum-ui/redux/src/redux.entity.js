@@ -5,11 +5,7 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import { Entity } from '@nest-datum-ui/entity';
-import {
-	func as utilsCheckFunc,
-	arrFilled as utilsCheckArrFilled,
-	objFilled as utilsCheckObjFilled,
-} from '@nest-datum-utils/check';
+import { func as utilsCheckFunc } from '@nest-datum-utils/check';
 
 export class ReduxEntity extends Entity {
 	store = undefined;
@@ -32,34 +28,18 @@ export class ReduxEntity extends Entity {
 	}
 
 	middleware(store) {
-		return (next) => (action) => next(action);
-	}
-
-	async dispatch({ path, value, index, data }) {
-		if (!this.store) {
-			await (new Promise((resolve) => setTimeout(() => resolve(), 1000)));
-
-			if (!this.store) {
-				return await this.dispatch(path, value, index, data);
-			}
-		}
-		return await this.store.dispatch({
-			type: path.shift(),
-			payload: {
-				path, 
-				value, 
-				index,
-				data,
-			},
-		});
+		return (next) => (action) => {
+			return next(action);
+		};
 	}
 
 	async save(payloadData = {}) {
 		payloadData = { 
+			...this.columnsInstance(),
 			...payloadData, 
 			reducers: { 
 				...((payloadData || {}).reducers || {}),  
-				[this.id]: (...properties) => (this.defaultReducer.bind(this))(...properties),
+				[this.id]: this.defaultReducer.bind(this),
 			}, 
 		};
 		let i = 0,
@@ -70,50 +50,33 @@ export class ReduxEntity extends Entity {
 			reducersProcessed[reducersKeys[i]] = await payloadData['reducers'][reducersKeys[i]];
 			i++;
 		}
-		const store = await createStore(combineReducers(reducersProcessed), undefined, applyMiddleware(thunk, this.middleware));
+		const store = await createStore(combineReducers(reducersProcessed), undefined, applyMiddleware(thunk, this.middleware));if (utilsCheckFunc(this._updater)) {
+			this._updater();
+		}
+		store.reducers = reducersProcessed;
 
 		return await super.save({ ...payloadData, store: (this.store = store), reducers: reducersProcessed });
 	}
 
-	defaultReducer (state = { id: this.id, ...this.columnsInstance() }, action) {
-		let type = (action || {}).type,
-			payload = (action || {}).payload || {},
-			path = (payload || {}).path,
-			value = (payload || {}).value,
-			index = (payload || {}).index,
-			data = (payload || {}).data;
+	async dispatch({ type, path, value, instance }) {
+		if (!this.store) {
+			await (new Promise((resolve) => setTimeout(() => resolve(), 100)));
 
-		if ((utilsCheckObjFilled(value) 
-			&& utilsCheckFunc(value['@@observable']))) {
-			value = undefined;
+			if (!this.store) {
+				return await this.dispatch({ type, path, value, instance });
+			}
 		}
-		if (type.indexOf('@@redux/') === 0
-			|| (utilsCheckArrFilled(path)
-				&& (path[path.length - 1].includes('|store')
-					|| path[path.length - 1].includes('|reducers')))) {
-			return { ...state };
-		}
-		if (!utilsCheckObjFilled(state[this.id])) {
-			state[this.id] = {
-				id: this.id,
-			};
-		}
-		return utilsCheckFunc(this[`${type}Reducer`])
-			? this[`${type}Reducer`](state, path, value, index, data)
-			: ({ ...state });
+		return await this.store.dispatch({ 
+			type, 
+			payload: { 
+				path, 
+				valuePrevious: value,
+				valueProcessed: await (instance().controllerInstance())[type]({ path, value }), 
+			}, 
+		});
 	}
 
-	getReducer(state = {}, path, value, index, data) {
-		return { ...state };
-	}
-
-	delReducer(state = {}, path, value, index, data) {
-		delete state[this.id];
-
-		return { ...state };
-	}
-
-	setReducer(state = {}, path, value, index, data) {
-		return { ...state };
+	defaultReducer(state = {}, action) {
+		return this.columnsInstance();
 	}
 }

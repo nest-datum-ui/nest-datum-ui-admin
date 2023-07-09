@@ -3,7 +3,7 @@ import { LayoutService } from './layout.service.js';
 import { LayoutEntity } from './layout.entity.js';
 
 export class LayoutController extends ReduxModelController {
-	constructor(entityService = new LayoutService(new LayoutEntity())) {
-		super(entityService);
+	constructor(entityService) {
+		super(entityService ?? new LayoutService(new LayoutEntity()));
 	}
 }

@@ -1,17 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-	obj as utilsCheckObj,
-	symbol as utilsCheckSymbol,
-} from '@nest-datum-utils/check';
 import { Entity } from './entity.js';
 
 export class EntityService {
-	constructor(repository = new Entity(), payloadData = {}) {
-		this.repository = repository;
-
-		if (utilsCheckObj(payloadData) && !utilsCheckSymbol(payloadData['$$typeof'])) {
-			this.repository.save(payloadData);
-		}
+	constructor(repository, payloadData = {}) {
+		this.repository = repository ?? new Entity();
 	}
 
 	oneGetColumns(customColumns = {}) {

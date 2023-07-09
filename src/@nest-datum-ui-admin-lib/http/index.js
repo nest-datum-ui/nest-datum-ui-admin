@@ -1,5 +1,5 @@
-import LayoutLoad from './src/layouts/Load';
+import LayoutLoader from './src/layout-loader';
 
 export {
-	LayoutLoad,
+	LayoutLoader,
 };

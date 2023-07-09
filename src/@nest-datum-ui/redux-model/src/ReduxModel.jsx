@@ -52,10 +52,10 @@ let ReduxModel = ({
 	</Context.Provider>;
 };
 
-ReduxModel = new ReduxModelController(new ReduxModelService(new ReduxModelEntity(React.memo(ReduxModel))));
+ReduxModel = React.memo(ReduxModel);
 ReduxModel.defaultProps = {
 };
 ReduxModel.propTypes = {
 };
 
-export default ReduxModel;
+export default ReduxModelEntity.Renderer(() => new ReduxModelController(new ReduxModelService(new ReduxModelEntity(ReduxModel))));

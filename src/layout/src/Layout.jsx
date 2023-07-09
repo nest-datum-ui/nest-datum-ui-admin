@@ -3,12 +3,12 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
+	Outlet,
 } from 'react-router-dom';
+import RouteHome from 'route-home';
 import { LayoutService } from './layout.service.js';
 import { LayoutController } from './layout.controller.js';
 import { LayoutEntity } from './layout.entity.js';
-import RouteHome from 'Route/Home';
-import RouteSystemNotFound from 'Route/System/NotFound';
 
 let Layout = ({
 	children,
@@ -20,19 +20,16 @@ let Layout = ({
 				path=""
 				element={<RouteHome />} />
 			<Route
-				path={`/app`}
-				element={children} />
-			<Route
 				path="*"
-				element={<RouteSystemNotFound />} />
+				element={children || <Outlet />} />
 		</Routes>
 	</BrowserRouter>;
 };
 
-Layout = new LayoutController(new LayoutService(new LayoutEntity(React.memo(Layout))));
+Layout = React.memo(Layout);
 Layout.defaultProps = {
 };
 Layout.propTypes = {
 };
 
-export default Layout;
+export default LayoutEntity.Renderer(() => new LayoutController(new LayoutService(new LayoutEntity(Layout))));

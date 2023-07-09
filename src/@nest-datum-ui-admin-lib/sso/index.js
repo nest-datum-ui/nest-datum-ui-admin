@@ -1,4 +1,4 @@
-import LayoutAuthed from './src/layouts/Authed';
+import LayoutAuthed from './src/layout-authed';
 
 export {
 	LayoutAuthed,

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
+	objFilled as utilsCheckObjFilled,
 	arr as utilsCheckArr,
 	func as utilsCheckFunc,
 	exists as utilsCheckExists,
@@ -8,10 +9,11 @@ import {
 } from '@nest-datum-utils/check';
 
 let _saved = {
-	'entity-default|id': [],
+	'entity-default|id': 'entity-default',
 };
 
 setTimeout(() => {
+	// console.log('_saved', _saved);
 	console.log('_saved', _saved[(Object.keys(_saved).find((key) => key.includes('|store')))].getState());
 }, 5000);
 
@@ -20,6 +22,11 @@ export class Entity {
 	_service = undefined;
 	_controller = undefined;
 	id = uuidv4();
+	name = '';
+
+	constructor(...properties) {
+		this.name = this.constructor.name;
+	}
 
 	instance() {
 		return this;
@@ -104,15 +111,17 @@ export class Entity {
 		return (this._controller = controller);
 	}
 
-	getData(path = [], index = 0, data = _saved) {
+	getData(path = [], data = _saved) {
+		const currentKey = path.shift();
+
 		return (path.length === 0)
 			? data
-			: ((index === path.length - 1)
-				? data[path[index]]
-				: this.getData(path, index + 1, data[path[index]]));
+			: ((path.length > 0)
+				? this.getData([ ...path ], data)
+				: data[currentKey]);
 	}
 
-	setData(path = [], value = '', index = 0, data = _saved) {
+	setData(path = [], value = '', data = _saved, index = 0) {
 		return (path.length === 0)
 			? (utilsCheckArr(data[path[index]])
 				? data.push(value)
@@ -121,10 +130,10 @@ export class Entity {
 				? (utilsCheckArr(data[path[index]])
 					? data[path[index]].push(value)
 					: data[path[index]] = value)
-				: this.setData(path, index + 1, data[path[index]]);
+				: this.setData(path, value, data[path[index]], index + 1);
 	}
 
-	delData(path = [], index = 0, data = _saved) {
+	delData(path = [], data = _saved, index = 0) {
 		if (path.length === 0) {
 			return false;
 		}
@@ -133,7 +142,7 @@ export class Entity {
 		}
 		(index === path.length - 1)
 			? delete data[path[index]]
-			: this.delData(path, index + 1, data[path[index]]);
+			: this.delData(path, data[path[index]], index + 1);
 
 		return true;
 	}
@@ -156,9 +165,7 @@ export class Entity {
 	}
 
 	async find(queryData = {}) {
-		const findWhereQueryProcessors = await this.findWhereQueryProcessors();
-		const findWhereQueryProcessorsKeys = Object.keys(findWhereQueryProcessors);
-		const select = Object(queryData['select'] || {});
+		const selectKeys = Object.keys(queryData['select'] || {});
 		const where = this.columnsForSave(Object(queryData['where'] || {}));
 		const whereKeys = Object.keys(where);
 		const idsKeys = Object
@@ -169,47 +176,32 @@ export class Entity {
 
 		while (i < idsKeys.length) {
 			let ii = 0,
-				index = i,
-				id = Number((idsKeys[i].split('|'))[0]),
-				prepareRows = { 
-					id,
-				};
+				iii = 0,
+				id = String((idsKeys[i].split('|'))[0]),
+				prepareRows = {};
 
 			while (ii < whereKeys.length) {
 				const whereKey = whereKeys[ii];
 				const whereValue = where[whereKey];
-				const whereValueSplit = whereValue
-					.split(')')
-					.join('')
-					.split('(');
-				const whereValueProcessed = whereValue[whereValueSplit.length - 1];
-				const processors = findWhereQueryProcessorsKeys.filter((processorKey) => processorKey.includes(`${whereValue}(`));
-				let iii = 0,
-					checkFlag = true;
 
-				while (iii < processors.length) {
-					checkFlag = await processors[iii](this.getData([ `${id}|${whereKey}`, index ]), whereValueProcessed);
-					iii++;
-				}
-				if (processors.length === 0 && this.getData([ `${id}|${whereKey}`, index ]) !== whereValueProcessed) {
-					checkFlag = false;
-				}
-				if (checkFlag) {
-					prepareRows[whereKey] = this.getData([ `${id}|${whereKey}`, index ]);
+				if (_saved[`${id}|${whereKey}`] === whereValue) {
+					prepareRows['id'] = id;
+					iii = 0;
+
+					while (iii < selectKeys.length) {
+						const selectKey = selectKeys[iii];
+						const key = `${id}|${selectKey}`;
+
+						if (utilsCheckExists(_saved[key])) {
+							prepareRows[selectKey] = _saved[key];
+						}
+						iii++;
+					}
 				}
 				ii++;
 			}
-			let prepareRowsKeys;
-
-			if ((prepareRowsKeys = Object
-				.keys(select)
-				.filter((key) => prepareRows[key])).length === Object.keys(select).length) {
-					const entityData = {};
-
-					prepareRowsKeys.forEach((key) => {
-						entityData[key] = prepareRows[key];
-					});
-					rows.push(entityData);
+			if (utilsCheckObjFilled(prepareRows)) {
+				rows.push(prepareRows);
 			}
 			i++;
 		}

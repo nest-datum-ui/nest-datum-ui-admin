@@ -17,10 +17,10 @@ let Redux = ({
 		</ProviderRedux>;
 };
 
-Redux = new ReduxController(new ReduxService(new ReduxEntity(React.memo(Redux))));
+Redux = React.memo(Redux);
 Redux.defaultProps = {
 };
 Redux.propTypes = {
 };
 
-export default Redux;
+export default ReduxEntity.Renderer(() => new ReduxController(new ReduxService(new ReduxEntity(Redux))));
