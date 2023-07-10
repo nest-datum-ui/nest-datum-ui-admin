@@ -1,4 +1,10 @@
 import React from 'react';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { ButtonDashboardService } from './button-dashboard.service.js';
 import { ButtonDashboardController } from './button-dashboard.controller.js';
 import { ButtonDashboardEntity } from './button-dashboard.entity.js';
@@ -7,9 +13,19 @@ let ButtonDashboard = ({
 	children,
 	...props 
 }) => {
-	return <React.Fragment>
-		Dashboard
-	</React.Fragment>;
+	return <ListItem 
+		disablePadding>
+		<ListItemButton>
+			<ListItemIcon>
+				<DashboardIcon />
+			</ListItemIcon>
+			<ListItemText>
+				<Typography color="initial">
+					Dashboard
+				</Typography>
+			</ListItemText>
+		</ListItemButton>
+	</ListItem>;
 };
 
 ButtonDashboard = React.memo(ButtonDashboard);
