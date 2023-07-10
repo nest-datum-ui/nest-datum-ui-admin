@@ -25,10 +25,15 @@ const submit = async (e, storeName, apiUrl, entityId) => {
 			check: [ utilsCheckStrIdExists ],
 			isRequired: true,
 		},
+		userId: {
+			text: 'The value is in the wrong format.',
+			check: [ utilsCheckStrIdExists ],
+			isRequired: true,
+		},
 		isNotDelete: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckBool ]
-		},
+		}
 	});
 
 	if (validatedData) {
