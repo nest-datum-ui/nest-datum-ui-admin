@@ -1,6 +1,6 @@
 import React from 'react';
+import Entity from '@nest-datum-ui/entity';
 import { Outlet } from 'react-router-dom';
-import StyledWrapper from './Styled/Wrapper.jsx';
 import { LayoutLoaderService } from './layout-loader.service.js';
 import { LayoutLoaderController } from './layout-loader.controller.js';
 import { LayoutLoaderEntity } from './layout-loader.entity.js';
@@ -9,9 +9,9 @@ let LayoutLoader = ({
 	children,
 	...props 
 }) => {
-	return <StyledWrapper>
+	return <Entity { ...props }>
 		{children || <Outlet />}
-	</StyledWrapper>;
+	</Entity>;
 };
 
 LayoutLoader = React.memo(LayoutLoader);

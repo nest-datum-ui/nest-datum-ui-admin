@@ -13,8 +13,7 @@ let ButtonDashboard = ({
 	children,
 	...props 
 }) => {
-	return <ListItem 
-		disablePadding>
+	return <ListItem disablePadding>
 		<ListItemButton>
 			<ListItemIcon>
 				<DashboardIcon />

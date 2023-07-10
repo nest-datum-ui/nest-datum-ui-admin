@@ -1,4 +1,4 @@
-import { EntityController } from '@nest-datum/entity';
+import { EntityController } from '@nest-datum-ui/entity';
 import { ReduxService } from './redux.service.js';
 import { ReduxEntity } from './redux.entity.js';
 

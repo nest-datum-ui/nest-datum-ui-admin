@@ -5,6 +5,7 @@ import {
 	Route,
 	Outlet,
 } from 'react-router-dom';
+import ReduxModel from '@nest-datum-ui/redux-model';
 import RouteHome from 'route-home';
 import { LayoutService } from './layout.service.js';
 import { LayoutController } from './layout.controller.js';
@@ -14,16 +15,18 @@ let Layout = ({
 	children,
 	...props 
 }) => {
-	return <BrowserRouter>
-		<Routes>
-			<Route
-				path=""
-				element={<RouteHome />} />
-			<Route
-				path="*"
-				element={children || <Outlet />} />
-		</Routes>
-	</BrowserRouter>;
+	return <ReduxModel { ...props }>
+		<BrowserRouter>
+			<Routes>
+				<Route
+					path=""
+					element={<RouteHome />} />
+				<Route
+					path="*"
+					element={children || <Outlet />} />
+			</Routes>
+		</BrowserRouter>
+	</ReduxModel>;
 };
 
 Layout = React.memo(Layout);

@@ -4,6 +4,7 @@ import {
 	Route,
 	Outlet, 
 } from 'react-router-dom';
+import Entity from '@nest-datum-ui/entity';
 import Grid from '@mui/material/Grid';
 import RouteNotFound from 'route-not-found';
 import MenuAside from 'menu-aside';
@@ -16,23 +17,25 @@ let LayoutApp = ({
 	children,
 	...props 
 }) => {
-	return <Routes>
-		<Route 
-			path="/app/*"
-			element={<StyledWrapper 
-				container 
-				spacing={3}>
-				<Grid item>
-					<MenuAside />
-				</Grid>
-				<Grid item>
-					{children || <Outlet />}
-				</Grid>
-			</StyledWrapper>} />
-		<Route
-			path="*"
-			element={<RouteNotFound />} />
-	</Routes>;
+	return <Entity { ...props }>
+		<Routes>
+			<Route 
+				path="/app/*"
+				element={<StyledWrapper 
+					container 
+					spacing={3}>
+					<Grid item>
+						<MenuAside />
+					</Grid>
+					<Grid item>
+						{children || <Outlet />}
+					</Grid>
+				</StyledWrapper>} />
+			<Route
+				path="*"
+				element={<RouteNotFound />} />
+		</Routes>
+	</Entity>;
 };
 
 LayoutApp = React.memo(LayoutApp);

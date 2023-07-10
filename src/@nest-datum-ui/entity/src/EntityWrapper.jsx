@@ -1,19 +1,19 @@
 import React from 'react';
 
 let EntityWrapper = ({ 
-	ContextCurrent,
-	ContextParent,
-	entityInstance,
-	serviceInstance,
-	controllerInstance,
 	children,
+	entityInstance,
+	controllerInstance,
+	...props
 }) => {
-	const contextParent = React.useContext(ContextParent ?? ContextCurrent);
-	const contextParentProcessed = contextParent ?? { entityInstance, serviceInstance, controllerInstance };
+	React.useEffect(() => {
+		controllerInstance().mount(entityInstance().columnsInstance());
+	}, [
+		controllerInstance,
+		entityInstance,
+	]);
 
-	return <ContextCurrent.Provider value={contextParentProcessed}>
-		{children}
-	</ContextCurrent.Provider>;
+	return children;
 };
 
 EntityWrapper = React.memo(EntityWrapper);

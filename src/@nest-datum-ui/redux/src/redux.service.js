@@ -1,4 +1,4 @@
-import { EntityService } from '@nest-datum/entity';
+import { EntityService } from '@nest-datum-ui/entity';
 import { ReduxEntity } from './redux.entity.js';
 
 export class ReduxService extends EntityService {

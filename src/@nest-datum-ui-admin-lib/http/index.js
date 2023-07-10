@@ -1,5 +1,5 @@
-import LayoutLoader from './src/layout-loader';
+import LayoutFetch from './src/layout-fetch';
 
 export {
-	LayoutLoader,
+	LayoutFetch,
 };

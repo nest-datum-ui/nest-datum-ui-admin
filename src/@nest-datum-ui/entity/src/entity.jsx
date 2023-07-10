@@ -1,42 +1,29 @@
 import React from 'react';
 import { Entity as EntityDefault } from '@nest-datum/entity'; 
-import EntityWrapper from './EntityWrapper.jsx';
-
-export const Context = React.createContext();
 
 export class Entity extends EntityDefault {
 	constructor(EntityComponent) {
 		super();
 		this.EntityComponent = (EntityComponent = EntityComponent ?? React.Fragment);
 		this.EntityComponentWrapper = React.memo(({
-			ContextCurrent,
 			children,
 			...props
 		}) => {
 			const [ updater, setUpdater ] = React.useState(() => 0);
+			const [ entityInstance ] = React.useState(() => super.entityInstance.bind(this));
+			const [ serviceInstance ] = React.useState(() => super.serviceInstance.bind(this));
+			const [ controllerInstance ] = React.useState(() => super.controllerInstance.bind(this));
 
 			this['_updater'] = () => setUpdater((currentState) => (currentState + 1));
 
-			return <EntityWrapper
+			return <EntityComponent
 				{ ...props } 
-				entityInstance={super.entityInstance.bind(this)}
-				serviceInstance={super.serviceInstance.bind(this)}
-				controllerInstance={super.controllerInstance.bind(this)}
-				columnsInstance={super.columnsInstance.bind(this)}
-				ContextParent={ContextCurrent}
-				ContextCurrent={Context}>
-				<EntityComponent
-					{ ...props } 
-					entityInstance={super.entityInstance.bind(this)}
-					serviceInstance={super.serviceInstance.bind(this)}
-					controllerInstance={super.controllerInstance.bind(this)}
-					columnsInstance={super.columnsInstance.bind(this)}
-					ContextParent={ContextCurrent}
-					ContextCurrent={Context}
-					updater={updater}>
-					{children}
-				</EntityComponent>
-			</EntityWrapper>;
+				entityInstance={entityInstance}
+				serviceInstance={serviceInstance}
+				controllerInstance={controllerInstance}
+				updater={updater}>
+				{children}
+			</EntityComponent>;
 		});
 
 		this.EntityComponentWrapper.defaultProps = {

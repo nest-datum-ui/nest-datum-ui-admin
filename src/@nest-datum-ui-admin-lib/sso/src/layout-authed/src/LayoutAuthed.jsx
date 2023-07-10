@@ -1,4 +1,5 @@
 import React from 'react';
+import Entity from '@nest-datum-ui/entity';
 import RouteSignIn from '../../route-sign-in';
 import {
 	Routes,
@@ -8,8 +9,11 @@ import { LayoutAuthedService } from './layout-authed.service.js';
 import { LayoutAuthedController } from './layout-authed.controller.js';
 import { LayoutAuthedEntity } from './layout-authed.entity.js';
 
-let LayoutAuthed = ({ children }) => {
-	return <React.Fragment>
+let LayoutAuthed = ({ 
+	children,
+	...props 
+}) => {
+	return <Entity { ...props }>
 		<Routes>
 			<Route
 				path="sign-in"
@@ -18,7 +22,7 @@ let LayoutAuthed = ({ children }) => {
 				path="*"
 				element={children} />
 		</Routes>
-	</React.Fragment>;
+	</Entity>;
 };
 
 LayoutAuthed = React.memo(LayoutAuthed);
