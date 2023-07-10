@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import RouteNotFound from 'route-not-found';
+import MenuAside from 'menu-aside';
 import StyledWrapper from './Styled/Wrapper.jsx';
 import { LayoutAppService } from './layout-app.service.js';
 import { LayoutAppController } from './layout-app.controller.js';
@@ -22,7 +23,7 @@ let LayoutApp = ({
 				container 
 				spacing={3}>
 				<Grid item>
-					111
+					<MenuAside />
 				</Grid>
 				<Grid item>
 					{children || <Outlet />}
