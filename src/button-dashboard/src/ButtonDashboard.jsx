@@ -21,7 +21,7 @@ let ButtonDashboard = ({
 			</ListItemIcon>
 			<ListItemText>
 				<Typography color="initial">
-					Dashboard
+					{children || 'Dashboard'}
 				</Typography>
 			</ListItemText>
 		</ListItemButton>

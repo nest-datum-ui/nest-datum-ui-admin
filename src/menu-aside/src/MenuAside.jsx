@@ -1,4 +1,5 @@
 import React from 'react';
+import Divider from '@mui/material/Divider';
 import ButtonDashboard from 'button-dashboard';
 import StyledWrapper from './Styled/Wrapper.jsx';
 import { MenuAsideService } from './menu-aside.service.js';
@@ -10,7 +11,10 @@ let MenuAside = ({
 	...props 
 }) => {
 	return <StyledWrapper disablePadding>
-		<ButtonDashboard />
+		<ButtonDashboard>
+			Dashboard
+		</ButtonDashboard>
+		<Divider />
 	</StyledWrapper>;
 };
 

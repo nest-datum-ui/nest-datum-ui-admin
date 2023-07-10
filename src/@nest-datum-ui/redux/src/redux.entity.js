@@ -50,11 +50,13 @@ export class ReduxEntity extends Entity {
 			reducersProcessed[reducersKeys[i]] = await payloadData['reducers'][reducersKeys[i]];
 			i++;
 		}
-		const store = await createStore(combineReducers(reducersProcessed), undefined, applyMiddleware(thunk, this.middleware));if (utilsCheckFunc(this._updater)) {
+		const store = await createStore(combineReducers(reducersProcessed), undefined, applyMiddleware(thunk, this.middleware));
+
+		store.reducers = reducersProcessed;
+		
+		if (utilsCheckFunc(this._updater)) {
 			this._updater();
 		}
-		store.reducers = reducersProcessed;
-
 		return await super.save({ ...payloadData, store: (this.store = store), reducers: reducersProcessed });
 	}
 
