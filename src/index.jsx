@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { LayoutFetch as HttpLayoutFetch } from '@nest-datum-ui-admin-lib/http';
+import { LayoutFetchInit as HttpLayoutFetchInit } from '@nest-datum-ui-admin-lib/http';
 import { LayoutAuthed as SsoLayoutAuthed } from '@nest-datum-ui-admin-lib/sso';
 import Redux from '@nest-datum-ui/redux';
 import Exception from '@nest-datum-ui/exception';
@@ -18,11 +18,11 @@ root.render(<Redux>
 		<Exception>
 			<Layout>
 				<LayoutLoader>
-					<HttpLayoutFetch>
+					<HttpLayoutFetchInit>
 						<SsoLayoutAuthed>
 							<LayoutApp />
 						</SsoLayoutAuthed>
-					</HttpLayoutFetch>
+					</HttpLayoutFetchInit>
 				</LayoutLoader>
 			</Layout>
 		</Exception>

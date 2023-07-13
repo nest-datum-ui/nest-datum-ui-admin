@@ -3,11 +3,11 @@ import {
 	arrFilled as utilsCheckArrFilled,
 } from '@nest-datum-utils/check';
 import { ReduxService } from '@nest-datum-ui/redux';
-import { ReduxModelEntity } from './redux-model.entity.jsx';
+import { ReduxReducerEntity } from './redux-reducer.entity.jsx';
 
-export class ReduxModelService extends ReduxService {
+export class ReduxReducerService extends ReduxService {
 	constructor(repository) {
-		super(repository ?? new ReduxModelEntity());
+		super(repository ?? new ReduxReducerEntity());
 
 		(async () => await this.provideReduxStore(repository))();
 	}
@@ -33,6 +33,6 @@ export class ReduxModelService extends ReduxService {
 			else {
 				await this.provideReduxStore(repository);
 			}
-		}, 100));
+		}, 0));
 	}
 }

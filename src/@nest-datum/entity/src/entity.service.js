@@ -150,8 +150,6 @@ export class EntityService {
 	}
 
 	async updateProcess(properties = {}) {
-		console.log('properties', properties);
-
 		return await this.process(properties, await this.repository.update({ id: properties['id'] }, properties));
 	}
 
@@ -184,7 +182,7 @@ export class EntityService {
 	}
 
 	async dropProcess(properties = {}) {
-		return await this.process(properties, this.repository.delete(properties));
+		return await this.process(properties, await this.repository.delete(properties));
 	}
 
 	async dropOutput(properties = {}, output) {

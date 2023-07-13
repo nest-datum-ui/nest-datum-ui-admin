@@ -1,4 +1,4 @@
-import { ReduxModelEntity } from '@nest-datum-ui/redux-model';
+import { ReduxReducerModelEntity } from '@nest-datum-ui/redux-reducer-model';
 
-export class LayoutEntity extends ReduxModelEntity {
+export class LayoutEntity extends ReduxReducerModelEntity {
 }

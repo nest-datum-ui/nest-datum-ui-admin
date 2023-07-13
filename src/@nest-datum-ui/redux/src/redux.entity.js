@@ -62,7 +62,7 @@ export class ReduxEntity extends Entity {
 
 	async dispatch({ type, path, value, instance }) {
 		if (!this.store) {
-			await (new Promise((resolve) => setTimeout(() => resolve(), 100)));
+			await (new Promise((resolve) => setTimeout(() => resolve(), 0)));
 
 			if (!this.store) {
 				return await this.dispatch({ type, path, value, instance });
@@ -72,13 +72,15 @@ export class ReduxEntity extends Entity {
 			type, 
 			payload: { 
 				path, 
-				valuePrevious: value,
-				valueProcessed: await (instance().controllerInstance())[type]({ path, value }), 
+				value: await (instance().controllerInstance())[type]({ path, value }), 
 			}, 
 		});
 	}
 
 	defaultReducer(state = {}, action) {
-		return this.columnsInstance();
+		if (this.id === ((action.payload || {}).path || [])[0]) {
+			return (action.payload || {}).value;
+		}
+		return { ...state };
 	}
 }

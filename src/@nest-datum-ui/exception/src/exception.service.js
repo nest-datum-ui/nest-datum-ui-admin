@@ -1,7 +1,7 @@
-import { ReduxModelService } from '@nest-datum-ui/redux-model';
+import { ReduxReducerModelService } from '@nest-datum-ui/redux-reducer-model';
 import { ExceptionEntity } from './exception.entity.js';
 
-export class ExceptionService extends ReduxModelService {
+export class ExceptionService extends ReduxReducerModelService {
 	constructor(repository) {
 		super(repository ?? new ExceptionEntity());
 	}
