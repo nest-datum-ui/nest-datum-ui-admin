@@ -43,7 +43,7 @@ let Search = ({
 			actionApiListMerge(storeName, {
 				loader: true,
 				page: 1,
-				limit: 0,
+				limit: 1,
 				query,
 			})();
 			onSearch(String(e.target.elements[name].value ?? ''));
