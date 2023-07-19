@@ -48,6 +48,7 @@ const submit = async (e, {
 		parentId: {
 			text: 'The value is in the wrong format.',
 			check: [ utilsCheckStrIdExists ],
+			isRequired: true,
 		},
 		isNotDelete: {
 			text: 'The value is in the wrong format.',

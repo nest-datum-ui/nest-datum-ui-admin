@@ -180,7 +180,8 @@ let Region = () => {
 				form={id}
 				itemKey="name"
 				name="parentId"
-				label="Parent" />
+				label="Parent"
+				required />
 		</Box>
 		<Box py={1}>
 			<Field
