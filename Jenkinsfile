@@ -3,6 +3,8 @@ def SERVICE_NAME="nest-datum-ui-admin" // name of service or project.
 def AGENT_NODE="happ3" // node/slave name where to run this job.
 
 // DO NOT CHANGE!
+def SERVICE_HOME="/home/$JOB_NAME"
+def SERVICE_ROOT="$SERVICE_HOME/$SERVICE_NAME"
 def TARGET_USER="jenkins"
 
 script {
@@ -17,9 +19,11 @@ pipeline {
     stages {
         stage('Init & Build project') {
             steps {
-                sh "chown -R $JOB_NAME:$JOB_NAME ./*"
-                sh "sudo -u $TARGET_USER npm install"
-                sh "sudo -u $TARGET_USER npm run build"
+                dir("$SERVICE_ROOT") {
+                    sh "chown -R $JOB_NAME:$JOB_NAME ./*"
+                    sh "sudo -u $TARGET_USER npm install"
+                    sh "sudo -u $TARGET_USER npm run build"
+                }
             }
         }
     }
