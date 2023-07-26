@@ -16,8 +16,8 @@ let Email = ({
 
 	return <StyledWrapper
 		{ ...props }
-		onInput={onInputLocal}
-		type="email" />;
+		// onInput={onInputLocal}
+		/>;
 };
 
 Email = React.memo(Email);

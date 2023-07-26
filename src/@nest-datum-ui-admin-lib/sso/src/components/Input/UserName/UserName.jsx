@@ -13,7 +13,7 @@ let UserName = ({ onInput, ...props }) => {
 		onInput,
 	]);
 
-	return <StyledWrapper { ...props } onInput={onInputWrapper} />;
+	return <StyledWrapper { ...props } />; //onInput={onInputWrapper} />;
 };
 
 UserName = React.memo(UserName);

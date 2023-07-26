@@ -14,7 +14,7 @@ let Login = ({ onInput, displayStartIcon, InputProps: { startAdornment, ...Input
 	]);
 
 	return <InputText 
-		onInput={onInputWrapper} 
+		// onInput={onInputWrapper} 
 		placeholder="john95"
 		label="Login"
 		InputProps={{
