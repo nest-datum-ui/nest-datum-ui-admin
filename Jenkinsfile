@@ -22,7 +22,7 @@ pipeline {
         stage('Init & Build project') {
             steps {
                 sh "sudo chmod o+rw $SERVICE_HOME/$SERVICE_NAME/.env"
-                sh "sudo cp $SERVICE_HOME/$SERVICE_NAME/.env $WORKSPACE_PATH/$JOB_NAME"
+                sh "sudo cp $SERVICE_HOME/$SERVICE_NAME/.env $WORKSPACE_PATH"
                 sh "npm install"
                 sh "npm run build"
             }
