@@ -3,7 +3,7 @@ def SERVICE_NAME="nest-datum-ui-admin" // name of service or project.
 def AGENT_NODE="happ3" // node/slave name where to run this job.
 
 // DO NOT CHANGE!
-def WORKSPACE_PATH="$JENKINS_HOME/jobs/$JOB_NAME/workspace"
+def WORKSPACE_PATH="$JENKINS_HOME/workspace/workspace/$JOB_NAME"
 def SERVICE_HOME="/home/$JOB_NAME"
 def SERVICE_ROOT="$SERVICE_HOME/$SERVICE_NAME"
 def TARGET_DIST_DEPLOY_PATH="$SERVICE_ROOT/build"
