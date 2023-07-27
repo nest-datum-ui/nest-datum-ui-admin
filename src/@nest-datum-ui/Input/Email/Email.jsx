@@ -7,12 +7,12 @@ let Email = ({
 	onInput,
 	...props 
 }) => {
-	const onInputLocal = React.useCallback((e) => {
-		e.target.value = e.target.value.toLowerCase().replace(/[^a-zа-я0-9.@_-]+/g, '');
-		onInput(e);
-	}, [
-		onInput,
-	]);
+	// const onInputLocal = React.useCallback((e) => {
+	// 	e.target.value = e.target.value.toLowerCase().replace(/[^a-zа-я0-9.@_-]+/g, '');
+	// 	onInput(e);
+	// }, [
+	// 	onInput,
+	// ]);
 
 	return <StyledWrapper
 		{ ...props }
